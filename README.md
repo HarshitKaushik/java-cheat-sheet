@@ -56,6 +56,16 @@ Three Types
 
 A bootstrap or primordial class loader is the parent of all the others. This is because **the bootstrap class loader is written in native code**, not Java – so it doesn't show up as a Java class. Due to this reason, the behavior of the bootstrap class loader will differ across JVMs.
 
+There are three important features of class loaders.
+
+Delegation Model - class loaders follow the delegation model where on request to find a class or resource, a ClassLoader instance will delegate the search of the class or resource to the parent class loader.
+
+Unique Classes - As a consequence of the delegation model, it's easy to ensure unique classes as we always try to delegate upwards.
+
+Visibility - In addition, children class loaders are visible to classes loaded by its parent class loaders.
+
+Custom ClassLoaders - The built-in class loader would suffice in most of the cases where the files are already in the file system. However, in scenarios where we need to load classes out of the local hard drive or a network, we may need to make use of custom class loaders.
+
 Order of execution of ClassLoaders
 - JVM needs to find a class, it starts with System Class Loader. 
 - If it is not found, it checks with Extension Class Loader. 
@@ -106,14 +116,14 @@ java HelloWorld
 - You should see the output "Hello World" printed in the console.
 
 ### Class and Object
-- What is a class?
+- What is a Class? A class is a user-defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.  
 - Defining an instance of a class is called an object.
 - Invoking a method on the object.
 
 ### Variables
 - Value of a variable changes during the course of a program execution.
 
-```
+```java
 int number;
 number = 5;
 System.out.println(number);//5
@@ -123,17 +133,16 @@ number = number + 2;
 System.out.println(number);//9
 ```
 
-Declaring and Initializing Variables
+Declaring and initializing variables
 - Declaration is give a variable a name and type
 
-```
+```java
 TYPE variableName;
 ```
 
-#### Tips
-- Two or more variables of single type can be declared together.
-- All six numeric types in Java are signed.
-
+### Tips
+- Two or more variables of single type can be declared together.  
+- All six numeric types in Java are signed.  
 
 ### Primitive Variables
 
@@ -142,11 +151,10 @@ Variables that store value.
 
 Java defines few types like int (numbers), float(floating point numbers), char (characters). Variables of these types store the value of the variable directly. These are not objects. These are called primitive variables. 
 
-An example is shown below: Primitive Variables contains bits representing the value of the variable.
+An example is shown below: Primitive Variables contain bytes of data representing the value of the variable.
 
-```
+```java
 int value = 5;
-
 ```
 Different primitive types in java are char, boolean, byte, short, int, long, double, or float. Because of these primitive types, Java is NOT considered to be a pure objected oriented language.
 
