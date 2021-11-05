@@ -1,5 +1,5 @@
 # Java Cheat Sheet
-Review Java 9 Concepts at Jet Speed.
+Review Java Concepts at Jet Speed.
 
 ## Introduction
 
@@ -32,33 +32,35 @@ C -->|bytecode| E[Unix  JVM]
 E --> L[Unix Instructions]
 C -->|bytecode| F[Linux  JVM]
 F --> M[Linux Instructions]
-C -->|bytecode| G[Any other platform  JVM]
-G --> N[Linux Instructions]
+C -->|bytecode| G[Any other platform JVM]
+G --> N[Any other platform Instructions]
 ```
 
 ### JDK vs JVM VS JRE
 
-- JVM (Java Virtual Machine)
+- JVM - Java Virtual Machine
   - runs the Java bytecode.
-- JRE
+- JRE - Java Runtime Environment
   - JVM + Libraries + Other Components (to run applets and other java applications)
-- JDK
+- JDK - Java Development Kit
   - JRE + Compilers + Debuggers
 
 ### ClassLoader
 
-- Find and Loads Java Classes!
+- Finds and loads Java classes! Class loaders are responsible for loading Java classes during runtime dynamically to the JVM (Java Virtual Machine).  
 
 Three Types
 - System Class Loader - Loads all application classes from CLASSPATH
 - Extension Class Loader - Loads all classes from extension directory
 - Bootstrap Class Loader - Loads all the Java core files
 
+A bootstrap or primordial class loader is the parent of all the others. This is because **the bootstrap class loader is written in native code**, not Java – so it doesn't show up as a Java class. Due to this reason, the behavior of the bootstrap class loader will differ across JVMs.
+
 Order of execution of ClassLoaders
 - JVM needs to find a class, it starts with System Class Loader. 
 - If it is not found, it checks with Extension Class Loader. 
-- If it not found, it goes to the Bootstrap Class Loader. 
-- If a class is still not found, a ClassNotFoundException is thrown.
+- If it is not found, it goes to the Bootstrap Class Loader. 
+- If a class is still not found, a **ClassNotFoundException** is thrown.
 
 ### First Java Program
 
@@ -77,36 +79,36 @@ Notes
 - When a program runs, Java should know which line of code has to be run first. public static void main(String[] args) is the first method that is run when a program is executed.
 
 
-> Java, like any other programming language, is particular about syntax!!
+> Java, like any other programming language, is particular about syntax!
 
 
-### Using Java and JavaC
-There are two steps involved in running a Java Program
+### Using Java and Javac
+There are two steps involved in running a Java Program.
 - Compilation
 - Execution
 
-#### Compilation
+### Compilation
 We use javac to compile java code. 
 - Open CommandPrompt/Terminal and cd to the folder where HelloWorld.java file is present
 - execute the command below
-```
+```bash
 javac HelloWorld.java
 ```
 - You should see two files HelloWorld.java and HelloWorld.class in the folder.
-- HelloWorld.class contains the java bytecode
+- HelloWorld.class contains the java bytecode.
 
 #### Execution
-- Now we can run the program using JVM
-- execute the command below
-```
+- Now, we can run the program using JVM.
+- Execute the command below
+```bash
 java HelloWorld
 ```
 - You should see the output "Hello World" printed in the console.
 
 ### Class and Object
 - What is a class?
-- Definining an instance of a class - an object
-- Invoking a method on the object
+- Defining an instance of a class is called an object.
+- Invoking a method on the object.
 
 ### Variables
 - Value of a variable changes during the course of a program execution.
