@@ -151,24 +151,25 @@ Variables that store value.
 
 Java defines few types like int (numbers), float(floating point numbers), char (characters). Variables of these types store the value of the variable directly. These are not objects. These are called primitive variables. 
 
-An example is shown below: Primitive Variables contain bytes of data representing the value of the variable.
+An example is shown below, primitive variables contain bytes of data representing the value of the variable.
 
 ```java
 int value = 5;
 ```
-Different primitive types in java are char, boolean, byte, short, int, long, double, or float. Because of these primitive types, Java is NOT considered to be a pure objected oriented language.
+
+Different primitive types in java are char, boolean, byte, short, int, long, double, or float. Because of these primitive types, Java is NOT considered to be a pure object-oriented language.
 
 Numeric Data Types
 - Types  : byte, short, int, long, float, double
 - Number of bits : 8, 16, 32, 64, 32, 64
 - Range  : -x to x-1 where x = Power(2, number of bits -1)
 
-char Data Type
-- Used to store characters. Size of character is 16 bits.
+Character Data Type
+- ```char``` data type is used to store characters. Size of character is 16 bits.
 
 Examples
 
-```
+```java
 int i = 15;
 long longValue = 1000000000000l;
 byte b = (byte)254;
@@ -191,12 +192,12 @@ Animal dog = new Animal();
 
 The instance of new Animal - Animal object - is created in memory. The memory address of the object created is stored in the dog reference variable.
 
-Reference Variables contains a reference or a guide to get to the actual object in memory.
+> A reference variable contains a reference to get to the actual object in memory.
 
 
 #### Puzzles
 
-```
+```java
 Animal dog1 = new Animal();
 dog1 = new Animal();
 ```
@@ -205,7 +206,7 @@ What will happen?
 Two objects of type Animal are created. Only one reference variable is created.
 
 
-```
+```java
 Animal animal1 = new Animal();
 Animal animal2 = new Animal();
 animal1 = animal2;
@@ -217,28 +218,58 @@ What will happen? What would happen if the same was done with primitive variable
 ### Identifiers
 Names given to a class, method, interface, variables are called identifiers.
 
-Legal Identifier Names
-- Combination of letters, numbers, $ and under-score(_)
-- Cannot start with a number
-- Cannot be a keyword
-- No limit on length of identifier
+Legal Identifier Names - Rules which define a legal identifier name.
+- Combination of letters, numbers, $ and under-score(_).
+- Cannot start with a number.
+- Cannot be a keyword.
+- No limit on the length of an identifier.
+
 
 ### Java Keywords
 List of Java Keywords
-- Primitives DataTypes    : byte,short,int,long,float,double,char,boolean
-- Flow Control    : if, else,for,do, while, switch, case, default, break,
-      continue,return
-- Exception Handling      : try, catch, finally,throw,throws,assert
-- Modifiers       : public,private,protected,final,static,native,abstract,
-      synchronized,transient,volatile,strictfp
-- Class Related   : class,interface,package,extends,implements,import
-- Object Related  : new, instanceof,super,this
-- Literals    : true, false, null
-- Others      : void, enum
-- Unused  : goto,const
+- Primitive Data Types: byte,short,int,long,float,double,char,boolean
+- Flow Control: if, else, for, do, while, switch, case, default, break,
+      continue, return
+- Exception Handling: try, catch, finally, throw, throws, assert
+- Modifiers: public, private, protected, final, static, native, abstract,
+      synchronized, transient, volatile, strictfp
+- Class Related: class, interface, package, extends, implements, import
+- Object Related: new, instanceof, super, this
+- Literals: true, false, null
+- Others: void, enum
+- Unused: goto, const
+
+The ```native``` keyword is applied to a method to indicate that the method is implemented in native code using JNI (Java Native Interface). ```native``` is a modifier applicable only for methods and we can’t apply it anywhere else.  
+
+The ```synchronized``` keyword is used when multi-threaded programs come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results. Java provides a way of creating threads and synchronizing their task by using synchronized blocks. Synchronized blocks in Java are marked with the ```synchronized``` keyword. A synchronized block in Java is synchronized on some object. All synchronized blocks synchronized on the same object can only have one thread executing inside them at a time. All other threads attempting to enter the synchronized block are blocked until the thread inside the synchronized block exits the block.  
+
+Following is the general form of a synchronized block:  
+
+```
+// Only one thread can execute at a time. 
+// sync_object is a reference to an object
+// whose lock associates with the monitor. 
+// The code is said to be synchronized on
+// the monitor object
+synchronized(sync_object)
+{
+   // Access shared variables and other
+   // shared resources
+}
+```
+
+The ```abstract``` keyword is a non-access modifier applicable for classes, methods but not variables. It is used to achieve abstraction which is one of the pillars of Object Oriented Programming(OOP).  
+
+The ```transient``` is a variable modifier used in serialization. At the time of serialization, if we don’t want to save value of a particular variable in a file, then we use the ```transient``` keyword. When JVM comes across the ```transient``` keyword, it ignores the original value of the variable and saves the default value of that variable's data type. The ```transient``` keyword plays an important role to meet security constraints. There are various real-life examples where we don’t want to save private data in file.
+
+The ```volatile``` keyword is used to mark a variable as "being stored in main memory". More precisely that means, that every read of a volatile variable will be read from the computer's main memory, and not from the CPU cache, and that every write to a volatile variable will be written to main memory, and not just to the CPU cache.  
+
+When a class or an interface is declared with ```strictfp``` modifier, then all methods declared in the class/interface, and all nested types declared in the class, are implicitly ```strictfp```.
+
+The ```strictfp``` cannot be used with abstract methods. However, it can be used with abstract classes/interfaces.
 
 ### Literals
-Any primitive data type value in source code is called Literal.
+Any primitive data type value in source code is called a literal.
 
 There are four types of literals:
 - Integer & Long
@@ -246,7 +277,7 @@ There are four types of literals:
 - Boolean
 - Double
 
-#### Literals
+### Literals
 
 Integer Literals
 - There are 3 ways of representing an Integer Literal. 
@@ -258,43 +289,44 @@ Integer Literals
 Long Literals 
 - All 3 integer formats: Decimal, Octal and Hexadecimal can be used to represent long by appending with L or l.
 
-Floating point Literals
+Floating-point Literals
 - Numbers with decimal points. Example: ```double d = 123.456;```
 - To declare a float, append f. Example: float f = 123.456f;
 - Floating point literals are double by default.
-- Appending d or D at end of double literal is optional Example: ```double d = 123.456D;```
+- Appending d or D at end of double literal is optional. Example: ```double d = 123.456D;```
 
 Boolean Literals
 - Valid boolean values are true and false. 
-- TRUE, FALSE or True, False are invalid.
 
 Character Literals
 - Represented by single character between single quotes  Example: ```char a = 'a'```
-- Unicode Representation also can be used. Prefix with \u. Example: char letterA = '\u0041';
+- Unicode representation can also be used. Please prefix with "\u". Example: ```char letterA = '\u0041';```
 - A number value can also be assigned to character. Example: char letterB = 66; Numeric value can be from 0 to 65535;
 - Escape code can be used to represent a character that cannot be typed as literal. Example: char newLine = '\n';
 
-#### Puzzles 
+### Puzzles 
 
-```
+```java
 int eight = 010; 
-int nine=011;  
+int nine = 011;  
 int invalid = 089;//COMPILER ERROR! 8 and 9 are invalid in Octal
 int sixteen = 0x10; 
 int fifteen = 0XF; 
 int fourteen = 0xe;
-int x = 23,000;
+// For Hexadecimal, the 0x or 0X is to be placed in the beginning of a number.
+int x = 23,000; //COMPILER ERROR! Comma character is extra.
 long a = 123456789l; 
-long b = 0x9ABCDEFGHL; 
-long c = 0123456789L;
+long b = 0x9ABCDEFGHL; //COMPILER ERROR! Invalid hexadecimal code.
+long c = 0123456789L; //COMPILER ERROR! 8 and 9 are invalid in Octal.
 
-float f = 123.456;//COMPILER ERROR! A double value cannot be assigned to a float.
+float f = 123.456; //COMPILER ERROR! A double value cannot be assigned to a float.
 
-boolean b = true; boolean b=false;
-boolean b = TRUE;//COMPILATION ERROR
+boolean b = true; 
+boolean b=false;
+boolean b = TRUE; //COMPILER ERROR
 boolean b = 0; //COMPILER ERROR. This is not C Language
 
-char ch = a;
+char ch = a; //COMPILER ERROR
 char a = 97;
 char ch1 = 66000; //COMPILER ERROR!
 ```
@@ -302,18 +334,19 @@ char ch1 = 66000; //COMPILER ERROR!
 ### Tip - Assignment Operator
 Assignment operator evaluates the expression on the right hand side and copies the value into the variable on the left hand side. 
 
-#### Basic Examples
-```
-int value = 35;//35 is copied into 35
+### Basic Examples
 
-int squareOfValue = value * value;//value * value = 35 * 35 is stored into squareOfValue
+```java
+int value = 35; //35 is copied into value
+
+int squareOfValue = value * value; //value * value = 35 * 35 is stored into squareOfValue
 
 int twiceOfValue = value * 2;
 ```
 
-#### Puzzles
+### Puzzles
 
-```
+```java
 int a1 = 5;
 int b1 = 6;
 b1 = a1; // value of a1 is copied into b1
@@ -321,11 +354,11 @@ a1 = 10; // If we change a1 or b1 after this, it would not change the other vari
 
 Actor actor1 = new Actor();
 actor1.setName("Actor1");
-//This creates new reference variable actor1 of type Actor  new Actor() on the heap assigns the new Actor on the heap to reference variable
+// This creates new reference variable actor1 of type Actor  new Actor() on the heap assigns the new Actor on the heap to reference variable
 
 Actor actor2 = actor1;
 actor2.setName("Actor2");
-System.out.println(actor1.getName());//Actor2
+System.out.println(actor1.getName()); //Actor2
 
 ```
 
@@ -334,21 +367,20 @@ System.out.println(actor1.getName());//Actor2
 Casting is used when we want to convert one data type to another. 
 
 - A literal integer is by default int. Operation involving int-sized or less always result in int.
-- Floating point literals are by default double
+- Floating point literals are by default double.
 
-#### Implicit Casting
+### Implicit Casting
 
 - Implicit Casting is done directly by the compiler.
-  - Example : Widening Conversions i.e. storing smaller values in larger variable types.
+  - Example: Widening Conversions i.e. storing smaller values in larger variable types.
 
-
-```
+```java
 byte b = 10; //byte b = (int) 10; Example below compiles because compiler introduces an implicit cast.
 
 short n1 = 5;
 short n2 = 6;
-//short sum = n1 + n2;//COMPILER ERROR
-short sum = (short)(n1 + n2);//Needs an explicit cast
+short sum = n1 + n2; //COMPILER ERROR
+short sum = (short) (n1 + n2); //Needs an explicit cast
 
 byte b = 5;
 b += 5; //Compiles because of implicit conversion
@@ -358,35 +390,35 @@ long number = value; //Implicit Casting
 float f = 100; //Implicit Casting 
 ```
 
-#### Explicit Casting
-- Explicit Casting needs to be specified by programmer in code.
-  - Example: Narrowing Conversions. Storing larger values into smaller variable types;
+### Explicit casting
+- Explicit casting needs to be specified in code.
+  - Example: Narrowing conversions. Storing larger values into smaller variable types;
 - Explicit casting would cause truncation of value if the value stored is greater than the size of the variable.
 
-```
+```java
 long number1 = 25678;
-int number2 = (int)number1;//Explicit Casting
-//int x = 35.35;//COMPILER ERROR
-int x = (int)35.35;//Explicit Casting
+int number2 = (int) number1; //Explicit casting
+//int x = 35.35; //COMPILER ERROR
+int x = (int) 35.35; //Explicit casting
 
 int bigValue = 280;
 byte small = (byte) bigValue;
-System.out.println(small);//output 24. Only 8 bits remain.
+System.out.println(small);  //output 24. Only 8 bits remain.
 
-//float avg = 36.01;//COMPILER ERROR. Default Double
-float avg = (float) 36.01;//Explicit Casting
+//float avg = 36.01; //COMPILER ERROR. Default double
+float avg = (float) 36.01; //Explicit casting
 float avg1 = 36.01f;
 float avg2 = 36.01F; //f or F is fine
 
 //byte large = 128; //Literal value bigger than range of variable type causes compilation error
-byte large = (byte) 128;//Causes Truncation!
+byte large = (byte) 128; //Causes truncation!
 ```
 
-#### Compound Assignment Operators
+### Compound Assignment Operators
 
-- Examples : +=, -=, *= 
+- Examples : +=, -=, *=, /=
 
-```
+```java
 int a = 5;
 a += 5; //similar to a = a + 5;
 a *= 10;//similar to a = a * 10;
@@ -394,10 +426,9 @@ a -= 5;//similar to a = a - 5;
 a /= 5;//similar to a = a / 5;
 ```
 
+## Other Operators
 
-### Other Operators
-
-#### Remainder(%) Operator
+### Remainder(%) Operator
 
 - Remainder when one number is divided by another.
 
@@ -406,85 +437,86 @@ System.out.println(10 % 4);//2
 System.out.println(15 % 4);//3
 ```
 
-#### Conditional Operator
-- Conditional Operator is a Ternary Operator (3 Operands)
+### Conditional Operator
+- Conditional Operator is a ternary operator (3 Operands)
 - syntax : ```booleanCondition ? ResultIfTrue: ResultIfFalse;```
 
-```
+```java
 int age = 18;
 
 System.out.println(
-age >= 18 ? "Can Vote": "Cannot Vote");//Can Vote
+age >= 18 ? "Can Vote": "Cannot Vote"); //Can Vote
 
 age = 15;
 
 System.out.println(
-age >= 18 ? "Can Vote": "Cannot Vote");//Cannot Vote
+age >= 18 ? "Can Vote": "Cannot Vote"); //Cannot Vote
 ```
 
-### Passing Variables to Methods
+### Passing Variables To Methods
 
-- All variables , primitives and references , in Java, are passed to functions using copy-of-variable-value.
+- All variables, primitives and references, in Java, are passed to functions using copy-of-variable-value.
 
-#### Passing Variables to Methods : Example
-- Passing a primitive variable and modifying the value in a method
-- Passing a reference variable and modifying the value in a method
+### Passing Variables To Methods: Example
+- Passing a primitive variable and modifying the value in a method.
+- Passing a reference variable and modifying the value in a method.
 
-#### Returning a Value From Method
-- null is a valid return value for an object.
-- You can return andy type that can be implicitly coverted to return type.
+### Returning A Value From Method
+- ```null``` is a valid return value for an object.
+- You can return any type that can be implicitly converted to return type.
 - You cannot return anything from a void method.
 
 ### Types of Variables
 
-- Different Types of Variables: Static, Member (or instance), Local, Block
+- Different types of variables: static, member (or instance), local, block
 
-#### Instance Variables
+### Instance Variables
 - Declared inside a class outside any method.
 - Each instance of the class would have its own values.
 - Also called member value, field or property.
 
-#### Local Variables
-- Variables declared in a method
-- Local Variables can only be marked with final modifier
-- If the name of a Local Variable is same as the name of an instance variable, it results in shadowing.
+### Local Variables
+- Variables declared in a method.
+- Local variables can be marked with final modifier.
+- If the name of a local variable is same as the name of an instance variable, it results in shadowing.
 
-#### Member Variables
+### Member Variables
 - Defined at class level and without keyword static.
 
-#### Static Variable
+### Static Variable
 - Defined at class level and using keyword static.
 
-#### Member Variable and Static Variable
-- Member Variables can be accessed only through object references.
-- Static Variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
+### Member Variable Vs Static Variable
+- Member variables can be accessed only through object references.
+- Static variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
 
-#### Example Static and Member Variables
-```
+### Example - Static And Member Variables
+
+```java
 public class StaticAndMemberVariables {
     public static void main(String[] args) {
-Actor actor1 = new Actor();
-actor1.name = "ACTOR1";
-//Actor.name //Compiler Error
+        Actor actor1 = new Actor();
+        actor1.name = "ACTOR1";
+        //Actor.name //Compiler Error
 
-//Below statement can be written as actor1.count++
-//But NOT recommended.
-Actor.count++;
+        //Below statement can be written as actor1.count++
+        //But NOT recommended.
+        Actor.count++;
 
-Actor actor2 = new Actor();
-actor2.name = "ACTOR2";
+        Actor actor2 = new Actor();
+        actor2.name = "ACTOR2";
 
-//Below statement can be written as actor2.count++
-//But NOT recommended.
-Actor.count++;
+        //Below statement can be written as actor2.count++
+        //But NOT recommended.
+        Actor.count++;
 
-System.out.println(actor1.name);//ACTOR1
-System.out.println(actor2.name);//ACTOR2
+        System.out.println(actor1.name);//ACTOR1
+        System.out.println(actor2.name);//ACTOR2
 
-//Next 3 statements refer to same variable
-System.out.println(actor1.count);//2
-System.out.println(actor2.count);//2
-System.out.println(Actor.count);//2
+        //Next 3 statements refer to same variable
+        System.out.println(actor1.count);//2
+        System.out.println(actor2.count);//2
+        System.out.println(Actor.count);//2
     }
 }
 
@@ -494,48 +526,49 @@ class Actor {
     String name;
     
     //RULE 2:Static Variables can be accessed 
-    //through a.Class Name and b.Object Reference
+    //through a. Class Name and b. Object Reference
     //It is NOT recommended to use object reference 
     //to refer to static variables.
     static int count;    
 }
 ```
 
-### Scope of a Variable
-- Scope of a variable defines where (which part of code) a variable can be accessed.
+### Scope Of A Variable
+- Scope of a variable defines which part of the code a variable can be accessed in.
 
-#### Important Rules
-- Static Variable can be used anywhere in the class.
-- Member Variable can be used in any non-static method.
-- Local Variable can be used only in the method where it is declared.
-- Block Variable can be used only in the block (code between { and }) where it is declared.
+### Important Rules
+- Static variable can be used anywhere in the class.
+- Member variable can be used in any non-static method.
+- Local variable can be used only in the method where it is declared.
+- Block variable can be used only in the block (code between { and }) where it is declared.
 
-#### Variable Scope Examples
-Below code shows all these Rules in action:
-```
+### Variable Scope Examples
+
+Below code shows all these rules in action.
+```java
 
 public class VariablesExample {
-    //RULE 1:Static Variable can be used anywhere in the class. 
+    // RULE 1:Static Variable can be used anywhere in the class. 
     static int staticVariable;
     
-    //RULE 2:Member Variable can be used in any non-static method. 
+    // RULE 2:Member Variable can be used in any non-static method. 
     int memberVariable;
     
     void method1() {
-		//RULE 3: method1LocalVariable can be used only in method1.
+		// RULE 3: method1LocalVariable can be used only in method1.
 		int method1LocalVariable;
 
-		memberVariable = 5;//RULE 2
-		staticVariable = 5;//RULE 1
+		memberVariable = 5; //RULE 2
+		staticVariable = 5; //RULE 1
 
 		//Some Code
 		{
-		    //RULE 4:blockVariable can be used only in this block.
+		    // RULE 4:blockVariable can be used only in this block.
 		    int blockVariable;
 		    //Some Code
 		}
 
-		//blockVariable = 5;//COMPILER ERROR - RULE 4
+		//blockVariable = 5; //COMPILER ERROR - RULE 4
     }
     
     void method2() {
@@ -543,54 +576,54 @@ public class VariablesExample {
     }
     
     static void staticMethod() {
-		staticVariable = 5;//RULE 1
+		staticVariable = 5; //RULE 1
 		//memberVariable = 5; //COMPILER ERROR - RULE 2
     }
 }
 ```
 
-#### Scope Example 1
-- staticVariable is declared using keyword static. 
-- It is available in the instance method method1 and static method named staticMethod.
+### Scope Example 1
+- staticVariable is declared using keyword ```static```. 
+- It is available in the instance method ```method1``` and static method  ```staticMethod```.
 
-#### Scope Example 2
-- memberVariable is declared directly in the class  and does NOT use keyword static. So, it is an instance variable. 
-- It is available in the instance method method1 but not accessible in the static method named staticMethod.
+### Scope Example 2
+- memberVariable is declared directly in the class and does NOT use keyword ```static```. So, it is an instance variable.
+- It is available in the instance method ```method1``` but not accessible in the static method named ```staticMethod```.
 
-#### Scope Example 3
-- method1LocalVariable is declared in the method method1. So, it is a local variable. 
-- It is available in the instance method method1 but available in any other  instance or static methods.
+### Scope Example 3
+- ```method1LocalVariable``` is declared in the method ```method1```. So, it is a local variable.
+- It is available in the instance method ```method1``` but not available in any other instance method or static method.
 
-#### Scope Example 4
-- blockVariable is declared in a block in method1. So, it is a block variable. 
+### Scope Example 4
+- ```blockVariable``` is declared in a block in ```method1```. So, it is a block variable. 
 - It is available only in the block where it is defined. 
-- It is not accessible any where out side the block , even in the same method.
+- It is not accessible anywhere outside the block, even in the same method.
 
 ### Variable Initialization
 - Initialization defines the default value assigned to a variable if it is not initialized.
 
-#### Important Rules
-- Member/Static variables are alway initialized with default values.
+### Important Rules
+- Member/Static variables are always initialized with default values.
 - Default values for numeric types is 0, floating point types is 0.0, boolean is false, char  is '\u0000' and for a object reference variable is null.
-- Local variables are not initialized by default by compiler. 
+- Local variables are not initialized by default by the compiler.
 - Using a local variable before initialization results in a compilation error.
 - Assigning a null value is a valid initialization for reference variables.
 
-#### Variable Initialization Examples
-Lets look at an example program to understand all the rules regarding variable initialization.
+### Variable Initialization Examples
+Let's look at an example program to understand all the rules regarding variable initialization.
 
-```
+```java
 package com.in28minutes.variables;
 
-//RULE1:Member/Static variables are alway initialized with 
-//default values.Default values for numeric types is 0, 
+//RULE1: Member/Static variables are always initialized with 
+//default values. Default values for numeric types is 0, 
 //floating point types is 0.0, boolean is false, 
 //char  is '\u0000' and object reference variable is null.
 
-//RULE2:Local/block variables are NOT initialized by compiler. 
+//RULE2: Local/block variables are NOT initialized by the compiler.
 
-//RULE3    :If local variables are used before initialization, 
-//it would result in Compilation Error
+//RULE3: If local variables are used before initialization, 
+//it would result in a compilation error.
 
 public class VariableInitialization {
     public static void main(String[] args) {
@@ -619,28 +652,29 @@ class Player{
     int score;
 }
 ```
-#### Initialization Example 1
-- player  is an instance of the class Player. It contains member variables named name and score. 
-- All member variables are initialized by default. Since name refers to a String i.e a reference variable it is initialized to null. score is an int variable and hence initialized to 0.
+### Initialization Example 1
+- player is an instance of the class Player. It contains member variables named name and score. 
+- All member variables are initialized by default. Since ```name``` refers to a String object i.e a reference variable, it is initialized to ```null```. 
+- ```score``` is an ```int``` variable and hence, it is initialized to 0.
 
-#### Initialization Example 2 
-- local  is a local variable defined in the main method. 
-- An attempt to access a local variable without initialization would result in a compilation error. 
+### Initialization Example 2 
+- local is a local variable defined in the main method. 
+- An attempt to access a local variable without initialization will result in a compilation error. 
 - Same is the case with value1 which is a String local variable. 
 - If null is assigned to a reference variable, reference variable is considered to be assigned.
 
 ### Wrapper Classes
-- A primitive wrapper class in the Java programming language is one of eight classes provided in the java.lang package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
+- A primitive wrapper class in the Java programming language is one of eight classes provided in the ```java.lang``` package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
 
-#### List of Wrapper Classes in Java
-- Wrapper:   Boolean,Byte,Character,Double,Float,Integer,Long,Short
-- Primitive: boolean,byte,char,double, float,   int    ,  long,short
+### List Of Wrapper Classes
+- Wrapper:   Boolean, Byte, Character, Double, Float, Integer, Long, Short
+- Primitive: boolean, byte, char, double, float, int, long, short
 
-Wrapper classes are final and immutable.
+Wrapper classes are ***final*** and ***immutable***.
 
-#### Creating Wrapper Classes
+### Creating Wrapper Classes
 
-```
+```java
 Integer number = new Integer(55);//int
 Integer number2 = new Integer("55");//String
 
@@ -649,7 +683,7 @@ Float number4 = new Float(55.0f);//float argument
 Float number5 = new Float("55.0f");//String
 
 Character c1 = new Character('C');//Only char constructor
-//Character c2 = new Character(124);//COMPILER ERROR
+//Character c2 = new Character(124); //COMPILER ERROR
 
 Boolean b = new Boolean(true);
 
@@ -662,15 +696,15 @@ Boolean b4 = new Boolean("SomeString");//value stored - false
 
 b = false;
 ```
-#### Wrapper Class Utility Methods
+## Wrapper Class Utility Methods
 
 - A number of utility methods are defined in wrapper classes to create and convert them.
 
-#### valueOf  Methods
+### valueOf Methods
 
 Provide another way of creating a Wrapper Object
 
-```
+```java
 Integer seven = 
     Integer.valueOf("111", 2);//binary 111 is converted to 7
 
@@ -678,25 +712,25 @@ Integer hundred =
     Integer.valueOf("100");//100 is stored in variable
 ```
 
-#### xxxValue methods 
+### xxxValue Methods
 
 xxxValue methods help in creating primitives
 
-```
-Integer integer = Integer.valueOf(57);
-int primitive = seven.intValue();//57
-float primitiveFloat = seven.floatValue();//57.0f
+```java
+Integer intWrapper = Integer.valueOf(57);
+int primitiveInt = intWrapper.intValue();//57
+float primitiveFloat = intWrapper.floatValue();//57.0f
 
 Float floatWrapper = Float.valueOf(57.0f);
 int floatToInt = floatWrapper.intValue();//57
 float floatToFloat = floatWrapper.floatValue();//57.0f
 ```
 
-#### parseXxx methods
+### parseXxx Methods
 
 parseXxx methods are similar to valueOf but they return primitive values
 
-```
+```java
 int sevenPrimitive = 
     Integer.parseInt("111", 2);//binary 111 is converted to 7
 
@@ -704,58 +738,56 @@ int hundredPrimitive =
     Integer.parseInt("100");//100 is stored in variable
 ```
 
-#### static toString method
+### static toString() Method
 
 Look at the example of the toString static method below.
 
-```
+```java
 Integer wrapperEight = new Integer(8);
 System.out.println(Integer.
 toString(wrapperEight));//String Output: 8
 ```
 
-#### Overloaded static toString method
+### Overloaded static toString() method
 
 2nd parameter: radix
 
-```
-System.out.println(Integer
-.toString(wrapperEight, 2));//String Output: 1000
+```java
+System.out.println(Integer.toString(wrapperEight, 2));//String Output: 1000
 ```
 
-#### static toYyyyString methods. 
+#### static toYyyyString methods.
 
 Yyyy can be Hex,Binary,Octal
 
-```
-System.out.println(Integer
-.toHexString(wrapperEight));//String Output:8 
-System.out.println(Integer
-.toBinaryString(wrapperEight));//String Output:1000
-System.out.println(Integer
-.toOctalString(wrapperEight));//String Output:10
+```java
+System.out.println(Integer.toHexString(wrapperEight));
+//String Output:8 
+System.out.println(Integer.toBinaryString(wrapperEight));
+//String Output:1000
+System.out.println(Integer.toOctalString(wrapperEight));
+//String Output:10
 ```
 
-#### Wrapper Class , Auto Boxing
-```
+### Wrapper Class Auto Boxing
+```java
 Integer ten = new Integer(10);
-ten++;//allowed. Java does the work behind the screen for us
-
+ten++; //allowed. Java does the work behind the scenes for us.
 ```
-#### Boxing and new instances
-- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However wrapper classes created using new are not reused.
+### Boxing And New Instances
+- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However, wrapper classes created using new are not reused.
 - Two wrapper objects created using new are not same object.
 
-```
+```java
 Integer nineA = new Integer(9);
 Integer nineB = new Integer(9);
-System.out.println(nineA == nineB);//false
-System.out.println(nineA.equals(nineB));//true
+System.out.println(nineA == nineB); //false
+System.out.println(nineA.equals(nineB)); //true
 ```
 
 - Two wrapper objects created using boxing are same object.
 
-```
+```java
 Integer nineC = 9;
 Integer nineD = 9;
 System.out.println(nineC == nineD);//true
