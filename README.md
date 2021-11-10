@@ -775,8 +775,8 @@ Integer ten = new Integer(10);
 ten++; //allowed. Java does the work behind the scenes for us.
 ```
 ### Boxing And New Instances
-- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However, wrapper classes created using new are not reused.
-- Two wrapper objects created using new are not same object.
+- Auto-boxing helps in saving memory by reusing already created Wrapper objects. However, wrapper classes created using ```new``` keyword are not reused.
+- Two wrapper objects created using ```new``` keyword are not same objects for same literal values.
 
 ```java
 Integer nineA = new Integer(9);
@@ -785,67 +785,68 @@ System.out.println(nineA == nineB); //false
 System.out.println(nineA.equals(nineB)); //true
 ```
 
-- Two wrapper objects created using boxing are same object.
+- Two wrapper objects created using autoboxing with same literal values are same object.
 
 ```java
 Integer nineC = 9;
 Integer nineD = 9;
-System.out.println(nineC == nineD);//true
-System.out.println(nineC.equals(nineD));//true
+System.out.println(nineC == nineD); //true
+System.out.println(nineC.equals(nineD)); //true
 ```
 
-### String Class
+## String Class
 
 - A String class can store a sequence of characters. String is not a primitive in Java but a Class in its own right.
 
-#### Strings are immutable
+### Strings are immutable
 
-- Value of a String Object once created cannot be modified. Any modification on a String object creates a new String object.
+- Value of a ```String``` object once created cannot be modified. Any modification on a ```String``` object creates a new ```String``` object.
 
-```
+```java
 String str3 = "value1";
 str3.concat("value2");
 System.out.println(str3); //value1
 ```
 
-Note that the value of str3 is not modified in the above example.  The result should be assigned to a new reference variable (or same variable can be reused).
+Please note that the value of ```str3`` is not modified in the above example.  The result should be assigned to a new reference variable.
 
-```
+```java
 String concat = str3.concat("value2");
 System.out.println(concat); //value1value2
 ```
 
-#### String Constant Pool
+### String Constant Pool
 
-- All strings literals are stored in "String constant pool". If compiler finds a String literal,it checks if it exists in the pool. If it exists, it is reused.
-
+- All string literals are stored in "String constant pool". If the compiler finds a ```String``` literal,it checks if it exists in the pool. If it exists, it is reused.
 - Following statement creates 1 string object (created on the pool) and 1 reference variable.
 
-```
-String str1 = "value"; 
+```java
+String str1 = "value";
+// It creates one String literal in the String constant pool
+// and one reference variable.
 ```
 
-- However, if new operator is used to create string object, the new object is created on the heap. Following piece of code create 2 objects.
+- However, if ```new``` operator is used to create a string object, the new object is created on the heap. Following piece of code create 2 objects.
 
-```
-//1. String Literal "value" - created in the "String constant pool"
+```java
+//1. String literal "value" - created in the "String constant pool"
 //2. String Object - created on the heap
 String str2 = new String("value");
 ```
 
-#### String Method Examples
+### String Method Examples
 
-String class defines a number of methods to get information about the string content.
+```String``` class defines a number of methods to get information about the string content.
 
-```
+```java
 String str = "abcdefghijk";
 ```
 
-##### Get information from String
+### Get information from String
 
 Following methods help to get information from a String.
 
-```
+```java
 //char charAt(int paramInt)
 System.out.println(str.charAt(2)); //prints a char - c
 System.out.println("ABCDEFGH".length());//8
@@ -854,17 +855,17 @@ System.out.println("ABC".equalsIgnoreCase("abc"));//true
 
 //Get All characters from index paramInt
 //String substring(int paramInt)
-System.out.println("abcdefghij".substring(3)); //cdefghij
+System.out.println("abcdefghij".substring(3)); //defghijk
 
 //All characters from index 3 to 6
 System.out.println("abcdefghij".substring(3,7)); //defg
 ```
 
-#### String Manipulation methods
+### String Manipulation Methods
 
-Most important thing to remember is a String object cannot be modified. When any of these methods are called, they return a new String with the modified value. The original String remains unchanged.
+Most important thing to remember is a ```String``` object cannot be modified. When any of these methods are called, they return a new ```String``` object with the modified value. The original ```String``` remains unchanged.
 
-```
+```java
 //String concat(String paramString)
 System.out.println(str.concat("lmn"));//abcdefghijklmn
 
@@ -878,18 +879,19 @@ System.out.println("ABCDEFGHIJ".toLowerCase()); //abcdefghij
 
 System.out.println("abcdefghij".toUpperCase()); //ABCDEFGHIJ
 
-//trim removes leading and trailings spaces
+//trim removes leading and trailing spaces
 System.out.println(" abcd  ".trim()); //abcd
 ```
 ### String Concatenation Operator
 
-#### Three Rules of String Concatenation
-- RULE1: Expressions are evaluated from left to right.Except if there are parenthesis.
+Three Rules of String Concatenation
+- RULE1: Expressions are evaluated from left to right. Except if there are parenthesis.
 - RULE2: number + number = number
 - RULE3: number + String = String
 
-```
+```java
 System.out.println(5 + "Test" + 5); //5Test5
+// A bit tricky
 System.out.println(5 + 5 + "Test"); //10Test
 System.out.println("5" + 5 + "Test"); //55Test
 System.out.println("5" + "5" + "25"); //5525
@@ -899,21 +901,21 @@ System.out.println(5 + (5 + "25")); //5525
 System.out.println(5 + 5 + 25); //35
 ```
 
-### Increment and Decrement Operators
+### Increment And Decrement Operators
 
-- Lets learn about the increment and decrement operators in Java.
+- Let's learn more about the increment and decrement operators in Java.
 
-#### Basics of Increment and Decrement Operators
+Basics of Increment and Decrement Operators
 
 Except for a minor difference ++i,i++ is similar to i = i+1 and --i,i-- is similar to i = i-1
 
 ++i is called pre-increment and i++ post increment
 
-#### Increment Operators
+### Increment Operators
 
-Pre increment statement returns value after increment. Post increment statement returns value before increment
+Pre-increment statement returns value after increment. Post-increment statement returns value before increment.
 
-```
+```java
 int i = 25;
 int j = ++i;//i is incremented to 26, assigned to j
 System.out.println(i + " " + j);//26 26
@@ -922,11 +924,11 @@ i = 25;
 j = i++;//i value(25) is assigned to j, then incremented to 26
 System.out.println(i + " " + j);//26 25
 ```
-#### Decrement Operators
+### Decrement Operators
 
-Decrement Operators are similar to increment operators.
+Decrement operators are similar to increment operators.
 
-```
+```java
 i = 25;
 j = --i;//i is decremented to 24, assigned to j
 System.out.println(i + " " + j);//24 24
@@ -938,198 +940,213 @@ System.out.println(i + " " + j);//24 25
 
 ### Relational Operators
 
-- Relation Operators are used to compare operands. They a always return true or false. List of Relation Operators include <, <=, >, >=, ==, and !=.
+- Relational operators are used to compare operands. They always return ```true``` or ```false```. List of Relation Operators include <, <=, >, >=, ==, and !=.
 
-#### Relation Operators Examples
-Let's consider a few examples of relational operators. Let's assume a int variable named number with a value 7.
+### Relational Operators Examples
+Let's consider a few examples of relational operators. Let's assume a ```int``` variable named number with a value 7.
 
-```
+```java
 int number = 7;
 ```
 
-#### greater than operator
+### greater than operator
 
-```
+```java
 System.out.println(number > 5);//true
 System.out.println(number > 7);//false
 ```
 
-#### greater than equal to operator
-```
+### greater than or equal to operator
+
+```java
 System.out.println(number >= 7);//true
 ```
 
-#### less than operator
-```
+### less than operator
+
+```java
 System.out.println(number < 9);//true
 System.out.println(number < 7);//false
 ```
 
-#### less than equal to operator
-```
+### less than or equal to operator
+
+```java
 System.out.println(number <= 7);//true
 ```
 
-#### is equal to operator
-```
+### is equal to operator
+
+```java
 System.out.println(number == 7);//true
 System.out.println(number == 9);//false
 ```
 
-#### NOT equal to operator
-```
+### not equal to operator
+
+```java
 System.out.println(number != 9);//true
 System.out.println(number != 7);//false
 ```
 
 > single = is assignment operator and == is comparison. Below statement uses =.
 
-```
+```java
 System.out.println(number = 7);//7
 ```
-#### == (equals) operator
-Let's look at how == equals operator works with primitives and reference variables.
+### == Equality operator
+Let's look at how ```==``` equals operator works with primitives and reference variables.
 
-#### Primitive Variables
+Primitive Variables
 
-- Equality for Primitives only compares values
+Equality for primitives only compares values.
 
-```
+```java
 int a = 5;
 int b = 5;
 ```
 
-Below statement compares if a and b have same value.
+Below statement compares if ```a``` and ```b``` have same value.
 
-```
+```java
 System.out.println(a == b);//true
 ```
-#### Reference Variables
+### Reference Variables
 
-```
+```java
 Integer aReference = new Integer(5);
 Integer bReference = new Integer(5);
 ```
 
 For reference variables, == compares if they are referring to the same object.
 
-```
+```java
 System.out.println(aReference == bReference);//false
 
 bReference = aReference;
 
-//Now both are referring to same object
+//Now, both are referring to same object
 System.out.println(aReference == bReference);//true
 ```
 
-### Logical Operators
-- Logical Operators are &&, ||, |, &, ! and ^.
+## Logical Operators
+- Logical operators are &&, ||, |, &, ! and ^.
 
-#### Short Circuit And Operator - &&
+### Short Circuit And Operator - &&
 - True when both operands are true.
 
-```
+```java
 System.out.println(true && true);//true
 System.out.println(true && false);//false
 System.out.println(false && true);//false
 System.out.println(false && false);//false
 ```
-#### Short Circuit Or Operator - ||
+### Short Circuit Or Operator - ||
 
-True when atleast one of operands are true.
+True when at least one of operands are true.
 
-```
+```java
 System.out.println(true || true);//true
 System.out.println(true || false);//true
 System.out.println(false || true);//true
 System.out.println(false || false);//false
 ```
 
-> Certification Tip : Logical Operators work with boolean values but not numbers.
+> Certification Tip : Logical Operators work with boolean values but not numbers. (A bit tricky!)
 
-```
+```java
 //System.out.println(5 || 6);//COMPILER ERROR
 ```
-#### Short circuit operators are Lazy 
-
+### Short circuit operators are lazy
 - They stop execution the moment result is clear.  
    - For &&, if first expression is false,result is false.  
    - For ||, if first expression is true, the result is true. 
    - In above 2 situations, second expressions are not executed.
 
-```
+```java
+// A bit tricky!
 int i = 10;
 System.out.println(true || ++i==11);//true
 System.out.println(false && ++i==11);//false
 System.out.println(i);//i remains 10, as ++i expressions are not executed.
 ```
 
-#### Operator & and |
-- Logical Operators &, | are similar to &&, || except that they don't short ciruit. 
+> In Java logical operators, if the evaluation of a logical expression exit in between before complete evaluation, then it is known as Short-circuit. A short circuit happens because the result is clear even before the complete evaluation of the expression, and the result is returned. Short circuit evaluation avoids unnecessary work and leads to efficient processing.
+
+### Operator & and |
+- Logical Operators &, | are similar to &&, || except that they don't short circuit.
 - They execute the second expression even if the result is decided.
 
 > Certification Tip : While & and | are very rarely used, it is important to understand them from a certification perspective.
 
-```
+```java
 int j = 10;
-System.out.println(true | ++j==11);//true
-System.out.println(false & ++j==12);//false
+System.out.println(true | ++j);//true
+System.out.println(false & ++j);//false
 System.out.println(j);//j becomes 12, as both ++j expressions are executed
 ```
 
-#### Operator exclusive-OR (^)
+### Exclusive-OR (^) Operator
+
 - Result is true only if one of the operands is true.
-```
+
+```java
 System.out.println(true ^ false);//true
 System.out.println(false ^ true);//true
 System.out.println(true ^ true);//false
 System.out.println(false ^ false);//false
 ```
-#### Not Operator (!)
+### Not Operator (!)
+
 Result is the negation of the expression.
-```
+
+```java
 System.out.println(!false);//true
 System.out.println(!true);//false
 ```
-### Arrays
-- TODO : Why do we need arrays?
-- Arrays allow storing multiple values of same type.
-- Once An Array is created, its size cannot be increased or decreased. 
-- New Arrays are always initialized with default values.
-   - byte,short,int,long    0 
+
+--- 
+
+## Arrays
+
+- TODO: Why do we need arrays?
+- Arrays allow storing multiple values of same type in a contiguous memory.
+- **Once an array is created, its size cannot be increased or decreased.**
+- New arrays are always initialized with default values.
+   - byte,short,int,long    0
    - float,double 0.0 
    - boolean false
    - object    null
 
-```
-//Declaring an Array
+```java
+// Declaring an array
 int[] marks;
 
 // Creating an array
 marks = new int[5]; // 5 is size of array
 
-int marks2[] = new int[5];//Declaring and creating an array in same line.
+int marks2[] = new int[5]; // Declaring and creating an array in same line.
 
-System.out.println(marks2[0]);//New Arrays are always initialized with default values - 0
+System.out.println(marks2[0]);// New arrays are always initialized with default values - 0
 
-//Index of elements in an array runs from 0 to length - 1
+// Index of elements in an array runs from 0 to length - 1
 marks[0] = 25;
 marks[1] = 30;
 marks[2] = 50;
 marks[3] = 10;
 marks[4] = 5;
 
-System.out.println(marks[2]);//Printing a value from array
+System.out.println(marks[2]); // Printing a value from array
 
-//Printing a 1D Array
+// Printing a 1D Array
 int marks5[] = { 25, 30, 50, 10, 5 };
-System.out.println(marks5); //[I@6db3f829
+System.out.println(marks5); // [I@6db3f829
 System.out.println(
-    Arrays.toString(marks5));//[25, 30, 50, 10, 5]
+Arrays.toString(marks5)); // [25, 30, 50, 10, 5]
 
-int length = marks.length;//Length of an array: Property length
+int length = marks.length; // Length of an array: Property length
 
-//Enhanced For Loop
+// Enhanced For Loop
 for (int mark: marks) {
     System.out.println(mark);
 }
@@ -1141,50 +1158,48 @@ Arrays.fill(marks, 100); //All array values will be 100
 String[] daysOfWeek = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 ```
 
-#### 2D Arrays
+### 2D Arrays
 
 Best way to visualize a 2D array is as an array of arrays.
 
-```
+```java
 int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 } };
 
 int[][] matrixA = new int[5][6]; 
 
-//Accessing elements from 2D array:
+// Accessing elements from 2D array:
 System.out.println(matrix[0][0]); //1
 System.out.println(matrix[1][2]); //6
 
-//Looping a 2D array
+// Looping a 2D array
 for (int[] array: matrix) {
     for (int number: array) {
-         System.out.println(number);
+        System.out.println(number);
     }
 }
 
 // Printing a 2D Array
 int[][] matrix3 = { { 1, 2, 3 }, { 4, 5, 6 } };
 System.out.println(matrix3); //[[I@1d5a0305
-System.out.println(
-
-Arrays.toString(matrix3)); 
+System.out.println(Arrays.toString(matrix3)); 
 //[[I@6db3f829, [I@42698403]
-
 System.out.println(Arrays.deepToString(matrix3)); 
 //[[1, 2, 3], [4, 5, 6]]
+// A bit tricky
+// .toString(...) vs .deepToString(...)
 
 System.out.println(matrix3[0]);//[I@86c347 - matrix3[0] is a 1D Array
 System.out.println(Arrays.toString(matrix3[0]));//[1, 2, 3]
 ```
 
-#### Other Array Operations
+### Other Array Operations
 
-```
-//Comparing Arrays
+```java
+// Comparing Arrays
 int[] numbers1 = { 1, 2, 3 };
 int[] numbers2 = { 4, 5, 6 };
 
-System.out.println(Arrays
-.equals(numbers1, numbers2)); //false
+System.out.println(Arrays.equals(numbers1, numbers2)); //false
 
 int[] numbers3 = { 1, 2, 3 };
 
@@ -1192,31 +1207,30 @@ System.out.println(Arrays
 .equals(numbers1, numbers3)); //true
 
 // Sorting an Array
-
-int rollNos[] = { 12, 5, 7, 9 };
+int[] rollNos = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
 System.out.println(Arrays.toString(rollNos));//[5, 7, 9, 12]
 
 ```
 
-#### Array of Objects
+### Array of objects
 
-```
+```java
 Person[] persons = new Person[3];
 
-//By default, an array of 3 reference variables is created.
-//The person objects are not created
+// By default, an array of 3 reference variables is created.
+// The Person objects are not created
 System.out.println(persons[0]);//null
 
-//Let's create the new objects
+// Let's create the new objects
 persons[0] = new Person();
 persons[1] = new Person();
 persons[2] = new Person();
 
-//Creating and initializing person array in one statement
+// Creating and initializing person array in one statement
 Person[] personsAgain = { new Person(),new Person(),new Person()};
 
-//Another example
+// Another example
 Person[][] persons2D = 
     {
 		{ new Person(),new Person(),new Person()},
@@ -1225,21 +1239,21 @@ Person[][] persons2D =
 ```
 
 
-#### Array Certification Tips and Puzzles
-```
+### Array Certification Tips and Puzzles
 
-//You can Declare, Create and Initialize Array on same line.
+```java
+
+// You can declare, create and initialize array on same line.
 int marks3[] = { 25, 30, 50, 10, 5 };
 
-//Leaving additional comma is not a problem. (note that comma after 5)
+// Leaving additional comma is not a problem. (note that comma after 5)
 int marks4[] = { 25, 30, 50, 10, 5, };
-
 
 int marks[]; //Not Readable
 int[] runs; //Not Readable
 
 
-//int values[5];//Compilation Error!Declaration of an Array should not include size. 
+//int values[5];//Compilation Error! Declaration of an array should not include size. 
 
 //marks = new int[];//COMPILER ERROR! Size of an array is mandatory to create an array.
 
@@ -1255,68 +1269,69 @@ int[] matrix2[]; //Legal but not readable. Avoid.
 //Array can contain only values of same type.
 
 //COMPILE ERROR!!
-//int marks4[] = {10,15.0}; //10 is int 15.0 is float
+//int marks4[] = {10,15.0}; //10 is int, 15.0 is double.
 
-//Cross assigment of primitive arrays is ILLEGAL
+//Cross-assignment of primitive arrays is ILLEGAL
+// A bit tricky.
 int[] ints = new int[5];
 short[] shorts = new short[5];
 //ints = shorts;//COMPILER ERROR
 //ints = (int[])shorts;//COMPILER ERROR
-
 
 //The first dimension of a 2D array is mandatory
 matrixA = new int[3][];//FINE
 //matrixA = new int[][5];//COMPILER ERROR
 //matrixA = new int[][];//COMPILER ERROR
 
-//Each row in a 2D Array can have a different size. This is called a Ragged Array.
-matrixA = new int[3][];//FINE
+//Each row in a 2D Array can have a different size. This is called a ragged array.
+matrixA = new int[3][]; //FINE
 matrixA[0] = new int[3];
-matrixA[0] = new int[4];
-matrixA[0] = new int[5];
+matrixA[1] = new int[4];
+matrixA[2] = new int[5];
 ```
 
 
 ### If Else Condition
+
 - Conditionally execute code! 
-- Code inside If is executed only if the condition is true.
+- Code inside ```if``` is executed only if the condition is true.
 
 // Basic Example
-```
-if(true){
+```java
+if (true) {
     System.out.println("Will be printed");
 }
 
-if(false){
+if (false) {
     System.out.println("Will NOT be printed");//Not executed
 }
 
 //Example 1
 int x = 5;
 
-if(x==5){
-    System.out.println("x is 5");//executed since x==5 is true
+if (x == 5) {
+    System.out.println("x is 5");//executed since x == 5 is true
 }
 
 //Example 2
 x = 6;
-if(x==5){
-    System.out.println("x is 5");//Not executed since x==5 is false
+if (x == 5){
+    System.out.println("x is 5");//Not executed since x == 5 is false
 }
 
 //Example 3
 int y = 10;
 
-if(y==10){
-    System.out.println("Y is 10");//executed-condn y==10 is true
+if (y == 10) {
+    System.out.println("y is 10");//executed because condition y == 10 is true
 } else {
-    System.out.println("Y is Not 10");
+    System.out.println("y is Not 10");
 }
 
 //Example 4
 y = 11;
 
-if(y==10){
+if (y == 10) {
     System.out.println("Y is 10");//NOT executed
 } else {
     System.out.println("Y is Not 10");//executed
@@ -1325,12 +1340,12 @@ if(y==10){
 //Example 5
 int z = 15;
 //Only one condition is executed. Rest of the conditions are skipped.
-if(z==10){
+if (z == 10) {
     System.out.println("Z is 10");//NOT executed
-} else if(z==12){
+} else if (z == 12) {
     System.out.println("Z is 12");//NOT executed
-} else if(z==15){
-    System.out.println("Z is 15");//executed. 
+} else if (z == 15) {
+    System.out.println("Z is 15");//executed
 } else {
     System.out.println("Z is Something Else.");//NOT executed
 }
