@@ -1350,27 +1350,28 @@ if (z == 10) {
     System.out.println("Z is Something Else.");//NOT executed
 }
 
+// Example 6
 z = 18;
-if(z==10){
+if (z == 10) {
     System.out.println("Z is 10");//NOT executed
-} else if(z==12){
+} else if (z == 12) {
     System.out.println("Z is 12");//NOT executed
-} else if(z==15){
+} else if (z == 15) {
     System.out.println("Z is 15");//NOT executed
 } else {
     System.out.println("Z is Something Else.");//executed
 }
 
-//If else Example: without Blocks
+//If else example: without Blocks
 int number = 5;
 if(number < 0) 
     number = number + 10; //Not executed
     number++; //This statement is not part of if. Executed.
 System.out.println(number);//prints 6
 ```
-#### If else Puzzles
+#### If-else Puzzles
 
-```
+```java
 //Puzzle 1
 int k = 15;
 if (k > 20) {
@@ -1396,36 +1397,35 @@ if(l>20)
     System.out.println("l>20");
 else
     System.out.println("Who am I?");
-```
 
 //Output is "l<20" followed by "Who am I?" on next line. 
 //else belong to the last if before it unless brackets ({}) are used.
-```
 
-Puzzle 3
-```
+// Puzzle 3
+
 int m = 15;
 
 if(m>20)
     if(m<20)
-System.out.println("m>20");
+        System.out.println("m>20");
     else
-System.out.println("Who am I?");
+        System.out.println("Who am I?");
 
 //Nothing is printed to output. 
 
 //Code above is similar to the code snippet shown below
 
-if(m>20) {//Condn is false. So, code in if is not executed
+if(m>20) {//Condition is false. So, code in if is not executed
     if(m<20)
-System.out.println("m>20");
+        System.out.println("m>20");
     else
-System.out.println("Who am I?");
+        System.out.println("Who am I?");
 }
 ```
 
 Puzzles Continued
-```
+
+```java
 
 //Puzzle 4
 
@@ -1455,7 +1455,7 @@ if(isTrue=true){
 - Choose between a set of options.
 - From Java 6, String can be used as the switch argument.
 
-```
+```java
 //Example 1
 
 int number = 2;
@@ -1473,17 +1473,18 @@ default:
     System.out.println("Default");
     break;
 }
-// Output of above example is 2.The case which is matched is executed.
 
+// Output of above example is 2. The case which is matched is executed.
 ```
+
 Important Tips
 - There is a break statement in every case. If there is no break statement, switch continues to execute other cases.
 - There is a case named default.  If none of the cases match default case is executed.
 
 
-```
-//Switch Statement Example 2 , No Breaks
-number = 2;
+```java
+//Example 2, No Breaks
+int number = 2;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1497,20 +1498,20 @@ default:
 ```
 
 Output of above switch
-```
+```bash
 2
 3
 Default
 ```
 
-Since there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
+Since, there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
 
 > Code in switch is executed from a matching case until a break or end of switch statement is encountered.
 
 
-Switch Statement Example 3 , Few Break's
-```
-number = 2;
+Example 3, Few Breaks
+```java
+int number = 2;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1524,17 +1525,20 @@ default:
     break;
 }
 ```
-Program Output 
-```
+
+Program Output
+
+```bash
 Number is 2 or 3.
 ```
-Case 2 matches. Since there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch.
 
-Switch Statement Example 4 , Let's Default
-- default is executed if none of the case's match. 
+Case 2 matches. Since, there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch.
 
-```
-number = 10;
+Example 4, Let's Default
+- default is executed if none of the cases match.
+
+```java
+int number = 10;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1550,14 +1554,17 @@ default:
     break;
 }
 ```
+
 Code Output
-```
+
+```bash
 Default
 ```
 
-Switch Statement Example 5 - Default need not be Last 
-```
-number = 10;
+Example 5 - Default does not need to be last.
+
+```java
+int number = 10;
 switch (number) {
 default:
     System.out.println("Default");
@@ -1573,23 +1580,28 @@ case 3:
     break;
 }
 ```
-Output 
-```
+
+Output
+
+```bash
 Default
 ```
-#### Switch statement Example 6
 
->TODO Check this up.. Its supports String. Does it support others as well?
+Example 6
+
+>TODO Check this up.. It supports ```String``` class. Does it support others as well?
 
 Switch can be used only with char, byte, short, int or enum
-```
+
+```java
 long l = 15;
 /*switch(l){//COMPILER ERROR. Not allowed.
 }*/
 
-Case value should be a compile time constant.
-```
-number = 10;
+// Case value should be a compile time constant.
+
+```java
+int number = 10;
 switch (number) {
 //case number>5://COMPILER ERROR. Cannot have a condition
 //case number://COMPILER ERROR. Should be constant.
@@ -1600,114 +1612,155 @@ switch (number) {
 A loop is used to run same code again and again.
 
 ### While Loop
+
+How does a While loop executes?
+
+1. Control falls into the while loop.
+2. The flow jumps to Condition
+3. Condition is tested.
+    1. If Condition yields true, the flow goes into the Body.
+    2. If Condition yields false, the flow goes outside the loop
+4. The statements inside the body of the loop get executed.
+5. Updation takes place.
+6. Control flows back to Step 2.
+7. The while loop has ended and the flow has gone outside.
+
 ```
+while (test_expression)
+{
+    // statements
+    update_expression;
+}
+```
+
+The first loop offered by Java is a While loop.
+
+Example 1.
+
+```java
 int count = 0;
 
-while(count < 5){//while this condn is true, loop is executed.
-    System.out.print(count);
+while(count < 5){
+    //while this condition is true, loop is executed.
+    System.out.println(count);
     count++;
 }
 //Output - 01234
 ```
 
-While loop Example 2
+Example 2.
 
-```
+```java
 count = 5;
-while(count < 5){//condn is false. So, code in while is not executed.
-    System.out.print(count);
+while(count < 5){
+    //condition is false. So, code in while is not executed.
+    System.out.println(count);
     count++;
-}//Nothing is printed to output
+}
+//Nothing is printed to output
 ```
 
 ### Do While Loop
+
 - The difference between a while and a do while is that the code in do while is executed at least once. 
 - In a do while loop, condition check occurs after the code in loop is executed once.
 
-Do While loop Example 1
-```
+Example 1
+
+```java
 int count = 0;
-do{
-    System.out.print(count);
+do {
+    System.out.println(count);
     count++;
-}while(count < 5);//while this condn is true, loop is executed.
+} while (count < 5);
+//while this condn is true, loop is executed.
 //output is 01234
 ```
 
-Do While loop Example 2
-```
-count = 5;
+Example 2
+
+```java
+int count = 5;
 do{
-    System.out.print(count);
+    System.out.println(count);
     count++;
 }while(count < 5);
-//output is 5
+// output is 5
+// the loop is executed at least once.
 ```
 
 ### For Loop
 
-For loop is used to loop code specified number of times.
+For loop is used to loop a code specified number of times.
 
-For Loop Example 1
-```
+Example 1
+
+```java
 for (int i = 0; i < 10; i++) {
-    System.out.print(i);
+    System.out.println(i);
 }
 //Output - 0123456789
 ```
-Syntax - For loop statement has 3 parts
-- Initialization => int i=0. Initialization happens the first time a for loop is run.
-- Condition => i<10. Condition is checked every time before the loop is executed.
-- Operation (Increment or Decrement usually) => i++. Operation is invoked at the start of every loop (except for first time).
 
-For Loop Example 2: There can be multiple statements in Initialization or Operation separated by commas
-```
-for (int i = 0,j = 0; i < 10; i++,j--) {
-    System.out.print(j);
+Syntax - For loop statement has 3 parts
+- Initialization => int i=0. Initialization happens the first time a for loop runs.
+- Condition => i < 10. Condition is checked every time before the code block is entered.
+- Operation (Increment or Decrement usually) => i++. Operation is invoked at the start of every loop iteration. (except for first time).
+
+Example 2: There can be multiple statements in initialization or operation separated by commas.
+
+```java
+for (int i = 0, j = 0; i < 10; i++,j--) {
+    System.out.println(i);
 }
 //Output - 0123456789
 ```
-#### Enhanced For Loop
-Enhanced for loop can be used to loop around array's or List's.
-```
+### Enhanced For Loop
+Enhanced for loop can be used to loop around arrays or Lists.
+
+```java
 int[] numbers = {1,2,3,4,5};
 
-for(int number:numbers){
-    System.out.print(number);
+for(int number: numbers){
+    System.out.println(number);
 }
 //Output - 12345
 ```
+
 Any of 3 parts in a for loop can be empty.
-```
+
+```java
 for (;;) {
-    System.out.print("I will be looping for ever..");
+    System.out.println("I will be looping forever.");
 }
 //Infinite loop => Loop executes until the program is terminated.
 ```
 
 ### Break Statement
 
-Break statement breaks out of a loop
+Break statement is used to break out of a loop or a switch block.
 
 Example 1
-```
+
+```java
 for (int i = 0; i < 10; i++) {
-    System.out.print(i);
+    System.out.println(i);
     if (i == 5) {
          break;
     }
 }
 //Output - 012345
-//Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. ÒBreak statementÓ stops the execution of the loop and takes execution to the first statement after the loop.
+//Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. Break statement stops the execution of the loop and takes execution to the first statement after the loop.
 ```
 
 Break can be used in a while also.
-```
+
+```java
 int i = 0;
 while (i < 10) {
-    System.out.print(i);
+    System.out.println(i);
     if (i == 5) {
-break;
+        break;
     }
     i++;
 }
@@ -1715,42 +1768,46 @@ break;
 ```
 
 Break statement takes execution out of inner most loop.
+
 ```java
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
-System.out.print(j + "" + k);
-if (k == 5) {
-    break;//Takes out of loop using k
-}
+        System.out.println(j + "" + k);
+        if (k == 5) {
+            break;//Takes out of loop using k
+        }
     }
 }
 //Output - 000102030405101112131415
 //Each time the value of k is 5 the break statement is executed. 
 //The break statement takes execution out of the k loop and proceeds to the next value of j.
+```
 
-```
-Labels can be used to label and refer to specific for loop in a nested for loop.
-```
+Labels can be used to label and refer to specific for loop in a nested for loop with the ```break``` statement.
+
+```java
 outer:
     for (int j = 0; j < 2; j++) {
        for (int k = 0; k < 10; k++) {
-             System.out.print(j + "" + k);
+             System.out.println(j + "" + k);
              if (k == 5) {
-               break outer;//Takes out of loop using j
+               break outer;//Takes out of the loop using j
              }
         }
     }
 //Output - 000102030405
 ```
+
 ### Continue Statement
-- Continue statement skips rest of the statements in the loop and starts next iteration
+
+- Continue statement skips rest of the statements in the loop iteration and starts the next iteration.
 
 ```
 for (int i = 0; i < 10; i++) {
     if (i == 5) {
       continue;
     }
-    System.out.print(i);
+    System.out.println(i);
 }
 
 //Output => 012346789
@@ -1768,7 +1825,7 @@ while (i < 10) {
     if (i == 5) {
         continue;
     }
-    System.out.print(i);
+    System.out.println(i);
 }
 //Output - 1234678910
 ```
@@ -1780,7 +1837,7 @@ for (int j = 0; j < 2; j++) {
        if (k == 5) {
           continue;//skips to next iteration of k loop
         }
-        System.out.print(j + "" + k);
+        System.out.println(j + "" + k);
     }
 }
 //Output - 000102030406070809101112131416171819
@@ -1796,7 +1853,7 @@ outer:
     		if (k == 5) {
 				continue outer;//skips to next iteration of j loop
     		}
-    		System.out.print(j + "" + k);
+    		System.out.println(j + "" + k);
 		}
     }
 //Output - 00010203041011121314
@@ -2087,7 +2144,9 @@ WINTER(1) {
 }
 ```
 
-### Inheritance
+---
+
+## Inheritance
 
 Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
 
@@ -6650,7 +6709,7 @@ Let's first run the above example in a serial way and see what the output would 
 public static void main(String[] args) {
     SpreadSheet spreadSheet = new SpreadSheet();
     for (int i = 0; i < 4; i++) {
-System.out.print(spreadSheet.setandGetSum(i, i * 2, i * 3) + " ");
+System.out.println(spreadSheet.setandGetSum(i, i * 2, i * 3) + " ");
     }
 }
 //Output - 0 6 12 18
@@ -6665,7 +6724,7 @@ public class ThreadExampleSynchronized implements Runnable {
 
     public void run() {
 for (int i = 0; i < 4; i++) {
-    System.out.print(
+    System.out.println(
     spreadSheet.setandGetSum(i,i * 2, i * 3)
     + " ");
 }
