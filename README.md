@@ -1785,13 +1785,16 @@ for (int j = 0; j < 2; j++) {
 
 Labels can be used to label and refer to specific for loop in a nested for loop with the ```break``` statement.
 
+(A bit tricky!)
+
 ```java
 outer:
     for (int j = 0; j < 2; j++) {
        for (int k = 0; k < 10; k++) {
              System.out.println(j + "" + k);
              if (k == 5) {
-               break outer;//Takes out of the loop using j
+               break outer;
+               //Takes out of the loop using j
              }
         }
     }
@@ -1802,7 +1805,7 @@ outer:
 
 - Continue statement skips rest of the statements in the loop iteration and starts the next iteration.
 
-```
+```java
 for (int i = 0; i < 10; i++) {
     if (i == 5) {
       continue;
@@ -1813,12 +1816,15 @@ for (int i = 0; i < 10; i++) {
 //Output => 012346789
 
 //Note that the output does not contain 5. 
-//When i==5 continue is executed. Continue skips rest of the code and goes to next loop iteration. 
-//So, the print statement is not executed when i==5.
+//When i == 5 continue is executed. Continue skips rest of the code and goes to next loop iteration.
+//So, the print statement is not executed when i == 5.
 
 ```
-Continue can be used in a while also
-```
+
+Continue can be used in a while loop also.
+
+```java
+
 int i = 0;
 while (i < 10) {
     i++;
@@ -1831,11 +1837,12 @@ while (i < 10) {
 ```
 
 Continue statement takes execution to next iteration of inner most loop.
-```
+
+```java
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
        if (k == 5) {
-          continue;//skips to next iteration of k loop
+          continue; //skips to next iteration of k loop
         }
         System.out.println(j + "" + k);
     }
@@ -1845,13 +1852,16 @@ for (int j = 0; j < 2; j++) {
 //So 05 and 05 are not printed to the console.
 
 ```
-Label Example
-```
+
+Label example.
+
+```java
 outer:
     for (int j = 0; j < 2; j++) {
 		for (int k = 0; k < 10; k++) {
     		if (k == 5) {
-				continue outer;//skips to next iteration of j loop
+				continue outer;
+                //skips to next iteration of j loop
     		}
     		System.out.println(j + "" + k);
 		}
@@ -1862,20 +1872,22 @@ outer:
 
 ```
 
-### Enum
+## Enum
 - Enum allows specifying a list of valid values (or allowed values) for a Type. 
 
-#### Enum Declaration
-Consider the example below. It declares an enum Season with 4 possible values.
-```
+### Enum Declaration
+
+Consider the below example. It declares an enum Season with 4 possible values.
+
+```java
     enum Season {
        WINTER, SPRING, SUMMER, FALL
     };
 ```
 
-#### Enum Example 1
-```
+### Enum Example 1
 
+```java
 //Enum can be declared outside a class
 enum SeasonOutsideClass {
 	WINTER, SPRING, SUMMER, FALL
@@ -1888,6 +1900,7 @@ public class Enum {
 	};
 
 	public static void main(String[] args) {
+        // enum cannot be created inside a method.
 		/*
 		 * //Uncommenting gives compilation error //enum cannot be created in a
 		 * method enum InsideMethodNotAllowed { WINTER, SPRING, SUMMER, FALL };
@@ -1906,7 +1919,7 @@ public class Enum {
 		System.out.println(Season.SUMMER.ordinal());// 2
 		System.out.println(Season.FALL.ordinal());// 3
 
-		// Looping an enum => We use method values
+		// Looping an enum => We use method .values()
 		for (Season season1 : Season.values()) {
 			System.out.println(season1.name());
 			// WINTER SPRING SUMMER FALL (separate lines)
@@ -1920,23 +1933,29 @@ public class Enum {
 	}
 }
 ```
-Enum Rules
-- Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
 
-Conversion of Enum : Function valueOf(String)  is used to convert a string to enum.
-```
+Enum Rules
+
+- Enums can be declared in a separate class or as member of a class.
+- Enums cannot be declared in a method.
+
+Conversion of Enum: Function valueOf(String)  is used to convert a string to enum.
+
+```java
 //Converting String to Enum
 Season season = Season.valueOf("FALL");
 ```
 
 Function name() is used to find String value of an enum.
-```
+
+```java
 //Converting Enum to String
 System.out.println(season.name());//FALL
 ```
 
 Java assigns default ordinals to an enum in order. However, it is not recommended to use ordinals to perform logic.
-```
+
+```java
 //Default ordinals of enum
 // By default java assigns ordinals in order
 System.out.println(Season.WINTER.ordinal());//0
@@ -1945,8 +1964,9 @@ System.out.println(Season.SUMMER.ordinal());//2
 System.out.println(Season.FALL.ordinal());//3
 ```
 
-Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the  function values().
-```
+Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the function values().
+
+```java
 //Looping an enum => We use method values
 for (Season season1: Season.values()) {
     System.out.println(season1.name());
@@ -1954,8 +1974,9 @@ for (Season season1: Season.values()) {
 }
 ```
 
-Comparing two Enums 
-```
+Comparing two enums
+
+```java
 //Comparing two Enums
 Season season1 = Season.FALL;
 Season season2 = Season.FALL;
@@ -1963,13 +1984,14 @@ System.out.println(season1 == season2);//true
 System.out.println(season1.equals(season2));//true
 ```
 
-#### Enum Example 2
-```
+Enum Example 2
+
+```java
 package com.in28minutes.java.beginners.concept.examples.enums;
 
 public class EnumAdvanced {
 
-	// Enum with a variable,method and constructor
+	// Enum with a variable, method and constructor.
 	enum SeasonCustomized {
 		WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 
@@ -2022,44 +2044,43 @@ public class EnumAdvanced {
 		 */
 
 		System.out.println(season.getCode());// 1
-
 		System.out.println(season.getExpectedMaxTemperature());// 5
-
 		System.out.println(SeasonCustomized.valueOf(4));// FALL
-
 	}
 
 }
 ```
 
-#### More Enum Basics
+### More Enum Basics
 
 - Enums can contain variables, methods, constructors. In example 2, we created a local variable called code with a getter. 
 - We also created a constructor with code as a parameter.
 
-```
-//variable
+```java
+
+// variable
 private int code;
 
-//method
+// method
 public int getCode() {
     return code;
 }
 
-//Constructor-only private or (default) 
-//modifiers are allowed
+// constructor-only private or (default) 
+// modifiers are allowed
 SeasonCustomized(int code) {
     this.code = code;
 }
 ```
 
-Each of the Season Type's is created by assigning a value for code.
-```
+Each of the Season types is created by assigning a value for code.
+```java
 WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 ```
 
-Enum constructors can only be (default) or (private) access. Enum constructors cannot be directly invoked.
-```
+> Enum constructors can only be (default) or (private) access. **Enum constructors cannot be directly invoked.**
+
+```java
 /*//Enum constructor cannot be invoked directly
   //Below line would cause COMPILER ERROR
 SeasonCustomized season2 = new SeasonCustomized(1);
@@ -2067,7 +2088,8 @@ SeasonCustomized season2 = new SeasonCustomized(1);
 ```
 
 Example below shows how we can use a switch around an enum.
-```
+
+```java
 // Using switch statement on an enum
 public int getExpectedMaxTemperature() {
 	switch (this) {
@@ -2081,16 +2103,16 @@ public int getExpectedMaxTemperature() {
 	}
 	return -1;
 }
-
 ```
 
-#### Enum Example 3 
-```
+Enum Example 3
+
+```java
 package com.in28minutes.java.beginners.concept.examples.enums;
 
 public class EnumAdvanced2 {
 
-	// Enum with a variable,method and constructor
+	// Enum with a variable, method and constructor
 	enum SeasonCustomized {
 		WINTER(1) {
 			public int getExpectedMaxTemperature() {
@@ -2135,8 +2157,11 @@ public class EnumAdvanced2 {
 
 }
 ```
-Enum Constant Class - In the example above, take a look at how the Winter Type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
-```
+
+Enum Constant Class - In the example above, take a look at how the Winter type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
+(A bit tricky!)
+
+```java
 WINTER(1) {
     public int getExpectedMaxTemperature() {
          return 5;
@@ -2148,13 +2173,14 @@ WINTER(1) {
 
 ## Inheritance
 
-Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
+Inheritance allows extending a functionality of a class and also promotes reuse of existing code.
 
-#### Every Class extends Object class
-- Every class in Java is a sub class of the class Object. 
+Every class extends ```Object``` class.
+
+- Every class in Java is a sub class of the class ```Object```. 
 - When we create a class in Java, we inherit all the methods and properties of Object class.
 
-```
+```java
 String str = "Testing";
 System.out.println(str.toString());
 System.out.println(str.hashCode());
@@ -2166,7 +2192,7 @@ if(str instanceof Object){
 ```
 
 Create a class Actor
-```
+```java
 public class Actor {
     public void act(){
         System.out.println("Act");
@@ -2174,29 +2200,31 @@ public class Actor {
 }
 ```
 
-We can extend this class by using the keyword ```extends```. 
-```Hero class extends Actor```
+We can extend this class by using the keyword ```extends```.
 
-```
-//IS-A relationship. Hero is-a Actor
+```java
+// IS-A relationship. 
+// Hero is-a Actor
 public class Hero extends Actor {
     public void fight(){
-       System.out.println("fight");
+       System.out.println("Fight");
     };
 }
 ```
 
-Since Hero extends Animal, the methods defined in Animal are also available through an instance of Hero class. 
-```
+Since, ```Hero``` extends ```Actor```, the methods defined in ```Actor``` are also available through an instance of ```Hero``` class.
+
+```java
 Hero hero = new Hero();
-//act method inherited from Actor
 hero.act();//Act
-hero.fight();//fight
+hero.fight();//Fight
 ```
 
-Let's look at another class extending Actor class - Comedian.
-```
-//IS-A relationship. Comedian is-a Actor
+Let's look at another class extending ```Actor``` class which is ```Comedian``` class.
+
+```java
+// IS-A relationship. 
+// Comedian is-a Actor
 public class Comedian extends Actor {
     public void performComedy(){
        System.out.println("Comedy");
@@ -2204,43 +2232,48 @@ public class Comedian extends Actor {
 }
 ```
 
-Methods in Animal class can be executed from an instance of Comedian class.
+Methods in ```Actor``` class can be executed from an instance of ```Comedian``` class.
 
-```
+```java
 Comedian comedian = new Comedian();
 //act method inherited from Actor
 comedian.act();//Act
 comedian.performComedy();//Comedy
 ```
 
-#### Super class reference variable can hold an object of sub class
+Super class reference variable can hold an object of sub class
 
-```
+```java
 Actor actor1 = new Comedian();
 Actor actor2 = new Hero();
 ```
 
-Object is super class of all classes. So, an Object reference variable can  hold an instance of any class.
+Object is super class of all classes. 
 
-```
+So, an Object reference variable can  hold an instance of any class.
+
+```java
 //Object is super class of all java classes
 Object object = new Hero(); 
 ```
 
-#### Inheritance: IS-A Relationship
+### Inheritance: IS-A Relationship
 
 We should use inheritance only when there is an IS-A relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
 - Comedian is called a Sub Class. Actor is Super Class.
 
-Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
+Multiple Inheritance results in a number of complexities. 
 
-```
+> Java does not support Multiple Inheritance.
+
+```java
 class Dog extends Animal, Pet { //COMPILER ERROR
 }
 ```
 
 We can create an inheritance chain.
-```
+
+```java
 class Pet extends Animal {
 }
 
@@ -2248,12 +2281,15 @@ class Dog extends Pet {
 }
 ```
 
-#### Inheritance and Polymorphism
+### Inheritance and Polymorphism
 
-Polymorphism is defined as "Same Code" having "Different Behavior".  
+Polymorphism is defined as "Same Code" having "Different Behaviours".
+
+- Function overloading.
 
 Example
-```
+
+```java
 public class Animal {
     public String shout() {
         return "Don't Know!";
@@ -2272,14 +2308,13 @@ class Dog extends Animal {
     }
 
     public void run(){
-
     }
 }
-
 ```
 
 Execution
-```
+
+```java
 Animal animal1 = new Animal();
 System.out.println(animal1.shout()); //Don't Know!
 
@@ -2295,11 +2330,11 @@ System.out.println(animal2.shout()); //BOW BOW
 
 ```
 
-### Puzzle and Tips - instanceof Operator in depth
+### Puzzle And Tips - instanceof Operator in depth
 
-instanceof operator checks if an object is of a particular type.
+```instanceof``` operator checks if an object is of a particular type.
 
-```
+```java
 class SuperClass {
 };
 
@@ -2328,15 +2363,15 @@ SomeOtherClass someOtherClass = new SomeOtherClass();
 System.out.println(subClass instanceof SubClass);//true
 System.out.println(subClass instanceof SuperClass);//true
 System.out.println(subClassObj instanceof SuperClass);//true
-
 System.out.println(subClass2 instanceof SuperClassImplementingInteface);//true
 
 //instanceof can be used with interfaces as well. 
 //Since Super Class implements the interface, below code prints true.
-System.out.println(subClass2 
-instanceof Interface);//true
+System.out.println(subClass2 instanceof Interface);//true
 
 //If the type compared is unrelated to the object, a compilation error occurs.
+// (A bit tricky!)
+
 //System.out.println(subClass 
 //    instanceof SomeOtherClass);//Compiler Error
 
@@ -2344,57 +2379,57 @@ instanceof Interface);//true
 System.out.println(subClassObj instanceof SomeOtherClass);//false
 ```
 
-### Class, Object, State and Behavior
-- In this tutorial, lets look at a few important object oriented concepts.
+### Class, Object, State and Behaviour
+- In this tutorial, let's look at a few important object-oriented concepts.
 
-#### Class, Object, State and Behavior Example
+### Class, Object, State And Behaviour Example
 
-```
+```java
 package com.in28minutes;
 
 public class CricketScorer {
     //Instance Variables - constitute the state of an object
     private int score;
 
-    //Behavior - all the methods that are part of the class
+    //Behaviour - all the methods that are part of the class
     //An object of this type has behavior based on the 
     //methods four, six and getScore
     public void four(){
-score = score + 4;
+        score = score + 4;
     }
     
     public void six(){
-score = score + 6;
+        score = score + 6;
     }
     
     public int getScore() {
-return score;
+        return score;
     }
     
     public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
-scorer.six();
-//State of scorer is (score => 6)
-scorer.four();
-//State of scorer is (score => 10)
-System.out.println(scorer.getScore());
+        CricketScorer scorer = new CricketScorer();
+        scorer.six();
+        //State of scorer is (score => 6)
+        scorer.four();
+        //State of scorer is (score => 10)
+        System.out.println(scorer.getScore());
     }
 }
 ```
 
-#### Class
-A class is a Template. 
-- In above example, class CricketScorer is the template for creating multiple objects. 
+### Class
+A class is a template for objects that share same fields and same behaviour. It can also be called a blueprint for a class of objects.
+- In above example, class ```CricketScorer``` is the template for creating multiple objects. 
 
-A class defines state and behavior that an object can exhibit.
+A class defines state and behaviour that an object can exhibit.
 
-#### Object
-An instance of a class. 
-- In the above example, we create an object using new CricketScorer(). 
-- The reference of the created object is stored in scorer variable. 
+### Object
+An instance of a class is called an object.
+- In the above example, we create an object using ```new CricketScorer()```.
+- The reference of the created object is stored in ```scorer``` variable.
 - We can create multiple objects of the same class.
 
-#### State
+### State
 State represents the values assigned to instance variables of an object at a specific time.  
 
 Consider following code snippets from the above example. 
@@ -2403,7 +2438,7 @@ Consider following code snippets from the above example.
 
 State of an object might change with time. 
 
-```
+```java
 scorer.six();
 //State of scorer is (score => 6)
 
@@ -2411,16 +2446,18 @@ scorer.four();
 //State of scorer is (score => 10)
 ```
 
-#### Behavior
+### Behavior
 
 Behaviour of an object represents the different methods that are supported by it. 
-- Above example the behavior supported is six(), four() and getScore().
+- In the above example the behavior supported is six(), four() and getScore().
 
 ### toString method
+
 toString() method in Java is used to print the content of an object.
 
 Example
-```
+
+```java
 class Animal {
 
     public Animal(String name, String type) {
@@ -2433,14 +2470,13 @@ class Animal {
 
 }
 
-
-
 Animal animal = new Animal("Tommy", "Dog");
 
 //Output does not show the content of animal (what name? and what type?).
 System.out.println(animal);//com.in28minutes.Animal@f7e6a96
 
-To show the content of the animal object, we can override the default implementation of toString method provided by Object class.
+// To show the content of the animal object, we can override the 
+// default implementation of toString method provided by Object class.
 
 //Adding toString to Animal class
 class Animal {
@@ -2467,13 +2503,14 @@ System.out.println(animal);//Animal [name=Tommy, type=Dog]
 
 ### equals method
 
-equals method is used to compare if two objects are having the same content.
-- Default implementation of equals method is defined in Object class. The implementation is similar to == operator. 
+```equals``` method is used to compare if two objects are having the same content.
+- Default implementation of ```equals``` method is defined in the ```Object``` class. The implementation is similar to == operator.
 - By default, two object references are equal only if they are pointing to the same object.
-- However, we can override equals method and provide a custom implementation to compare the contents for an object.
+- However, we can override ```equals``` method and provide a custom implementation to compare the contents for an object.
 
 Example
-```
+
+```java
 class Client {
     private int id;
 
@@ -2481,6 +2518,7 @@ class Client {
       this.id = id;
     }
 
+    // We can also override the hashCode function.
     @Override
     public int hashCode() {
       final int prime = 31;
@@ -2524,33 +2562,36 @@ class Client {
 }
 ```
 
-Signature of the equals method is "public boolean equals(Object obj) ". 
-- Note that "public boolean equals(Client client)" will not override the equals method defined in Object. Parameter should be of type Object.
-- The implementation of equals method checks if the id's of both objects are equal. If so, it returns true. 
+Signature of the ```equals``` method is "public boolean equals(Object obj)". 
+- **Note that "public boolean equals(Client client)" will not override the equals method defined in Object. Parameter should be of type Object.**
+(A bit tricky!)
+- The implementation of ```equals``` method checks if the ids of both objects are equal. If so, it returns true.
 - Note that this is a basic implementation of equals.
 
-Example
-```
+Example.
+
+```java
 Client client1 = new Client(25);
 Client client2 = new Client(25);
 Client client3 = client1;
 
-//both id's are 25
+//both ids are 25
 System.out.println(client1.equals(client2));//true
 
-//both id's are 25
+//both ids are 25
 System.out.println(client1.equals(client3));//true
 ```
-Any equals implementation should satisfy these properties:
-- Reflexive. For any reference value x, x.equals(x) returns true.
-- Symmetric. For any reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-- Transitive. For any reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) must return true.
-- Consistent. For any reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, if no information used in equals is modified.
-- For any non-null reference value x, x.equals(null) should return false.
 
-Let's now provide an implementation of equals which satisfy these properties:
+Any ```equals``` implementation should satisfy these properties:
+- Reflexive. For any reference value x, ```x.equals(x)``` returns ```true```.
+- Symmetric. For any reference values x and y, ```x.equals(y)``` should return ```true``` if and only if ```y.equals(x)``` returns ```true```.
+- Transitive. For any reference values x, y, and z, if ```x.equals(y)``` returns ```true``` and ```y.equals(z)``` returns ```true```, then ```x.equals(z)``` must return ```true```.
+- Consistent. For any reference values x and y, multiple invocations of ```x.equals(y)``` consistently return ```true``` or consistently return ```false```, if no information used in equals is modified.
+- Nullity. For any non-null reference value x, ```x.equals(null)``` should return ```false```.
 
-```
+Let's now provide an implementation of ```equals``` which satisfy these properties:
+
+```java
 //Client class
 @Override
 public boolean equals(Object obj) {
@@ -2568,18 +2609,19 @@ return false;
 ```
 
 ### hashCode method
-- HashCode's are used in hashing to decide which group (or bucket) an object should be placed into. 
-   - A group of object's might share the same hashcode. 
-   - The implementation of hash code decides effectiveness of Hashing. 
-   - A good hashing function evenly distributes object's into different groups (or buckets).
+- HashCodes are used in hashing to decide which group (or bucket) an object should be placed into. 
+   - A group of objects might share the same hashcode. 
+   - The implementation of hash code decides effectiveness of hashing. 
+   - A good hashing function evenly distributes objects into different groups (or buckets).
 
-hashCode method properties 
-- If obj1.equals(obj2) is true, then obj1.hashCode() should be equal to obj2.hashCode()
-- obj.hashCode() should return the same value when run multiple times, if values of obj used in equals() have not changed.
-- If obj1.equals(obj2) is false, it is NOT required that obj1.hashCode() is not equal to obj2.hashCode(). Two unequal objects MIGHT have the same hashCode.
+hashCode() method properties 
+- If ```obj1.equals(obj2)``` is true, then ```obj1.hashCode()``` should be equal to ```obj2.hashCode()```
+- ```obj.hashCode()``` should return the same value when run multiple times, if values of obj used in ```equals()``` have not changed.
+- If ```obj1.equals(obj2)``` is ```false```, it is NOT required that ```obj1.hashCode()``` is not equal to ```obj2.hashCode()```. Two unequal objects MIGHT have the same ```hashCode```.
 
 Example
-```
+
+```java
 //Client class
 @Override
 public int hashCode() {
@@ -2590,10 +2632,10 @@ public int hashCode() {
 }
 ```
 
-### Abstract Class
-An abstract class cannot be instantiated.
+### Abstract Class And Abstraction
+An abstract class is a class defined for abstraction and cannot be instantiated as an object.
 
-```
+```java
 public abstract class AbstractClassExample {
     public static void main(String[] args) {
       //An abstract class cannot be instantiated
@@ -2602,7 +2644,7 @@ public abstract class AbstractClassExample {
     }
 }
 
-//Abstract class can contain instance and static variables
+// Abstract class can contain the instance and static variables.
 
 public abstract class AbstractClassExample {
     
@@ -2613,39 +2655,40 @@ public abstract class AbstractClassExample {
 
 }
 
-//An Abstract method does not contain body.
+//An abstract method does not contain body.
 //Abstract Class can contain 0 or more abstract methods
-//Abstract method does not have a body
 abstract void abstractMethod1();
 abstract void abstractMethod2();
 
-//Abstract method can be declared only in Abstract Class. 
-class NormalClass{
-    abstract void abstractMethod();//COMPILER ERROR
+//Abstract methods can be declared only in the abstract class. 
+class NormalClass {
+    abstract void abstractMethod(); 
+    // COMPILER ERROR
+    // A bit tricky!
 }
 
 // Abstract class can contain fully defined non-abstract methods. 
 public abstract class AbstractClassExample {
     
-    //Abstract class can contain instance and static variables
+    //Abstract class can contain instance and static variables.
     public int publicVariable;
     private int privateVariable;
     static int staticVariable;
     
-    //Abstract Class can contain 0 or more abstract methods
-    //Abstract method does not have a body
+    //Abstract class can contain 0 or more abstract methods.
+    //Abstract method does not have a body.
     abstract void abstractMethod1();
     abstract void abstractMethod2();
     
-    //Abstract Class can contain 0 or more non-abstract methods
+    //Abstract class can contain 0 or more non-abstract methods.
     public void nonAbstractMethod(){
-      System.out.println("Non Abstract Method");
+        System.out.println("Non Abstract Method");
     }    
     
     public static void main(String[] args) {
-      //An abstract class cannot be instantiated
-      //Below line gives compilation error if uncommented
-      //AbstractClassExample ex = new AbstractClassExample();
+        //An abstract class cannot be instantiated.
+        //Below line gives compilation error if uncommented.
+        //AbstractClassExample ex = new AbstractClassExample();
     }
 }
 
@@ -2668,7 +2711,7 @@ class SubClass extends AbstractClassExample {
 }
 */
 
-//An abstract sub class need not implement all abstract methods.
+//An abstract sub-class need not implement all abstract methods.
 abstract class AbstractSubClass extends AbstractClassExample {
     void abstractMethod1() {
       System.out.println("Abstract Method1");
@@ -2678,82 +2721,95 @@ abstract class AbstractSubClass extends AbstractClassExample {
 ```
 
 Tips
-- Abstract Methods cannot be paired with final or private access modifiers.
+- Abstract methods cannot be paired with final or private access modifiers.
+- A concrete sub class should implement all abstract methods.
 - A variable cannot be abstract.
+- An abstract sub-class need not implement all abstract methods.
+- Abstract class can contain 0 or more non-abstract methods.
+- Abstract class can contain 0 or more abstract methods.
+- Abstract class can contain instance and static variables.
 
-### Constructors
-- Constructor is invoked whenever we create an instance(object) of a Class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
+### Constructor
+- Constructor is invoked whenever we create an object of a class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument implicit constructor.
 
-#### Constructor Example 1: Default Constructor
-In the example  below, there are no Constructors defined in the Animal class. Compiler provides us with a default constructor, which helps us create an instance of animal class.
+Constructor Example 1: Default Constructor
 
-```
+In the example below, there are no Constructors defined in the Animal class. Compiler provides us with a default constructor, which helps us create an instance of animal class.
+
+```java
 public class Animal {
     String name;
-
     public static void main(String[] args) {
-// Compiler provides this class with a default no-argument constructor.
-// This allows us to create an instance of Animal class.
-Animal animal = new Animal();
+        // Compiler provides this class with a default no-argument constructor.
+        // This allows us to create an instance of Animal class.
+        Animal animal = new Animal();
     }
 }
 ```
-#### Constructor Example 2: Creating a Constructor
+Constructor Example 2: Creating a Constructor
+
 If we provide a constructor in the class, compiler will NOT provide a default constructor. In the example below we provided a constructor "public Animal(String name)". So, compiler will not provide the default constructor.
 
-Constructor has the same name as the class and no return type. It can accept any number of parameters.
+**Constructor has the same name as the class and no return type. It can accept any number of parameters.**
 
-```
+```java
 class Animal {
     String name;
 
     // This is called a one argument constructor.
     public Animal(String name) {
-this.name = name;
+        this.name = name;
     }
 
     public static void main(String[] args) {
-// Since we provided a constructor, compiler does not
-// provide a default constructor.
-// Animal animal = new Animal();//COMPILER ERROR!
+        // Since we provided a constructor, compiler does not
+        // provide a default constructor.
+        // Animal animal = new Animal();//COMPILER ERROR!
 
-// The only way we can create Animal1 object is by using
-Animal animal = new Animal("Tommy");
+        // The only way we can create Animal object is by using
+        // the one argument user-defined constructor.
+        Animal animal = new Animal("Tommy");
     }
 }
 ```
-#### Constructor Example 3: Provide No Argument Constructor
+Constructor Example 3: Provide No Argument Constructor
+
 If we want to allow creation of an object with no constructor arguments, we can provide a no argument constructor as well.
-```
+
+```java
 class Animal {
     String name;
 
     public Animal() {
-this.name = "Default Name";
+        this.name = "Default Name";
     }
 
     // This is called a one argument constructor.
     public Animal(String name) {
-this.name = name;
+        this.name = name;
     }
 
     public static void main(String[] args) {
-// Since we provided a constructor, compiler does not
-// provide a default constructor.
-// Animal animal = new Animal();//COMPILER ERROR!
+        // Since we provided a constructor, compiler does not
+        // provide a default constructor.
+        // We can create an Animal object using no argument constructor.
+        Animal animal = new Animal();
 
-// The only way we can create Animal1 object is by using
-Animal animal = new Animal("Tommy");
+        // We can create an Animal object using one argument constructor.
+        Animal animal = new Animal("Tommy");
     }
 }
 ```
 
-#### Constructor Example 4: Calling a Super Class Constructor
-A constructor can invoke another constructor, or a super class constructor, but only as first statement in the constructor. Another constructor in the same class can be invoked from a constructor, using this({parameters}) method call. To call a super class constructor, super({parameters}) can be used.
+Constructor Example 4: Calling a Super Class Constructor
 
-Both example constructors below can replace the no argument "public Animal() " constructor in Example 3.
+- A constructor can invoke another constructor, or a super class constructor, but only as first statement in the constructor. 
+- Another constructor in the same class can be invoked from a constructor, using ```this({parameters})``` method call. 
+- To call a super class constructor, ```super({parameters})``` can be used.
 
-```
+Both example constructors below can replace the no argument ```public Animal()``` constructor in Example 3.
+
+```java
 public Animal() {
     super();
     this.name = "Default Name";
@@ -2764,10 +2820,13 @@ public Animal() {
 }
 ```
 
-#### super() or this() should be first statements in a Constructor.
+Constructor Example 5:
+
+> ```super()``` or ```this()``` should be first statements in a constructor.
+
 Below examples will throw a compilation error if the super or this calls are uncommented.
 
-```
+```java
 public Animal() {
     this.name = "Default Name";
     //super(), if called, should always the first statement in a constructor.
@@ -2776,21 +2835,26 @@ public Animal() {
 
 public Animal() {
     System.out.println("Creating an Animal");
-    //this(string), if called, should always the first statement in a constructor.
+    //this(string), if called, should always be the first statement in a constructor.
     //this("Default Name");//COMPILER ERROR
 }
 ```
-#### Constructor Example 5 
+
+Constructor Example 6
+
 Member variables/methods should not be used in constructor calls (super or this). Static variables or methods can be used.
-```
+
+```java
 public Animal() {
     //member variable cannot be used in a constructor call
     this(name);//COMPILER ERROR since name is member variable
 }
 ```
-#### Constructor Example 6: Constructor cannot be directly called  
-A constructor cannot be explicitly called from any method except another constructor.
-```
+Constructor Example 6: Constructor cannot be directly called
+
+- A constructor cannot be explicitly called from any method except another constructor.
+
+```java
 class Animal {
     String name;
 
@@ -2798,113 +2862,122 @@ class Animal {
     }
 
     public method() {
-Animal();// Compiler error
+        Animal();// Compiler error
     }
 }
 ```
-#### Constructor Example 7: Super Class Constructor is invoked automatically
-If a super class constructor is not explicitly called from a sub class constructor, super class (no argument) constructor is automatically invoked (as first line) from a sub class constructor.
+
+Constructor Example 7: Superclass constructor is invoked automatically
+
+> If a super class constructor is not explicitly called from a sub class constructor, super class (no argument) constructor is automatically invoked (as first line) from a sub class constructor.
 
 Consider the example below:
 
-```
+```java
 class Animal {
     public Animal() {
-System.out.println("Animal Constructor");
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() {
-System.out.println("Dog Constructor");
+        System.out.println("Dog Constructor");
     }
 }
 
 class Labrador extends Dog {
     public Labrador() {
-System.out.println("Labrador Constructor");
+        System.out.println("Labrador Constructor");
     }
 }
 
 public class ConstructorExamples {
     public static void main(String[] args) {
-Labrador labrador = new Labrador();
+        Labrador labrador = new Labrador();
     }
 }
-//Output - Animal Constructor
-Dog Constructor
-Labrador Constructor
+// Output:
+// Animal Constructor
+// Dog Constructor
+// Labrador Constructor
 ```
 
-It is almost as if super() method is invoked as the first line of every constructor. The example code below shows how the code above behaves.
+It is almost as if ```super()``` method is invoked as the first line of every constructor. The example code below shows how the code above behaves.
 
-```
+```java
 class Animal {
     public Animal() {
-super();// IMPLICIT CALL
-System.out.println("Animal Constructor");
+        super();// IMPLICIT CALL
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() {
-super();// IMPLICIT CALL
-System.out.println("Dog Constructor");
+        super();// IMPLICIT CALL
+        System.out.println("Dog Constructor");
     }
 }
 
 class Labrador extends Dog {
     public Labrador() {
-super();// IMPLICIT CALL
-System.out.println("Labrador Constructor");
+        super();// IMPLICIT CALL
+        System.out.println("Labrador Constructor");
     }
 }
 ```
-#### Constructor Example 8
+
+Constructor Example 8
+
 Since a subclass constructor explicitly calls a super class constructor with no arguments, this can cause a few compiler errors. 
 
-```
+```java
 class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
-    public Dog() { // COMPILER ERROR! No constructor for Animal()
-System.out.println("Dog Constructor");
+    public Dog() { 
+        // COMPILER ERROR! No constructor for Animal()
+        System.out.println("Dog Constructor");
     }
 }
 ```
 
-public Dog() makes an implicit super() call i.e. a call to Animal() (no argument) constructor. But no such constructor is defined in Animal class.
-#### Constructor Example 9
+```public Dog()``` makes an implicit ```super()``` call i.e. a call to ```Animal()``` (no argument) constructor but no such constructor is defined in Animal class.
 
-Similar example below except that the Dog no argument constructor is not provided by programmer. However, the compiler would give the no argument constructor, which would invoke super() method.  This would again result in a compilation error.
+Constructor Example 9
 
-```
+Similar example below except that the Dog no argument constructor is not provided by programmer. However, the compiler would give the no argument constructor, which would invoke super() method. This would again result in a compilation error.
+
+```java
 class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 
-class Dog extends Animal {// COMPILER ERROR! No constructor for Animal()
+class Dog extends Animal {
+    // COMPILER ERROR! No constructor for Animal()
 }
 ```
 
-Two ways to fix above errors. 
-1.Create a no arguments constructor in Animal class.
-2.Make a explicit super("Default Dog Name") call in the Dog() constructor.
-#### Creating a super class no argument constructor
+Two ways to fix above errors.
+1. Create a no arguments constructor in ```Animal``` class.
+2. Make an explicit ```super("Default Dog Name")``` call in the Dog() constructor.
 
-```
+- Creating a super class no argument constructor
+
+```java
 class Animal {
     String name;
 
@@ -2912,28 +2985,32 @@ class Animal {
     }
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 ```
-#### Making an explicity super call
-```
+
+- Making an explicity super call
+
+```java
 class Dog extends Animal {
-    public Dog() { // COMPILER ERROR! No constructor for Animal()
-super("Default Dog Name");
-System.out.println("Dog Constructor");
+    public Dog() {
+        super("Default Dog Name");
+        System.out.println("Dog Constructor");
     }
 }
 ```
-#### Constructors are NOT inherited.
-```
+
+> Constructors are NOT inherited.
+
+```java
 class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor with name");
+        this.name = name;
+        System.out.println("Animal Constructor with name");
     }
 }
 
@@ -2942,28 +3019,40 @@ class Dog extends Animal {
 
 public class ConstructorExamples {
     public static void main(String[] args) {
-// Dog dog = new Dog("Terry");//COMPILER ERROR
+        // Dog dog = new Dog("Terry");//COMPILER ERROR
     }
 }
 ```
 
-new Dog("Terry") is not allowed even though there is a constructor in the super class Animal with signature public Animal(String name).
+```new Dog("Terry")``` is not allowed even though there is a constructor in the super class ```Animal``` with signature ```public Animal(String name)```.
 
-Solution is to create an explicit constructor in sub class invoking the super class constructor. Add below constructor to Dog class.
+The solution is to create an explicit constructor in sub-class invoking the super class constructor. Add below constructor to Dog class.
 
-```
+```java
 class Dog extends Animal {
     public Dog() {
-super("Default Dog Name");
+        super("Default Dog Name");
+    }
+
+    public Dog(String name) {
+        super(name);
     }
 }
 ```
-### Coupling
-- Coupling is a measure of how much a class is dependent on other classes. There should minimal dependencies between classes. So, we should always aim for low coupling between classes.
 
-#### Coupling Example Problem
+---
+
+## Coupling
+
+- Coupling is a measure of how much a class is dependent on another class. 
+- There should be minimal dependencies between classes. 
+- So, we should always aim for low coupling between classes.
+
+### Coupling Example Problem
+
 Consider the example below:
-```
+
+```java
 class ShoppingCartEntry {
     public float price;
     public int quantity;
@@ -2978,39 +3067,40 @@ class Order {
     private float salesTax;
 
     public Order(ShoppingCart cart, float salesTax) {
-this.cart = cart;
-this.salesTax = salesTax;
+        this.cart = cart;
+        this.salesTax = salesTax;
     }
 
-    // This method know the internal details of ShoppingCartEntry and
+    // This method knows the internal details of ShoppingCartEntry and
     // ShoppingCart classes. If there is any change in any of those
     // classes, this method also needs to change.
     public float orderTotalPrice() {
-float cartTotalPrice = 0;
-for (int i = 0; i < cart.items.length; i++) {
-    cartTotalPrice += cart.items[i].price
-    * cart.items[i].quantity;
-}
-cartTotalPrice += cartTotalPrice * salesTax;
-return cartTotalPrice;
+        float cartTotalPrice = 0;
+        for (int i = 0; i < cart.items.length; i++) {
+            cartTotalPrice += cart.items[i].price
+            * cart.items[i].quantity;
+        }
+        cartTotalPrice += cartTotalPrice * salesTax;
+        return cartTotalPrice;
     }
 }
 ```
 
-Method orderTotalPrice in Order class is coupled heavily with ShoppingCartEntry and ShoppingCart classes.  It uses different properties (items, price, quantity) from these classes. If any of these properties change, orderTotalPrice will also change. This is not good for Maintenance. 
-#### Coupling Example Solution
+Method ```orderTotalPrice``` in ```Order``` class is coupled heavily with ```ShoppingCartEntry``` and ```ShoppingCart``` classes.  It uses different properties (items, price and quantity) from these classes. If any of these properties change, ```orderTotalPrice``` will also change. This is not good for maintenance.
 
-Consider a better implementation with lesser coupling between classes below: In this implementation, changes in ShoppingCartEntry or CartContents might not affect Order class at all.
+### Coupling Example Solution
 
-```
+Consider a better implementation with lesser coupling between classes below. In this implementation, changes in ```ShoppingCartEntry``` or ```CartContents``` might not affect ```Order``` class at all.
+
+```java
 class ShoppingCartEntry
 {
-    float price;
-    int quantity;
+    private float price;
+    private int quantity;
 
     public float getTotalPrice()
     {
-return price * quantity;
+        return price * quantity;
     }
 }
 
@@ -3020,12 +3110,12 @@ class CartContents
 
     public float getTotalPrice()
     {
-float totalPrice = 0;
-for (ShoppingCartEntry item:items)
-{
-    totalPrice += item.getTotalPrice();
-}
-return totalPrice;
+        float totalPrice = 0;
+        for (ShoppingCartEntry item: items)
+        {
+            totalPrice += item.getTotalPrice();
+        }
+        return totalPrice;
     }
 }
 
@@ -3036,23 +3126,28 @@ class Order
 
     public Order(CartContents cart, float salesTax)
     {
-this.cart = cart;
-this.salesTax = salesTax;
+        this.cart = cart;
+        this.salesTax = salesTax;
     }
 
     public float totalPrice()
     {
-return cart.getTotalPrice() * (1.0f + salesTax);
+        return cart.getTotalPrice() * (1.0f + salesTax);
     }
 }
 ```
-### Cohesion
-- Cohesion is a measure of how related the responsibilities of a class are.  A class must be highly cohesive i.e. its responsibilities (methods) should be highly related to one another.
 
-#### Cohesion Example Problem
+## Cohesion
+- Cohesion is a measure of how related the responsibilities of a class are. 
+- A class must be highly cohesive i.e. its methods should be highly related to one another.
+
+### Cohesion Example Problem
+
 Example class below is downloading from internet, parsing data and storing data to database. The responsibilities of this class are not really related. This is not cohesive class.
-```
-class DownloadAndStore{
+
+```java
+class DownloadAndStore {
+
     void downloadFromInternet(){
     }
     
@@ -3063,16 +3158,16 @@ class DownloadAndStore{
     }
     
     void doEverything(){
-downloadFromInternet();
-parseData();
-storeIntoDatabase();
+        downloadFromInternet();
+        parseData();
+        storeIntoDatabase();
     }
 }
 ```
-#### Cohesion Example Solution
+### Cohesion Example Solution
 This is a better way of approaching the problem. Different classes have their own responsibilities.
 
-```
+```java
 class InternetDownloader {
     public void downloadFromInternet() {
     }
@@ -3090,119 +3185,146 @@ class DatabaseStorer {
 
 class DownloadAndStore {
     void doEverything() {
-new InternetDownloader().downloadFromInternet();
-new DataParser().parseData();
-new DatabaseStorer().storeIntoDatabase();
+        new InternetDownloader().downloadFromInternet();
+        new DataParser().parseData();
+        new DatabaseStorer().storeIntoDatabase();
     }
 }
 ```
-### Encapsulation
-- Encapsulation is Òhiding the implementation of a Class behind a well defined interfaceÓ. Encapsulation helps us to change implementation of a class without breaking other code.
+## Encapsulation
 
-#### Encapsulation Approach 1
+Encapsulation is hiding the implementation of a class behind a well-defined interface. Encapsulation helps us to change implementation of a class without breaking other code.
+
+### Encapsulation Approach 1
+
 In this approach we create a public variable score. The main method directly accesses the score variable, updates it.
-#### Example Class
-```
+
+Example Class
+
+```java
 public class CricketScorer {
     public int score;
 }
 ```
 
 Let's use the CricketScorer class.
-```
+```java
 public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
-scorer.score = scorer.score + 4;
+    CricketScorer scorer = new CricketScorer();
+    scorer.score = scorer.score + 4;
 }
 ```
-#### Encapsulation Approach 2
+
+### Encapsulation Approach 2
+
 In this approach, we make score as private and access value through get and set methods. However, the logic of adding 4 to the score is performed in the main method.
-#### Example Class
-```
+
+Example Class
+
+```java
 public class CricketScorer {
     private int score;
 
     public int getScore() {
-return score;
+        return score;
     }
 
     public void setScore(int score) {
-this.score = score;
+        this.score = score;
     }
 }
 ```
 
 Let's use the CricketScorer class.
 
-```
+```java
 public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
-
-int score = scorer.getScore();
-scorer.setScore(score + 4);
+    CricketScorer scorer = new CricketScorer();
+    int score = scorer.getScore();
+    scorer.setScore(score + 4);
 }
 ```
-#### Encapsulation Approach 3
-In this approach - For better encapsulation, the logic of doing the four operation also is moved to the CricketScorer class.
-#### Example Class
-```
+### Encapsulation Approach 3
+
+In this approach - For better encapsulation, the logic of doing the four operation is moved to the ```CricketScorer``` class.
+
+Example Class
+
+```java
 public class CricketScorer {
     private int score;
     
     public void four() {
-score += 4;
+        score += 4;
     }
 
 }
 ```
 
 Let's use the CricketScorer class.
-```
+
+```java
 public static void main(String[] args) {
-  CricketScorer scorer = new CricketScorer();
-  scorer.four();
+    CricketScorer scorer = new CricketScorer();
+    scorer.four();
 }
 ```
-#### Encapsulation Example
-In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
-### Interface
-- An interface defines a contract for  responsibilities (methods) of a class. Let's look at a few examples of interfaces.
 
-#### Defining an Interface
-An interface is declared by using the keyword interface. Look at the example below: Flyable is an interface.
-```
+### Encapsulation Example
+
+In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
+## Interface
+
+- An interface defines a contract for responsibilities/methods of a class. Let's look at a few examples of interfaces.
+
+### Defining an Interface
+
+An interface is declared by using the keyword ```interface```. Look at the example below: Flyable is an interface.
+
+```java
 //public abstract are not necessary
 public abstract interface Flyable {
     //public abstract are not necessary
-    public abstract void fly();
+    void fly();
 }
 ```
-#### An interface can contain abstract methods
+
+### An interface can contain abstract methods
+
 In the above example, fly method is abstract since it is only declared (No definition is provided).
-#### Implementing an Interface
-We can define a class implementing the interface by using the implements keyword. Let us look at a couple of examples:
-#### Example 1
+
+### Implementing An Interface
+
+We can define a class implementing the interface by using the ```implements``` keyword. Let's look at a couple of examples.
+
+Example 1
+
 Class Aeroplane implements Flyable and implements the abstract method fly().
-```
-public class Aeroplane implements Flyable{
+
+```java
+public class Aeroplane implements Flyable {
     @Override
     public void fly() {
-System.out.println("Aeroplane is flying");
+        System.out.println("Aeroplane is flying");
     }
 }
 ```
-#### Example 2
-```
-public class Bird implements Flyable{
+
+Example 2
+
+```java
+public class Bird implements Flyable {
     @Override
     public void fly() {
-System.out.println("Bird is flying");
+        System.out.println("Bird is flying");
     }
 }
 ```
-#### Using the Interface and Implementation
-The interface classes can directly be instantiated and stored in the class reference variables
-```
+### Using The Interface And Implementation
+
+The interface-implementing classes can directly be instantiated and stored in the class reference variables.
+
+```java
 Bird bird = new Bird();
 bird.fly();//Bird is flying
 
@@ -3211,146 +3333,173 @@ aeroplane.fly();//Aeroplane is flying
 ```
 
 An interface reference variable can hold objects of any implementation of interface.
-```
+
+```java
 Flyable flyable1 = new Bird();
 Flyable flyable2 = new Aeroplane();
 ```
-#### Variables in  an interface
-Variables in an interface are always public, static, final. Variables in an interface cannot be declared private.
-```
+### Variables In An Interface
+
+- Variables in an interface are always public, static, final. 
+- Variables in an interface cannot be declared private.
+
+```java
 interface ExampleInterface1 {
     //By default - public static final. No other modifier allowed
-    //value1,value2,value3,value4 all are - public static final
+    //value1, value2, value3, value4 all are - public static final
     int value1 = 10;
     public int value2 = 15;
     public static int value3 = 20;
     public static final int value4 = 25;
     //private int value5 = 10;//COMPILER ERROR
+    // A bit tricky
 }
 ```
-#### Methods in an interface
-Interface methods are by default public and abstract. A concrete method (fully defined method) cannot be created in an interface. Consider the example below:
-```
-interface ExampleInterface1 {
+### Methods In An Interface
+
+Interface methods are by default public and abstract. A concrete method (fully defined method) cannot be created in an interface. Consider the example below.
+
+```java
+interface ExampleInterface2 {
     //By default - public abstract. No other modifier allowed
     void method1();//method1 is public and abstract
     //private void method6();//COMPILER ERROR!
     
     /*//Interface cannot have body (definition) of a method
       //This method, uncommented, gives COMPILER ERROR!
+
     void method5() {
-System.out.println("Method5");
+        System.out.println("Method5");
     }
      */
 }
 ```
-#### Extending an Interface
-An interface can extend another interface. Consider the example below:
+### Extending An Interface
+An interface can extend another interface. Consider the example below.
 
-```
-interface SubInterface1 extends ExampleInterface1{
+```java
+interface SubInterface1 extends ExampleInterface1 {
     void method3();
 }
 ```
 
-Class implementing SubInterface1 should implement both methods - method3 and method1(from ExampleInterface1)
-An interface cannot extend a class.
+Class implementing SubInterface1 should implement both methods - ```method3``` and ```method1``` (from ```ExampleInterface1```).
 
-```
+> An interface cannot extend a class.
+
+```java
 /* //COMPILE ERROR IF UnCommented
    //Interface cannot extend a Class
-interface SubInterface2 extends Integer{
+interface SubInterface2 extends Integer {
     void method3();
 }
 */
 ```
 
-A class can implement multiple interfaces. It should implement all the method declared in all Interfaces being implemented.
+A class can implement multiple interfaces. It should implement all the methods declared in all interfaces being implemented.
 
-```
+```java
 interface ExampleInterface2 {
     void method2();
 }
 
-class SampleImpl implements ExampleInterface1,ExampleInterface2{
+class SampleImplementation implements ExampleInterface1, ExampleInterface2 {
     /* A class should implement all the methods in an interface.
        If either of method1 or method2 is commented, it would 
        result in compilation error. 
      */
     public void method2() {
-System.out.println("Sample Implementation for Method2");
+        System.out.println("Sample Implementation for Method2");
     }
 
     public void method1() {
-System.out.println("Sample Implementation for Method1");
+        System.out.println("Sample Implementation for Method1");
     }
     
 }
 ```
-#### Interface , Things to Remember
-A class should implement all the methods in an interface, unless it is declared abstract.
-A Class can implement multiple interfaces.
-No new checked exceptions can be thrown by implementations of methods in an interface.
-### Method Overloading
-- A method having the same name as another method (in same class or a sub class) but having different parameters is called an Overloaded Method.
+### Interface - Things To Remember
 
-#### Method Overloading Example 1
-doIt method is overloaded in the below example:
-```
-class Foo{
+- A class must implement all the methods in an interface, unless it is declared abstract.
+- A class can implement multiple interfaces.
+- No new checked exceptions can be thrown by implementations of methods in an interface.
+
+## Method Overloading
+
+- A method having the same name as another method (in same class or a sub class) but having different parameters is called an overloaded method.
+
+Method Overloading Example 1
+
+```doIt()``` method is overloaded in the below example:
+
+```java
+class Foo {
     public void doIt(int number){
-
+        // body
     }
+
     public void doIt(String string){
-
+        // body
     }
 }
 ```
-#### Method Overloading Example 2
+
+Method Overloading Example 2
+
 Overloading can also be done from a sub class.
-```
-class Bar extends Foo{
-    public void doIt(float number){
 
+```java
+class Bar extends Foo {
+    public void doIt(float number) {
+        // body
     }
 }
 ```
-#### Overloading - Other Rules
-An overloaded method should have different arguments than the original method. It can also have a different return type.
-A method cannot be overloaded just by only changing the return type.
-Overloaded methods are always treated as if they are different methods altogether.
-Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
-Overloaded method invocation is based on the Type of the Reference variable. It is NOT based on the object it refers to.
-### Method Overriding
-- Creating a Sub Class Method with same signature as that of a method in SuperClass is called Method Overriding.
 
-#### Method Overriding Example 1:
-Let's define an Animal class with a method shout.
-```
+### Overloading - Other Rules
+- An overloaded method should have different arguments than the original method. It can also have a different return type.
+- A method cannot be overloaded just by only changing the return type.
+- Overloaded methods are always treated as if they are different methods altogether.
+- Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
+- Overloaded method invocation is based on the type of the parameters. It is NOT based on the object it refers to.
+
+### Method Overriding
+
+- Creating a sub-class method with same signature as that of a method in superclass is called method overriding.
+
+Method Overriding Example 1:
+
+Let's define an ```Animal``` class with a method ```shout()```.
+
+```java
 public class Animal {
     public String bark() {
-return "Don't Know!";
+        return "Don't Know!";
     }
 }
 ```
 
-Let's create a sub class of Animal , Cat  - overriding the existing shout method in Animal.
-```
+Let's create a subclass of ```Animal```- ```Cat```  - overriding the existing ```shout()``` method in ```Animal```.
+
+```java
 class Cat extends Animal {
     public String bark() {
-return "Meow Meow";
+        return "Meow Meow";
     }
 }
 ```
 
 bark method in Cat class is overriding the bark method in Animal class.
-#### Overriding Method Cannot have lesser visibility
-Overriding method cannot have lesser visibility than the Super Class method. Consider these two examples
-#### Example 1
-```
-class SuperClass{
-    public void publicMethod(){
 
+### Overriding Method Cannot Have Lesser Visibility
+Overriding method cannot have lesser visibility than the superclass method. Consider these two examples.
+
+Example 1
+
+```java
+class SuperClass {
+    public void publicMethod() {
+        // body
     }
 }
 
@@ -3358,142 +3507,163 @@ class SubClass{
     //Cannot reduce visibility of SuperClass Method
     //So, only option is public
     public void publicMethod() {
-
-    }    
+        // body
+    }
 }
 ```
 
-publicMethod in SubClass can only be declared as public. Keyword protected, private or (default) instead of public would result in Compilation Error.
-#### Example 2
-```
-class SuperClass{
-    void defaultMethod(){
+```publicMethod``` in SubClass can only be declared as ```public```. Keyword ```protected```, ```private``` or ```default``` instead of ```public``` would result in a compilation error.
 
+Example 2
+
+```java
+
+class SuperClass {
+    void defaultMethod() {
+        // body
     }
 }
 
-class SubClass{
-    //Can be overridden with public,(default) or protected
+class SubClass {
+    //Can be overridden with public, default or protected
     //private would give COMPILE ERROR!
-    public void defaultMethod(){
-
+    public void defaultMethod() {
+        // body
     }
-    
 }
 ```
 
-defaultMethod in SuperClass is declared with default access. Any method overriding it can have access default or greater. So default, protected and public are fine. Overriding method cannot be private.
-#### Overriding method cannot throw new Checked Exceptions
+```defaultMethod``` in superclass is declared with ```default``` access. Any method overriding it can have access ```default``` or greater. So ```default```, ```protected``` and ```public``` are fine. Overriding method cannot be private.
+### Overriding Method Cannot Throw New Checked Exceptions
+
 Consider the example below:
-```
-class SuperClass{
-    public void publicMethod() throws FileNotFoundException{
 
+```java
+class SuperClass {
+    public void publicMethod() throws FileNotFoundException{
+        // body
     }
 }
 
-class SubClass{
-    //Cannot throw bigger exceptions than Super Class
+class SubClass {
+    // Cannot throw bigger exceptions than super class
     public void publicMethod() /*throws IOException*/ {
 
     }
 }
 ```
-publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
-#### Other Overriding Rules
-A Sub Class can override only those methods that are visible to it.
-Methods marked as static or final cannot be overridden.
-You can call the super class method from the overriding method using keyword super.
-#### Overriding and Polymorphism Example
-Overridden method invocation is based on the object referred to. It is not based on the Type of the Reference variable. This is called Polymorphism. Consider the example below:
 
-```
-class Animal{
-    public void bark(){
-System.out.println("Animal Bark");
+```publicMethod()``` in SuperClass throws ```FileNotFoundException```. So, the SubClass ```publicMethod()``` can throw ```FileNotFoundException``` or any sub class of ```FileNotFoundException```. It can also not throw an ```Exception``` (as in the example). But, it cannot throw any new ```Exception```. For example, public void publicMethod() throws IOException would cause compilation error.
+
+### Other Overriding Rules
+
+- A Sub Class can override only those methods that are visible to it.
+- Methods marked as static or final cannot be overridden.
+- You can call the superclass method from the overriding method using keyword ```super```.
+
+### Overriding And Polymorphism Example
+
+Overridden method invocation is based on the object referred to. It is not based on the type of the reference variable. This is called Polymorphism.
+
+Consider the example below.
+
+```java
+class Animal {
+    public void bark() {
+        System.out.println("Animal Bark");
     }
 }
 
-class Dog extends Animal{
-    public void bark(){
-System.out.println("Dog Bark");
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Dog Bark");
     }
 }
 
 public class PolymorphismExample {
     public static void main(String[] args) {
-
-Animal[] animals = {new Dog(),new Animal()};
-
-animals[0].bark();//Dog bark
-animals[1].bark();//Animal bark
+        Animal[] animals = { new Dog(), new Animal()};
+        animals[0].bark();//Dog bark
+        animals[1].bark();//Animal bark
     }
 
 }
 ```
 
-animals[0] contains a reference to Dog Object. When animals[0].bark() method is called method in Dog class is invoked even though the type of reference variable is Animal. 
-animals[1] contains a reference to Animal Object. When animals[1].bark() method is called method in Animal class is invoked.
-#### Covariant Returns
-A sub class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.in28minutes.SameType)
-### Class Modifiers
-- Let us learn about a few Java Class Modifiers.
+```animals[0]``` contains a reference to ```Dog``` object. When ```animals[0].bark()``` method is called, method in Dog class is invoked even though the type of reference variable is ```Animal```. 
+```animals[1]``` contains a reference to ```Animal``` object. When ```animals[1].bark()``` method is called, method in ```Animal``` class is invoked.
 
-#### Access Modifiers
-Access modifier for a class can be public or (default), It cannot be private or protected.
+### Covariant Returns
+
+A subclass is considered to be of same type as its superclass. So, in interfaces or abstract class, it is fine to provide implementations using the subclass types as return types.
+
+## Class Modifiers
+
+- Let us learn about a few class modifiers.
+
+### Access Modifiers
+
+> Access modifier for a class can be ```public``` or ```default```, It cannot be ```private``` or ```protected```.
+
+```java
+public class PublicClass {
+    
+}
+
+class DefaultClass {
+    
+}
+
+protected class Error {//COMPILER ERROR
+    
+}
+
+private class Error {//COMPILER ERROR
+    
+}
 ```
-public class PublicClass{
-    
-}
-
-class DefaultClass{
-    
-}
-
-protected class Error{//COMPILER ERROR
-    
-}
-
-private class Error{//COMPILER ERROR
-    
-}
-```
-#### Non-access modifiers 
+### Non-access Modifiers 
 strictfp, final, abstract modifiers are valid on a class.
-### Class Access Modifiers
-- Lets learn about a few Java Class Access Modifiers.
 
-#### public class modifier
-A public class is visible to all other classes.
-#### default class modifier
-A class is called a Default Class is when there is no access modifier specified on a class. 
-Default classes are visible inside the same package only. 
-Default access is also called Package access.
-#### Default Class Modifier Examples
-#### Default Access Class Example
+### Class Access Modifiers
+- Let's learn about a few class access modifiers.
+
+public class modifier - A public class is visible to all other classes.
+
+default class modifier - A class is called a default class when there is no access modifier specified on a class. 
+
+- Default classes are visible inside the same package only. 
+- Default access is also called package access.
+
+### Default Class Modifier Examples
+Default Access Class Example
+
+
+```java
 package com.in28minutes.classmodifiers.defaultaccess.a;
 
-```
 /* No public before class. So this class has default access*/
 class DefaultAccessClass {
 //Default access is also called package access    
 }
 ```
 
-#### Another Class in Same Package: Has access to default class
-```
+### Another Class in Same Package: Has Access To Default Class
+
+```java
 package com.in28minutes.classmodifiers.defaultaccess.a;
 
 public class AnotherClassInSamePackage {
-    //DefaultAccessClass and AnotherClassInSamePackage 
+    //DefaultAccessClass and AnotherClassInSamePackage
     //are in same package.
     //So, DefaultAccessClass is visible.
     //An instance of the class can be created.    
     DefaultAccessClass defaultAccess;
 }
 ```
-#### Class in Different Package: NO access to default class
-```
+### Class In Different Package: NO access to default class
+
+```java
 package com.in28minutes.classmodifiers.defaultaccess.b;
 
 public class ClassInDifferentPackage {
@@ -3505,35 +3675,44 @@ public class ClassInDifferentPackage {
     //DefaultAccessClass defaultAccess; //COMPILE ERROR!!    
 }
 ```
-### Method and Variable Access Modifiers
-- Method and variable access modifiers can be public, protected, private or (default)
+### Method And Variable Access Modifiers
+- Method and variable access modifiers can be ```public```, ```protected```, ```private``` or ```default```.
 
-#### Two Access Modifier Questions
+### Two Access Modifier Questions
 When we talk about access modifiers, we would discuss two important questions
-#### Is Accessible through reference/instance variable?
+
+Is accessible through reference/instance variable?
+
 We create an instance of the class and try to access the variables and methods declared in the class.
-```
+
+```java
 ExampleClass example = new ExampleClass();
 
 example.publicVariable = 5;
 example.publicMethod();
 ```
-#### Is Accessible through Inheritance?
-Can we access the super class variables and methods from a Sub Class?
-```
-public class SubClass extends ExampleClass {    
+
+Is accessible through inheritance?
+
+Can we access the superclass variables and methods from a subclass?
+
+```java
+public class SubClass extends ExampleClass {
     void subClassMethod(){
-publicVariable = 5;
-protectedVariable = 5;
+        public publicVariable = 5;
+        protected protectedVariable = 5;
     }    
 }
 ```
-#### Important Access Things to Remember
-A sub class trying to access through reference/instance variables, will have the same access as a normal class (non sub class).
-Access modifiers cannot be applied to local variables
-#### Access Modifiers Example
-Let's consider the following class with variables and methods declared with all 4 access modifiers:
-```
+### Important Access Things to Remember
+
+- A subclass trying to access through reference/instance variables, will have the same access as a normal class (non-subclass).
+- Access modifiers cannot be applied to local variables.
+### Access Modifiers Example
+
+Let's consider the following class with variables and methods declared with all 4 access modifiers.
+
+```java
 package com.in28minutes.membermodifiers.access;
 
 public class ExampleClass {
@@ -3559,103 +3738,112 @@ public class ExampleClass {
     }
 }
 ```
-#### Method Access Modifiers
+
+## Method Access Modifiers
+
 Let's discuss about access modifiers in order of increasing access.
-#### private
-a. Private variables and methods can be accessed only in the class they are declared.
-b. Private variables and methods from SuperClass are NOT available in SubClass.
-#### default or package
-a. Default variables and methods can be accessed in the same package Classes.
-b. Default variables and methods from SuperClass are available only to SubClasses in same package.
-#### protected
-a. Protected variables and methods can be accessed in the same package Classes.
-b. Protected variables and methods from SuperClass are available to SubClass in any package
-#### public
-a. Public variables and methods can be accessed from every other Java classes.
-b. Public variables and methods from SuperClass are all available directly in the SubClass
-#### Access Modifier Example: Class in Same Package
+
+### private access
+
+1. Private variables and methods can be accessed only in the class they are declared in.
+2. Private variables and methods from superclass are NOT available in subclass.
+### default/package access
+1. Default variables and methods can be accessed in the same package classes.
+2. Default variables and methods from superclass are available only to subclasses in same package.
+### protected access
+1. Protected variables and methods can be accessed in the class they are declared in and the immediate subclasses inheriting from the parent class.
+2. Protected variables and methods from superclass are available to subclass in any package.
+### public access
+1. Public variables and methods can be accessed from every other Java classes.
+2. Public variables and methods from superclass are all available directly in the subclass.
+
+Access Modifier Example: Class in Same Package
+
 Look at the code below to understand what can be accessed and what cannot be.
-```
+
+```java
 package com.in28minutes.membermodifiers.access;
 
 public class TestClassInSamePackage {
     public static void main(String[] args) {
-ExampleClass example = new ExampleClass();
-
-example.publicVariable = 5;
-example.publicMethod();
-
-//privateVariable is not visible
-//Below Line, uncommented, would give compiler error
-//example.privateVariable=5; //COMPILE ERROR
-//example.privateMethod();
-
-example.protectedVariable = 5;
-example.protectedMethod();
-
-example.defaultVariable = 5;
-example.defaultMethod();
+        ExampleClass example = new ExampleClass();
+        example.publicVariable = 5;
+        example.publicMethod();
+        //privateVariable is not visible
+        //Below Line, uncommented, would give compiler error
+        //example.privateVariable=5; //COMPILE ERROR
+        //example.privateMethod();
+        example.protectedVariable = 5;
+        example.protectedMethod();
+        example.defaultVariable = 5;
+        example.defaultMethod();
     }
 }
 ```
-#### Access Modifier Example: Class in Different Package
+Access Modifier Example: Class in Different Package
+
 Look at the code below to understand what can be accessed and what cannot be.
-```
+
+```java
 package com.in28minutes.membermodifiers.access.different;
 
 import com.in28minutes.membermodifiers.access.ExampleClass;
 
 public class TestClassInDifferentPackage {
     public static void main(String[] args) {
-ExampleClass example = new ExampleClass();
+        ExampleClass example = new ExampleClass();
 
-example.publicVariable = 5;
-example.publicMethod();
+        example.publicVariable = 5;
+        example.publicMethod();
 
-//privateVariable,privateMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.privateVariable=5; //COMPILE ERROR
-//example.privateMethod();//COMPILE ERROR
+        //privateVariable,privateMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.privateVariable=5; //COMPILE ERROR
+        //example.privateMethod();//COMPILE ERROR
 
-//protectedVariable,protectedMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.protectedVariable = 5; //COMPILE ERROR
-//example.protectedMethod();//COMPILE ERROR
+        //protectedVariable,protectedMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.protectedVariable = 5; //COMPILE ERROR
+        //example.protectedMethod();//COMPILE ERROR
 
-//defaultVariable,defaultMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.defaultVariable = 5;//COMPILE ERROR
-//example.defaultMethod();//COMPILE ERROR
+        //defaultVariable,defaultMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.defaultVariable = 5;//COMPILE ERROR
+        //example.defaultMethod();//COMPILE ERROR
     }
 }
 ```
-#### Access Modifier Example: Sub Class in Same Package
+
+Access Modifier Example: Sub Class in Same Package
+
 Look at the code below to understand what can be accessed and what cannot be.
-```
+
+```java
 package com.in28minutes.membermodifiers.access;
 
 public class SubClassInSamePackage extends ExampleClass {
-    
     void subClassMethod(){
-publicVariable = 5;
-publicMethod();
+        publicVariable = 5;
+        publicMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//privateVariable=5; //COMPILE ERROR
-//privateMethod();
+        //privateVariable is not visible to SubClass
+        //Below Line, uncommented, would give compiler error
+        //privateVariable=5; //COMPILE ERROR
+        //privateMethod();
 
-protectedVariable = 5;
-protectedMethod();
+        protectedVariable = 5;
+        protectedMethod();
 
-defaultVariable = 5;
-defaultMethod();
+        defaultVariable = 5;
+        defaultMethod();
     }    
 }
 ```
-#### Access Modifier Example: Sub Class in Different Package
+Access Modifier Example: Sub Class in Different Package
+
 Look at the code below to understand what can be accessed and what cannot be.
-```
+
+```java
 package com.in28minutes.membermodifiers.access.different;
 
 import com.in28minutes.membermodifiers.access.ExampleClass;
@@ -3663,36 +3851,41 @@ import com.in28minutes.membermodifiers.access.ExampleClass;
 public class SubClassInDifferentPackage extends ExampleClass {
     
     void subClassMethod(){
-publicVariable = 5;
-publicMethod();
+        publicVariable = 5;
+        publicMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//privateVariable=5; //COMPILE ERROR
-//privateMethod();
+        //privateVariable is not visible to SubClass
+        //Below Line, uncommented, would give compiler error
+        //privateVariable=5; //COMPILE ERROR
+        //privateMethod();
 
-protectedVariable = 5;
-protectedMethod();
+        protectedVariable = 5;
+        protectedMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//defaultVariable = 5; //COMPILE ERROR
-//defaultMethod();
+        //defaultVariable is not visible to SubClass in another package
+        //Below Line, uncommented, would give compiler error
+        //defaultVariable = 5; //COMPILE ERROR
+        //defaultMethod();
     }    
 }
 ```
-### Final modifier
-- Let's discuss about Final modifier in Java.
 
-#### Final class cannot be extended
+## Final modifier
+
+Let's discuss about ```final``` access modifier in Java.
+
+### Final Class Cannot Be Extended
+
 Consider the class below which is declared as final.
-```
+
+```java
 final public class FinalClass {
 }
 ```
 
 Below class will not compile if uncommented. FinalClass cannot be extended.
-```
+
+```java
 /*
 class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
     
@@ -3700,221 +3893,254 @@ class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
 */
 ```
 
-Example of Final class in Java is the String class.
-Final is used very rarely as it prevents re-use of the class.
-#### Final methods cannot be overriden.
-Consider the class FinalMemberModifiersExample with method finalMethod which is declared as final.
-```
+- Example of final class in Java is the ```String``` class.
+- Final is used very rarely as it prevents re-use of the class.
+
+### Final Methods Cannot Be Overriden.
+
+Consider the class ```FinalMemberModifiersExample``` with method ```finalMethod``` which is declared as ```final```.
+
+```java
 public class FinalMemberModifiersExample {
-    final void finalMethod(){
+    final void finalMethod() {
+
     }
 }
 ```
 
 Any SubClass extending above class cannot override the finalMethod().
-```
+
+```java
 class SubClass extends FinalMemberModifiersExample {
-    //final method cannot be over-riddent
+    //final method cannot be over-ridden
     //Below method, uncommented, causes compilation Error
     /*
-    final void finalMethod(){
+    final void finalMethod(){ //Compilation error!
 
     }
     */
 }
 ```
-#### Final variable values cannot be changed.
+### Final Variable Values Cannot Be Changed.
+
 Once initialized, the value of a final variable cannot be changed.
-```
+
+```java
 final int finalValue = 5;
 //finalValue = 10; //COMPILER ERROR
 ```
 
-#### Final arguments value cannot be modified.
-Consider the example below:
-```
+### Final Arguments Value Cannot Be Modified.
+
+Consider the example below.
+
+```java
 void testMethod(final int finalArgument){
     //final argument cannot be modified
     //Below line, uncommented, causes compilation Error
     //finalArgument = 5;//COMPILER ERROR
 }
 ```
-### Other Non access Modifiers
+### Other Non-access Modifiers
 - A class cannot be both abstract and final
 
-#### strictfp
-This modifier can be used on a class and a method. This (strictfp) cannot be used on a variable. 
-IEEE standard for floating points would be followed in the method or class where strictfp modifier is specified.
-#### volatile
-Volatile can only be applied to instance variables.
-A volatile variable is one whose value is always written to and read from "main memory". Each thread has its own cache in Java. The volatile variable will not be stored on a Thread cache.
-#### native
-Can be applied only to methods.
-These methods are implemented in native languages (like C)
-### Static Variables and Methods
-- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. Let's start with a real world example of a Class with static variable and methods.
+### strictfp
 
-#### Static Variable/Method , Example
-count variable in Cricketer class is static. The method to get the count value getCount() is also a static method. 
+- This modifier can be used on a class or a method. This ```strictfp``` keyword cannot be used on a variable.
+IEEE standard for floating points would be followed in the method or class where ```strictfp``` modifier is specified.
 
-```
+### volatile
+
+- Volatile can only be applied to instance variables.
+- A volatile variable is one whose value is always written to and read from "main memory". Each thread has its own cache in Java. The volatile variable will not be stored on a thread cache. (A bit tricky!)
+### native
+
+- Can be applied only to methods.
+- These methods are implemented in native languages (like C).
+
+## Static Variables And Methods
+
+- Static variables and methods are class-level variables and methods. There is only one copy of the static variable for the entire class. Each instance of the class will NOT have a unique copy of a static variable. Let's start with a real-world example of a class with static variable and methods.
+
+Static Variable/Method - Example
+
+```count``` variable in ```Cricketer``` class is static. The method to get the count value ```getCount()``` is also a static method.
+
+```java
 public class Cricketer {
     private static int count;
 
     public Cricketer() {
-count++;
+        count++;
     }
 
     static int getCount() {
-return count;
+        return count;
     }
 
     public static void main(String[] args) {
-
-Cricketer cricketer1 = new Cricketer();
-Cricketer cricketer2 = new Cricketer();
-Cricketer cricketer3 = new Cricketer();
-Cricketer cricketer4 = new Cricketer();
-
-System.out.println(Cricketer.getCount());//4
+        Cricketer cricketer1 = new Cricketer();
+        Cricketer cricketer2 = new Cricketer();
+        Cricketer cricketer3 = new Cricketer();
+        Cricketer cricketer4 = new Cricketer();
+        System.out.println(Cricketer.getCount());//4
     }
 }
 ```
-4 instances of the Cricketer class are created. Variable count is incremented with every instance created in the constructor. 
-#### Static Variables and Methods Example 2
-Example class below explains all the rules associated with access static variables and static methods.
-```
+
+4 instances of the ```Cricketer``` class are created. Variable ```count``` is incremented with every instance created in the constructor. 
+
+Static Variables/Methods Example 2
+
+Example class below explains all the rules associated with accessing static variables and static methods.
+
+```java
 public class StaticModifierExamples {
     private static int staticVariable;
     private int instanceVariable;
 
     public static void staticMethod() {
-//instance variables are not accessible in static methods
-//instanceVariable = 10; //COMPILER ERROR
+        //instance variables are not accessible in static methods
+        //instanceVariable = 10; //COMPILER ERROR
 
-//Also, this Keyword is not accessible. this refers to object.
-//static methods are class methods
+        //Also, this Keyword is not accessible. this refers to object.
+        //static methods are class methods
 
-//static variables are accessible in static methods
-staticVariable = 10;
+        //static variables are accessible in static methods
+        staticVariable = 10;
     }
 
     public void instanceMethod() {
-//static and instance variables are accessible in instance methods
-instanceVariable = 10;
-staticVariable = 10;
+        //static and instance variables are accessible in instance methods
+        instanceVariable = 10;
+        staticVariable = 10;
     }
 
     public static void main(String[] args) {
-//static int i =5; //COMPILER ERROR
-StaticModifierExamples example = new StaticModifierExamples();
+        //static int i =5; //COMPILER ERROR
+        StaticModifierExamples example = new StaticModifierExamples();
 
-//instance variables and methods are only accessible through object references
-example.instanceVariable = 10;
-example.instanceMethod();
-//StaticModifierExamples.instanceVariable = 10;//COMPILER ERROR
-//StaticModifierExamples.instanceMethod();//COMPILER ERROR
+        //instance variables and methods are only accessible through object references
+        example.instanceVariable = 10;
+        example.instanceMethod();
+        //StaticModifierExamples.instanceVariable = 10;//COMPILER ERROR
+        //StaticModifierExamples.instanceMethod();//COMPILER ERROR
 
-//static variables and methods are accessible through object references and Class Name.
-example.staticVariable = 10;
-example.staticMethod();
-StaticModifierExamples.staticVariable = 10;
-StaticModifierExamples.staticMethod();
-
+        //static variables and methods are accessible through object references and class name.
+        example.staticVariable = 10;
+        example.staticMethod();
+        StaticModifierExamples.staticVariable = 10;
+        StaticModifierExamples.staticMethod();
     }
 }
 ```
-In a static method, instance variables are not accessible. Keyword this is also not accessible. However static variables are accessible.
-```
+
+In a static method, instance variables are not accessible. Keyword ```this``` is also not accessible. However, static variables are accessible.
+
+```java
     public static void staticMethod() {
-//instance variables are not accessible in static methods
-//instanceVariable = 10; //COMPILER ERROR
+    //instance variables are not accessible in static methods
+    //instanceVariable = 10; //COMPILER ERROR
 
-//Also, this Keyword is not accessible. this refers to object.
-//static methods are class methods
+    //Also, this Keyword is not accessible. this refers to object.
+    //static methods are class methods
 
-//static variables are accessible in static methods
-staticVariable = 10;
+    //static variables are accessible in static methods
+    staticVariable = 10;
     }
 ```
 
 In instance methods, both static and instance variables are accessible.
-```
+
+```java
     public void instanceMethod() {
-instanceVariable = 10;
-staticVariable = 10;
+        instanceVariable = 10;
+        staticVariable = 10;
     }
 ```
 
-Instance variables and methods are only accessible through object references. 
-```
+Instance variables and methods are only accessible through object references.
+
+```java
 example.instanceVariable = 10;
 example.instanceMethod();
 //StaticModifierExamples.instanceVariable = 10;//COMPILER ERROR
 //StaticModifierExamples.instanceMethod();//COMPILER ERROR
 ```
 
-Static variables and methods are accessible through object references and Class Name.
-```
+Static variables and methods are accessible through object references and class name.
+
+```java
 example.staticVariable = 10;
 example.staticMethod();
 StaticModifierExamples.staticVariable = 10;
 StaticModifierExamples.staticMethod();
 ```
 
-It is always recommended to use Class Name to access a static variable or method. This is because static methods are class level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
-#### Static methods cannot be overridden
-Consider the example below:
+It is always recommended to use class name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
 
-```
+### Static Methods Cannot Be Overridden
+
+Consider the example below.
+
+```java
 class Animal{
     static void StaticMethod(){
-System.out.println("Animal Static Method");
+        System.out.println("Animal Static Method");
     }
 }
 
 class Dog extends Animal{
     static void StaticMethod(){
-System.out.println("Dog Static Method");
+        System.out.println("Dog Static Method");
     }
 }
 ```
 
 When code below is run, static method in Animal is executed. Static method invocation is based on the type of reference variable. It does not depend on the type of object referred to.
 
-```
+```java
 Animal animal = new Dog();
 animal.StaticMethod();//Animal Static Method
 ```
-#### Local variables cannot be declared as static
-Example below:
-```
+
+### Local Variables Cannot Be Declared As Static
+
+Example below.
+
+```java
 public static void main(String[] args) {
     //static int i =5; //COMPILER ERROR
 }
 ```
-### Class Contents
-- Let's discuss what a Java class can contain and what it cannot.
 
-#Section
-Java Source File Rules
-A Java Source File can contain
-a.0 or 1 Public Classes
-b.0 or 1 or More Non Public Classes
+---
+
+## Class Contents
+
+Let's discuss what a Java class can contain and cannot contain.
+
+### Java Source File Rules
+
+A Java source file can contain
+a. 0 or 1 public classes
+b. 0 or 1 or more non-public classes
 
 Order should be
 1. Package Statement
 2. Imports
 3. Class Declarations
 
-Comments can be anywhere in the file.
-If there is a public class, file name should the (name of public class) + ".java". 
-If name of public class is Scorer, name of file should be Scorer.java.
-If there is no public class, there are no restrictions on file name.
-#### Example Class
-```
-/* Comments Anywhere*/
+- Comments can be anywhere in the file.
+- If there is a public class, file name should be the name of public class + ".java". 
+- If name of public class is Scorer, name of file should be Scorer.java.
+- If there is no public class, there are no restrictions on filename.
+### Example Class
+
+```java
+/* Comments can be Anywhere*/
 package com.in28minutes.classcontent;
+
 class DefaultClass1{
 	
 }
@@ -3928,9 +4154,9 @@ public class PublicClass1 {
 
 /* Cannot have another Public Class. 
 public class PublicClass2 {
-}
+} // Compilation error!
 */
-```
+``
 ### Nested Class
 - Nested Classes are classes which are declared inside other classes.
 
