@@ -7767,6 +7767,75 @@ lookForDifferentThingsUsingScanner("true false 12 3 abc true 154");
 
 Where are objects created? Where are strings created?
 
+Here's a concise comparison of **Java SE**, **Java ME**, and **Java EE**:
+
+---
+## Java SE vs ME vs EE
+
+### **1. Java SE (Standard Edition)**
+
+* **Purpose**: Core Java platform for general-purpose programming.
+* **Used For**: Desktop applications, command-line tools, and foundational APIs.
+* **Components**:
+
+  * Core libraries (java.lang, java.util, etc.)
+  * GUI toolkits (AWT, Swing, JavaFX)
+  * Networking, multithreading, I/O
+* **Example Use Cases**:
+
+  * Standalone applications
+  * Utility tools
+  * Desktop software
+
+---
+
+### **2. Java EE (Enterprise Edition)** *(now Jakarta EE)*
+
+* **Purpose**: Builds on Java SE for large-scale, distributed, multi-tiered enterprise applications.
+* **Used For**: Web applications, backend systems, business logic layers.
+* **Components**:
+
+  * Servlets, JSP, JSF
+  * EJB (Enterprise JavaBeans)
+  * JPA (Java Persistence API)
+  * JMS (Java Messaging Service)
+  * Web services (REST, SOAP)
+* **Example Use Cases**:
+
+  * Online banking systems
+  * E-commerce platforms
+  * Enterprise backend systems
+
+---
+
+### **3. Java ME (Micro Edition)**
+
+* **Purpose**: Optimized for embedded systems and resource-constrained devices.
+* **Used For**: Mobile devices, IoT devices, smart cards.
+* **Components**:
+
+  * CLDC (Connected Limited Device Configuration)
+  * MIDP (Mobile Information Device Profile)
+  * Lightweight subset of Java SE APIs
+* **Example Use Cases**:
+
+  * Feature phones (pre-smartphone)
+  * Embedded controllers
+  * IoT modules
+
+---
+
+### **Summary Comparison Table**:
+
+| Feature         | Java SE             | Java EE (Jakarta EE)  | Java ME                 |
+| --------------- | ------------------- | --------------------- | ----------------------- |
+| Target Platform | Desktop, Servers    | Enterprise Servers    | Embedded/Mobile Devices |
+| API Size        | Medium              | Large (extends SE)    | Small (subset of SE)    |
+| Use Case        | General Programming | Business Applications | Lightweight/Embedded    |
+| Complexity      | Moderate            | High                  | Low                     |
+
+---
+
 ### TODO
 - replace ``` with ```java at start of code
 - //Getters and Setters are eliminated to keep the example short
