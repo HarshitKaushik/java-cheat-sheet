@@ -3904,140 +3904,146 @@ Can be applied only to methods.
 These methods are implemented in native languages (like C)
 
 ### Static variables and methods
-- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. Let's start with a real world example of a Class with static variable and methods.
+- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire class. Each instance of the class (object) will NOT have a unique copy of a static variable. Let's start with a real-world example of a class with static variable and methods.
 
-#### Static variable/Method , Example
-count variable in Cricketer class is static. The method to get the count value getCount() is also a static method. 
+#### Static variables and method, example
+`count` variable in `Cricketer` class is static. The method to get the count value `getCount()` is also a static method. 
 
 ```java
 public class Cricketer {
     private static int count;
 
     public Cricketer() {
-count++;
+        count++;
     }
 
     static int getCount() {
-return count;
+        return count;
     }
 
     public static void main(String[] args) {
 
-Cricketer cricketer1 = new Cricketer();
-Cricketer cricketer2 = new Cricketer();
-Cricketer cricketer3 = new Cricketer();
-Cricketer cricketer4 = new Cricketer();
+        Cricketer cricketer1 = new Cricketer();
+        Cricketer cricketer2 = new Cricketer();
+        Cricketer cricketer3 = new Cricketer();
+        Cricketer cricketer4 = new Cricketer();
 
-System.out.println(Cricketer.getCount()); //4
+        System.out.println(Cricketer.getCount()); //4
     }
 }
 ```
+
 4 instances of the Cricketer class are created. Variable count is incremented with every instance created in the constructor. 
+
 #### Static variables and Methods Example 2
-Example class below explains all the rules associated with access static variables and static methods.
+Example class below explains all the rules associated with accessing static variables and static methods.
 ```java
 public class StaticModifierExamples {
     private static int staticVariable;
     private int instanceVariable;
 
     public static void staticMethod() {
-//instance variables are not accessible in static methods
-//instanceVariable = 10; //COMPILER ERROR
+        //instance variables are not accessible in static methods
+        //instanceVariable = 10; //COMPILER ERROR
 
-//Also, this Keyword is not accessible. this refers to object.
-//static methods are class methods
+        //Also, this Keyword is not accessible. this refers to object.
+        //static methods are class methods
 
-//static variables are accessible in static methods
-staticVariable = 10;
+        //static variables are accessible in static methods
+        staticVariable = 10;
     }
 
     public void instanceMethod() {
-//static and instance variables are accessible in instance methods
-instanceVariable = 10;
-staticVariable = 10;
+        //static and instance variables are accessible in instance methods
+        instanceVariable = 10;
+        staticVariable = 10;
     }
 
     public static void main(String[] args) {
-//static int i =5; //COMPILER ERROR
-StaticModifierExamples example = new StaticModifierExamples();
+        //static int i =5; //COMPILER ERROR
+        StaticModifierExamples example = new StaticModifierExamples();
 
-//instance variables and methods are only accessible through object references
-example.instanceVariable = 10;
-example.instanceMethod();
-//StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
-//StaticModifierExamples.instanceMethod(); //COMPILER ERROR
+        //instance variables and methods are only accessible through object references
+        example.instanceVariable = 10;
+        example.instanceMethod();
+        //StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
+        //StaticModifierExamples.instanceMethod(); //COMPILER ERROR
 
-//static variables and methods are accessible through object references and Class Name.
-example.staticVariable = 10;
-example.staticMethod();
-StaticModifierExamples.staticVariable = 10;
-StaticModifierExamples.staticMethod();
+        //static variables and methods are accessible through object references and Class Name.
+        example.staticVariable = 10;
+        example.staticMethod();
+        StaticModifierExamples.staticVariable = 10;
+        StaticModifierExamples.staticMethod();
 
     }
 }
 ```
-In a static method, instance variables are not accessible. Keyword this is also not accessible. However static variables are accessible.
+
+In a static method, instance variables are not accessible. Keyword `this` is also not accessible. However, static variables are accessible.
 ```java
     public static void staticMethod() {
-//instance variables are not accessible in static methods
-//instanceVariable = 10; //COMPILER ERROR
+        //instance variables are not accessible in static methods
+        //instanceVariable = 10; //COMPILER ERROR
 
-//Also, this Keyword is not accessible. this refers to object.
-//static methods are class methods
+        //Also, this Keyword is not accessible. this refers to object.
+        //static methods are class methods
 
-//static variables are accessible in static methods
-staticVariable = 10;
+        //static variables are accessible in static methods
+        staticVariable = 10;
     }
 ```
 
 In instance methods, both static and instance variables are accessible.
 ```java
     public void instanceMethod() {
-instanceVariable = 10;
-staticVariable = 10;
+        instanceVariable = 10;
+        staticVariable = 10;
     }
 ```
 
 Instance variables and methods are only accessible through object references. 
-```
+```java
 example.instanceVariable = 10;
 example.instanceMethod();
 //StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
 //StaticModifierExamples.instanceMethod(); //COMPILER ERROR
 ```
 
-Static variables and methods are accessible through object references and Class Name.
-```
+Static variables and methods are accessible through object references and class name references.
+```java
 example.staticVariable = 10;
 example.staticMethod();
 StaticModifierExamples.staticVariable = 10;
 StaticModifierExamples.staticMethod();
 ```
 
-It is always recommended to use Class Name to access a static variable or method. This is because static methods are class level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
+It is always recommended to use Class Name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
+
 #### Static methods cannot be overridden
 Consider the example below:
 
 ```java
 class Animal{
     static void StaticMethod(){
-System.out.println("Animal Static Method");
+        System.out.println("Animal Static Method");
     }
 }
 
 class Dog extends Animal{
     static void StaticMethod(){
-System.out.println("Dog Static Method");
+        System.out.println("Dog Static Method");
     }
 }
 ```
 
 When code below is run, static method in Animal is executed. Static method invocation is based on the type of reference variable. It does not depend on the type of object referred to.
 
-```
+```java
 Animal animal = new Dog();
 animal.StaticMethod(); //Animal Static Method
+// It's tricky!
 ```
+
 #### Local variables cannot be declared as static
 Example below:
 ```java
@@ -4045,10 +4051,11 @@ public static void main(String[] args) {
     //static int i =5; //COMPILER ERROR
 }
 ```
+
 ### Class Contents
 - Let's discuss what a Java class can contain and what it cannot.
 
-#Section
+Section
 Java Source File Rules
 A Java Source File can contain
 a.0 or 1 Public Classes
@@ -4059,12 +4066,13 @@ Order should be
 2. Imports
 3. Class Declarations
 
-Comments can be anywhere in the file.
-If there is a public class, file name should the (name of public class) + ".java". 
-If name of public class is Scorer, name of file should be Scorer.java.
-If there is no public class, there are no restrictions on file name.
+- Comments can be anywhere in the file.
+- If there is a public class, file name should be the name of public class + ".java". 
+- If name of public class is Scorer, name of file should be Scorer.java.
+- If there is no public class, there are no restrictions on file name.
+
 #### Example Class
-```
+```java
 /* Comments Anywhere*/
 package com.in28minutes.classcontent;
 class DefaultClass1{
@@ -4083,6 +4091,7 @@ public class PublicClass2 {
 }
 */
 ```
+
 ### Nested Class
 - Nested Classes are classes which are declared inside other classes.
 
@@ -4098,14 +4107,15 @@ class OuterClass {
     }
 
     public void exampleMethod() {
-class MethodLocalInnerClass {
-};
+        class MethodLocalInnerClass {
+        };
     }
 
 }
 ```
+
 #### Inner Class
-Generally the term inner class is used to refer to a non-static class declared directly inside another class. Consider the example of class named InnerClass.
+Generally, the term inner class is used to refer to a non-static class declared directly inside another class. Consider the example of class named InnerClass.
 #### Static Inner Class
 A class declared directly inside another class and declared as static. In the example above, class name StaticNestedClass is a static inner class. 
 #### Method Inner Class
@@ -7764,7 +7774,7 @@ Where are objects created? Where are strings created?
       - Functional Pipeline, Function
       - "Coolection pipeline pattern" -> Martin Fowler
     - Lambda - Stateless
-    - Closure has Statell
+    - Closure has State
   - Code is Liability not an asset!
   - Exception Handling - Promise
   - Reactive Programming
