@@ -54,7 +54,7 @@ Three Types
 - Extension Class Loader - Loads all classes from extension directory
 - Bootstrap Class Loader - Loads all the Java core files
 
-- A bootstrap or primordial class loader is the parent of all the others. This is because **the bootstrap class loader is written in native code**, not Java – so it doesn't show up as a Java class. Due to this reason, the behavior of the bootstrap class loader will differ across JVMs.
+- A bootstrap or primordial class loader is the parent of all the others. This is because **the bootstrap class loader is written in native code**, not Java – so it doesn't show up as a Java class. Due to this reason, the behaviour of the bootstrap class loader will differ across JVMs.
 
 - There are three important features of class loaders.
 
@@ -2217,7 +2217,7 @@ WINTER(1) {
 Inheritance allows extending a functionality of a class and also promotes reuse of existing code. 
 
 #### Every Class extends Object class
-- Every class in Java is a sub class of the class Object. 
+- Every class in Java is a sub-class of the class Object. 
 - When we create a class in Java, we inherit all the methods and properties of Object class.
 
 ```java
@@ -2252,7 +2252,7 @@ public class Hero extends Actor {
 }
 ```
 
-Since Hero extends Actor, the methods defined in Actor are also available through an instance of Hero class. 
+Since `Hero` extends `Actor`, the methods defined in `Actor` are also available through an instance of `Hero` class. 
 ```
 Hero hero = new Hero();
 //act method inherited from Actor
@@ -2260,7 +2260,7 @@ hero.act(); //Act
 hero.fight(); //fight
 ```
 
-Let's look at another class extending Actor class - Comedian.
+Let's look at another class extending `Actor` class - `Comedian` class.
 ```java
 //IS-A relationship. Comedian is-a Actor
 public class Comedian extends Actor {
@@ -2270,7 +2270,7 @@ public class Comedian extends Actor {
 }
 ```
 
-Methods in Animal class can be executed from an instance of Comedian class.
+Methods in `Actor` class can be executed from an instance of `Comedian` class.
 
 ```java
 Comedian comedian = new Comedian();
@@ -2279,7 +2279,7 @@ comedian.act(); //Act
 comedian.performComedy(); //Comedy
 ```
 
-#### Super class reference variable can hold an object of sub class
+#### Super class reference variable can hold an object of sub-class
 
 ```java
 Actor actor1 = new Comedian();
@@ -2298,7 +2298,9 @@ Object object = new Hero();
 We should use inheritance only when there is an IS-A relationship between classes. For example, Comedian IS-A Actor, Hero IS-A Actor are both true. So, inheritance is correct relationship between classes.
 - Comedian is called a Sub Class. Actor is Super Class.
 
-Multiple Inheritance results in a number of complexities. Java does not support Multiple Inheritance.
+Multiple Inheritance results in a number of complexities. 
+
+> Java does not support Multiple Inheritance.
 
 ```java
 class Dog extends Animal, Pet { //COMPILER ERROR
@@ -2316,7 +2318,9 @@ class Dog extends Pet {
 
 #### Inheritance and Polymorphism
 
-Polymorphism is defined as "Same Code" having "Different Behavior".  
+Polymorphism is defined as "Same Code" having "Different Behaviour".
+
+- Function overloading.
 
 Example
 
@@ -2358,14 +2362,14 @@ Animal animal2 = new Dog(); //Animal reference used to store Dog object
 //Dog's bark method is called.
 System.out.println(animal2.shout()); //BOW BOW
 
-//Cannot invoke sub class method with super class reference variable.
+//Cannot invoke sub-class method with super class reference variable.
 //animal2.run(); //COMPILE ERROR
 
 ```
 
 ### Puzzle and Tips - instanceof Operator in depth
 
-instanceof operator checks if an object is of a particular type.
+`instanceof` operator checks if an object is of a particular type.
 
 ```java
 class SuperClass {
@@ -2396,13 +2400,11 @@ SomeOtherClass someOtherClass = new SomeOtherClass();
 System.out.println(subClass instanceof SubClass); //true
 System.out.println(subClass instanceof SuperClass); //true
 System.out.println(subClassObj instanceof SuperClass); //true
-
 System.out.println(subClass2 instanceof SuperClassImplementingInteface); //true
 
 //instanceof can be used with interfaces as well. 
 //Since Super Class implements the interface, below code prints true.
-System.out.println(subClass2 
-instanceof Interface); //true
+System.out.println(subClass2 instanceof Interface); //true
 
 //If the type compared is unrelated to the object, a compilation error occurs.
 //System.out.println(subClass 
@@ -2412,10 +2414,10 @@ instanceof Interface); //true
 System.out.println(subClassObj instanceof SomeOtherClass); //false
 ```
 
-### Class, Object, State and Behavior
-- In this tutorial, lets look at a few important object oriented concepts.
+### Class, Object, State and Behaviour
+- In this tutorial, let's look at a few important object-oriented concepts.
 
-#### Class, Object, State and Behavior Example
+#### Class, Object, State and Behaviour Example
 
 ```java
 package com.in28minutes;
@@ -2424,37 +2426,37 @@ public class CricketScorer {
     //Instance Variables - constitute the state of an object
     private int score;
 
-    //Behavior - all the methods that are part of the class
-    //An object of this type has behavior based on the 
+    //Behaviour - all the methods that are part of the class
+    //An object of this type has behaviour based on the 
     //methods four, six and getScore
     public void four(){
-score = score + 4;
+        score = score + 4;
     }
     
     public void six(){
-score = score + 6;
+        score = score + 6;
     }
     
     public int getScore() {
-return score;
+        return score;
     }
     
     public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
-scorer.six();
-//State of scorer is (score => 6)
-scorer.four();
-//State of scorer is (score => 10)
-System.out.println(scorer.getScore());
+        CricketScorer scorer = new CricketScorer();
+        scorer.six();
+        //State of scorer is (score => 6)
+        scorer.four();
+        //State of scorer is (score => 10)
+        System.out.println(scorer.getScore());
     }
 }
 ```
 
 #### Class
-A class is a Template. 
-- In above example, class CricketScorer is the template for creating multiple objects. 
+A class is a template for objects that share same fields and same behaviour. It can also be called a blueprint for a class of objects.
+- In above example, class `CricketScorer` is the template for creating multiple objects. 
 
-A class defines state and behavior that an object can exhibit.
+A class defines state and behaviour that an object can exhibit.
 
 #### Object
 An instance of a class. 
@@ -2479,10 +2481,10 @@ scorer.four();
 //State of scorer is (score => 10)
 ```
 
-#### Behavior
+#### Behaviour
 
 Behaviour of an object represents the different methods that are supported by it. 
-- Above example the behavior supported is six(), four() and getScore().
+- Above example the behaviour supported is six(), four() and getScore().
 
 ### toString method
 toString() method in Java is used to print the content of an object.
@@ -2535,12 +2537,12 @@ Animal animal = new Animal("Tommy","Dog");
 System.out.println(animal); //Animal [name=Tommy, type=Dog]
 ```
 
-### equals method
+### `equals` method
 
-equals method is used to compare if two objects are having the same content.
-- Default implementation of equals method is defined in Object class. The implementation is similar to == operator. 
+`equals` method is used to compare if two objects are having the same content.
+- Default implementation of `equals` method is defined in Object class. The implementation is similar to == operator. 
 - By default, two object references are equal only if they are pointing to the same object.
-- However, we can override equals method and provide a custom implementation to compare the contents for an object.
+- However, we can override `equals` method and provide a custom implementation to compare the contents for an object.
 
 Example
 ```java
@@ -2551,6 +2553,7 @@ class Client {
       this.id = id;
     }
 
+    // We can also override the hashCode function.
     @Override
     public int hashCode() {
       final int prime = 31;
@@ -2576,7 +2579,7 @@ System.out.println(client1 == client3); //true
 System.out.println(client1.equals(client2)); //false
 System.out.println(client1.equals(client3)); //true
 
-//overriding equals method
+//overriding `equals` method
 class Client {
     private int id;
 
@@ -2594,9 +2597,9 @@ class Client {
 }
 ```
 
-Signature of the equals method is "public boolean equals(Object obj) ". 
-- Note that "public boolean equals(Client client)" will not override the equals method defined in Object. Parameter should be of type Object.
-- The implementation of equals method checks if the id's of both objects are equal. If so, it returns true. 
+Signature of the `equals` method is "public boolean equals(Object obj) ". 
+- Note that "public boolean equals(Client client)" will not override the `equals` method defined in Object. Parameter should be of type Object.
+- The implementation of `equals` method checks if the ids of both objects are equal. If so, it returns true. 
 - Note that this is a basic implementation of equals.
 
 Example
@@ -2605,20 +2608,20 @@ Client client1 = new Client(25);
 Client client2 = new Client(25);
 Client client3 = client1;
 
-//both id's are 25
+//both ids are 25
 System.out.println(client1.equals(client2)); //true
 
-//both id's are 25
+//both ids are 25
 System.out.println(client1.equals(client3)); //true
 ```
-Any equals implementation should satisfy these properties:
-- Reflexive. For any reference value x, x.equals(x) returns true.
-- Symmetric. For any reference values x and y, x.equals(y) should return true if and only if y.equals(x) returns true.
-- Transitive. For any reference values x, y, and z, if x.equals(y) returns true and y.equals(z) returns true, then x.equals(z) must return true.
-- Consistent. For any reference values x and y, multiple invocations of x.equals(y) consistently return true or consistently return false, if no information used in equals is modified.
-- For any non-null reference value x, x.equals(null) should return false.
+Any ```equals``` implementation should satisfy these properties:
+- Reflexive. For any reference value x, ```x.equals(x)``` returns ```true```.
+- Symmetric. For any reference values x and y, ```x.equals(y)``` should return ```true``` if and only if ```y.equals(x)``` returns ```true```.
+- Transitive. For any reference values x, y, and z, if ```x.equals(y)``` returns ```true``` and ```y.equals(z)``` returns ```true```, then ```x.equals(z)``` must return ```true```.
+- Consistent. For any reference values x and y, multiple invocations of ```x.equals(y)``` consistently return ```true``` or consistently return ```false```, if no information used in equals is modified.
+- Nullity. For any non-null reference value x, ```x.equals(null)``` should return ```false```.
 
-Let's now provide an implementation of equals which satisfy these properties:
+Let's now provide an implementation of ```equals``` which satisfy these properties:
 
 ```java
 //Client class
@@ -2638,15 +2641,15 @@ return false;
 ```
 
 ### hashCode method
-- HashCode's are used in hashing to decide which group (or bucket) an object should be placed into. 
-   - A group of object's might share the same hashcode. 
-   - The implementation of hash code decides effectiveness of Hashing. 
-   - A good hashing function evenly distributes object's into different groups (or buckets).
+- Hash Codes are used in hashing to decide which group (or bucket) an object should be placed into. 
+   - A group of objects might share the same hashcode.
+   - The implementation of hash code decides effectiveness of hashing. 
+   - A good hashing function evenly distributes objects into different groups (or buckets).
 
-hashCode method properties 
-- If obj1.equals(obj2) is true, then obj1.hashCode() should be equal to obj2.hashCode()
-- obj.hashCode() should return the same value when run multiple times, if values of obj used in equals() have not changed.
-- If obj1.equals(obj2) is false, it is NOT required that obj1.hashCode() is not equal to obj2.hashCode(). Two unequal objects MIGHT have the same hashCode.
+### hashCode() method properties 
+- If ```obj1.equals(obj2)``` is true, then ```obj1.hashCode()``` should be equal to ```obj2.hashCode()```
+- ```obj.hashCode()``` should return the same value when run multiple times, if values of obj used in ```equals()``` have not changed.
+- If ```obj1.equals(obj2)``vcx` is ```false```, it is NOT required that ```obj1.hashCode()``` is not equal to ```obj2.hashCode()```. Two unequal objects MIGHT have the same ```hashCode```.
 
 Example
 ```java
@@ -2661,7 +2664,7 @@ public int hashCode() {
 ```
 
 ### Abstract Class
-An abstract class cannot be instantiated.
+An abstract class is a class defined for abstraction and cannot be instantiated as an object.
 
 ```java
 public abstract class AbstractClassExample {
@@ -2684,12 +2687,12 @@ public abstract class AbstractClassExample {
 }
 
 //An Abstract method does not contain body.
-//Abstract Class can contain 0 or more abstract methods
+//abstract class can contain 0 or more abstract methods
 //Abstract method does not have a body
 abstract void abstractMethod1();
 abstract void abstractMethod2();
 
-//Abstract method can be declared only in Abstract Class. 
+//Abstract method can be declared only in the abstract class. 
 class NormalClass{
     abstract void abstractMethod(); //COMPILER ERROR
 }
@@ -2702,12 +2705,12 @@ public abstract class AbstractClassExample {
     private int privateVariable;
     static int staticVariable;
     
-    //Abstract Class can contain 0 or more abstract methods
+    //abstract class can contain 0 or more abstract methods
     //Abstract method does not have a body
     abstract void abstractMethod1();
     abstract void abstractMethod2();
     
-    //Abstract Class can contain 0 or more non-abstract methods
+    //abstract class can contain 0 or more non-abstract methods
     public void nonAbstractMethod(){
       System.out.println("Non Abstract Method");
     }    
@@ -2730,7 +2733,7 @@ class SubClass2 extends AbstractClassExample {
     }
 }
 
-// A concrete sub class should implement all abstract methods.
+// A concrete sub-class should implement all abstract methods.
 // Below class gives compilation error if uncommented
 /*
 class SubClass extends AbstractClassExample {
@@ -2738,7 +2741,7 @@ class SubClass extends AbstractClassExample {
 }
 */
 
-//An abstract sub class need not implement all abstract methods.
+//An abstract sub-class need not implement all abstract methods.
 abstract class AbstractSubClass extends AbstractClassExample {
     void abstractMethod1() {
       System.out.println("Abstract Method1");
@@ -2748,23 +2751,28 @@ abstract class AbstractSubClass extends AbstractClassExample {
 ```
 
 Tips
-- Abstract Methods cannot be paired with final or private access modifiers.
+- Abstract methods cannot be paired with final or private access modifiers.
+- A concrete sub-class should implement all abstract methods.
 - A variable cannot be abstract.
+- An abstract sub-class need not implement all abstract methods.
+- Abstract class can contain 0 or more non-abstract methods.
+- Abstract class can contain 0 or more abstract methods.
+- Abstract class can contain instance and static variables.
 
 ### Constructors
-- Constructor is invoked whenever we create an instance(object) of a Class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
+- Constructor is invoked whenever we create an instance(object) of a class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
 
 #### Constructor Example 1: Default Constructor
-In the example  below, there are no Constructors defined in the Animal class. Compiler provides us with a default constructor, which helps us create an instance of animal class.
+In the example below, there are no constructors defined in the Animal class. Compiler provides us with a default constructor, which helps us create an instance of animal class.
 
 ```java
 public class Animal {
     String name;
 
     public static void main(String[] args) {
-// Compiler provides this class with a default no-argument constructor.
-// This allows us to create an instance of Animal class.
-Animal animal = new Animal();
+        // Compiler provides this class with a default no-argument constructor.
+        // This allows us to create an instance of Animal class.
+        Animal animal = new Animal();
     }
 }
 ```
@@ -2779,41 +2787,43 @@ class Animal {
 
     // This is called a one argument constructor.
     public Animal(String name) {
-this.name = name;
+        this.name = name;
     }
 
     public static void main(String[] args) {
-// Since we provided a constructor, compiler does not
-// provide a default constructor.
-// Animal animal = new Animal(); //COMPILER ERROR!
+        // Since we provided a constructor, compiler does not
+        // provide a default constructor.
+        // Animal animal = new Animal(); //COMPILER ERROR!
 
-// The only way we can create Animal1 object is by using
-Animal animal = new Animal("Tommy");
+        // The only way we can create Animal1 object is by using
+        Animal animal = new Animal("Tommy");
     }
 }
 ```
+
 #### Constructor Example 3: Provide No Argument Constructor
+
 If we want to allow creation of an object with no constructor arguments, we can provide a no argument constructor as well.
 ```java
 class Animal {
     String name;
 
     public Animal() {
-this.name = "Default Name";
+        this.name = "Default Name";
     }
 
     // This is called a one argument constructor.
     public Animal(String name) {
-this.name = name;
+        this.name = name;
     }
 
     public static void main(String[] args) {
-// Since we provided a constructor, compiler does not
-// provide a default constructor.
-// Animal animal = new Animal(); //COMPILER ERROR!
+        // Since we provided a constructor, compiler does not
+        // provide a default constructor.
+        // Animal animal = new Animal(); //COMPILER ERROR!
 
-// The only way we can create Animal1 object is by using
-Animal animal = new Animal("Tommy");
+        // The only way we can create Animal object is by using
+        Animal animal = new Animal("Tommy");
     }
 }
 ```
@@ -2835,6 +2845,7 @@ public Animal() {
 ```
 
 #### super() or this() should be first statements in a Constructor.
+Constructor Example 5:
 Below examples will throw a compilation error if the super or this calls are uncommented.
 
 ```java
@@ -2868,45 +2879,45 @@ class Animal {
     }
 
     public method() {
-Animal(); // Compiler error
+        Animal(); // Compiler error
     }
 }
 ```
 #### Constructor Example 7: Super Class Constructor is invoked automatically
-If a super class constructor is not explicitly called from a sub class constructor, super class (no argument) constructor is automatically invoked (as first line) from a sub class constructor.
+If a super class constructor is not explicitly called from a sub-class constructor, super class (no argument) constructor is automatically invoked (as first line) from a sub-class constructor.
 
 Consider the example below:
 
 ```java
 class Animal {
     public Animal() {
-System.out.println("Animal Constructor");
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() {
-System.out.println("Dog Constructor");
+        System.out.println("Dog Constructor");
     }
 }
 
 class Labrador extends Dog {
     public Labrador() {
-System.out.println("Labrador Constructor");
+        System.out.println("Labrador Constructor");
     }
 }
 
 public class ConstructorExamples {
     public static void main(String[] args) {
-Labrador labrador = new Labrador();
+        Labrador labrador = new Labrador();
     }
 }
 //Output - Animal Constructor
-Dog Constructor
-Labrador Constructor
+// Dog Constructor
+// Labrador Constructor
 ```
 
-It is almost as if super() method is invoked as the first line of every constructor. The example code below shows how the code above behaves.
+It is almost as if `super()` method is invoked as the first line of every constructor. The example code below shows how the code above behaves.
 
 ```java
 class Animal {
@@ -2938,30 +2949,30 @@ class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() { // COMPILER ERROR! No constructor for Animal()
-System.out.println("Dog Constructor");
+        System.out.println("Dog Constructor");
     }
 }
 ```
 
-public Dog() makes an implicit super() call i.e. a call to Animal() (no argument) constructor. But no such constructor is defined in Animal class.
+public `Dog()` makes an implicit `super()` call i.e. a call to `Animal()` (no argument) constructor. But no such constructor is defined in `Animal` class.
 #### Constructor Example 9
 
-Similar example below except that the Dog no argument constructor is not provided by programmer. However, the compiler would give the no argument constructor, which would invoke super() method.  This would again result in a compilation error.
+Similar example below except that the `Dog` no argument constructor is not provided by programmer. However, the compiler would give the no argument constructor, which would invoke `super()` method. This would again result in a compilation error.
 
 ```java
 class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 
@@ -2971,7 +2982,7 @@ class Dog extends Animal {// COMPILER ERROR! No constructor for Animal()
 
 Two ways to fix above errors. 
 1.Create a no arguments constructor in Animal class.
-2.Make a explicit super("Default Dog Name") call in the Dog() constructor.
+2. Make an explicit super("Default Dog Name") call in the Dog() constructor.
 
 #### Creating a super class no argument constructor
 
@@ -2983,8 +2994,8 @@ class Animal {
     }
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor");
+        this.name = name;
+        System.out.println("Animal Constructor");
     }
 }
 ```
@@ -2992,19 +3003,21 @@ System.out.println("Animal Constructor");
 ```java
 class Dog extends Animal {
     public Dog() { // COMPILER ERROR! No constructor for Animal()
-super("Default Dog Name");
-System.out.println("Dog Constructor");
+        super("Default Dog Name");
+        System.out.println("Dog Constructor");
     }
 }
 ```
+
 #### Constructors are NOT inherited.
+
 ```java
 class Animal {
     String name;
 
     public Animal(String name) {
-this.name = name;
-System.out.println("Animal Constructor with name");
+        this.name = name;
+        System.out.println("Animal Constructor with name");
     }
 }
 
@@ -3013,14 +3026,14 @@ class Dog extends Animal {
 
 public class ConstructorExamples {
     public static void main(String[] args) {
-// Dog dog = new Dog("Terry"); //COMPILER ERROR
+        // Dog dog = new Dog("Terry"); //COMPILER ERROR
     }
 }
 ```
 
-new Dog("Terry") is not allowed even though there is a constructor in the super class Animal with signature public Animal(String name).
+`new Dog("Terry")` is not allowed even though there is a constructor in the super class `Animal` with signature `public Animal(String name)`.
 
-Solution is to create an explicit constructor in sub class invoking the super class constructor. Add below constructor to Dog class.
+Solution is to create an explicit constructor in sub-class invoking the super class constructor. Add below constructor to `Dog` class.
 
 ```java
 class Dog extends Animal {
@@ -3029,8 +3042,9 @@ super("Default Dog Name");
     }
 }
 ```
+
 ### Coupling
-- Coupling is a measure of how much a class is dependent on other classes. There should minimal dependencies between classes. So, we should always aim for low coupling between classes.
+- Coupling is a measure of how much a class is dependent on other classes. There should be minimal dependencies between classes. So, we should always aim for low coupling between classes.
 
 #### Coupling Example Problem
 Consider the example below:
@@ -3359,7 +3373,7 @@ A Class can implement multiple interfaces.
 No new checked exceptions can be thrown by implementations of methods in an interface.
 
 ### Method Overloading
-- A method having the same name as another method (in same class or a sub class) but having different parameters is called an Overloaded Method.
+- A method having the same name as another method (in same class or a sub-class) but having different parameters is called an Overloaded Method.
 
 #### Method Overloading Example 1
 doIt method is overloaded in the below example:
@@ -3374,7 +3388,7 @@ class Foo{
 }
 ```
 #### Method Overloading Example 2
-Overloading can also be done from a sub class.
+Overloading can also be done from a sub-class.
 ```java
 class Bar extends Foo{
     public void doIt(float number){
@@ -3412,7 +3426,7 @@ return "Don't Know!";
 }
 ```
 
-Let's create a sub class of Animal , Cat  - overriding the existing shout method in Animal.
+Let's create a sub-class of Animal , Cat  - overriding the existing shout method in Animal.
 ```java
 class Cat extends Animal {
     public String bark() {
@@ -3485,7 +3499,7 @@ class SubClass{
 }
 ```
 
-publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
+publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub-class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
 
 #### Other Overriding Rules
 A Sub Class can override only those methods that are visible to it.
@@ -3522,7 +3536,7 @@ animals[1].bark(); //Animal bark
 animals[0] contains a reference to Dog Object. When animals[0].bark() method is called method in Dog class is invoked even though the type of reference variable is Animal. 
 animals[1] contains a reference to Animal Object. When animals[1].bark() method is called method in Animal class is invoked.
 #### Covariant Returns
-A sub class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.in28minutes.SameType)
+A sub-class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.in28minutes.SameType)
 ### Class Modifiers
 - Let us learn about a few Java Class Modifiers.
 
@@ -3616,7 +3630,7 @@ protectedVariable = 5;
 }
 ```
 #### Important Access Things to Remember
-A sub class trying to access through reference/instance variables, will have the same access as a normal class (non sub class).
+A sub-class trying to access through reference/instance variables, will have the same access as a normal class (non sub-class).
 Access modifiers cannot be applied to local variables
 #### Access Modifiers Example
 Let's consider the following class with variables and methods declared with all 4 access modifiers:
@@ -4834,7 +4848,7 @@ try {
     //Output : Exception in thread "main" java.lang.NullPointerException at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:34)
 ```
 
-Since NullPointerException is not a sub class of CurrenciesDoNotMatchException it wouldn't be handled by the catch block. Instead a NullPointerException would be thrown out by the main method.
+Since NullPointerException is not a sub-class of CurrenciesDoNotMatchException it wouldn't be handled by the catch block. Instead a NullPointerException would be thrown out by the main method.
 
 #### Exception Handling Best Practices
 In all above examples we have not followed an Exception Handling good practice(s). Never Completely Hide Exceptions. At the least log them. printStactTrace method prints the entire stack trace when an exception occurs. If you handle an exception, it is always a good practice to log the trace.
@@ -4926,7 +4940,7 @@ System.out.printf("%5d","Test");
 //To change the order of printing and passing of arguments, argument index can be used
 System.out.printf("%3$.1f %2$s %1$d", 123, "Test", 123.4); //prints 123.4 Test 123
 
-//format method has the same behavior as printf method 
+//format method has the same behaviour as printf method 
 System.out.format("%5.2f", 1234.5678); //prints 1234.57
 ```
 ### String Buffer & String Builder
@@ -6568,7 +6582,7 @@ If you try de-serializing, In Example2, state of wall object is retained whereas
 #### Serialization and Initialization
 When a class is Serialized, initialization (constructor's, initializer's) does not take place. The state of the object is retained as it is. 
 #### Serialization and inheritance
-However in the case of inheritance ( a sub class and super class relationship), interesting things happen.
+However in the case of inheritance ( a sub-class and super class relationship), interesting things happen.
 Let's consider the example code below:
 
 Hero class extends Actor and Hero class implements Serializable. However, Actor class does not implement Serializable.
@@ -7568,7 +7582,7 @@ a.c looks for Ôa' followed by any character followed by Ôc'. abc => match abbc
 regex("a.c", "abca ca!cabbc"); //[0<abc>, 3<a c>, 6<a!c>]
 ```
 #### Greedy Regular Expressions
-a+ matches a, aa,aaa,aaaa, aaaaa. If you look at the output of the below expression, it matches the biggest only aaaaa. This is called greedy behaviour. similar behavior is shown by *.
+a+ matches a, aa,aaa,aaaa, aaaaa. If you look at the output of the below expression, it matches the biggest only aaaaa. This is called greedy behaviour. similar behaviour is shown by *.
 ```java
 regex("a+", "aaaaab"); //[0<aaaaa>]
 ```
