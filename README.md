@@ -1491,7 +1491,7 @@ if(m>20)
 
 //Code above is similar to the code snippet shown below
 
-if(m>20) {//Condition is false. So, code in if is not executed
+if(m>20) { //Condition is false. So, code in if is not executed
     if(m<20)
 System.out.println("m>20");
     else
@@ -1665,7 +1665,7 @@ Switch can be used only with char, byte, short, int, String or enum
 
 ```java
 long l = 15;
-/*switch(l){//COMPILER ERROR. Not allowed.
+/*switch(l){ //COMPILER ERROR. Not allowed.
 }*/
 ```
 
@@ -1723,7 +1723,7 @@ While loop Example 2
 
 ```java
 count = 5;
-while(count < 5){//condition is false. So, code in while is not executed.
+while(count < 5){ //condition is false. So, code in while is not executed.
     System.out.print(count);
     count++;
 }//Nothing is printed to output
@@ -2976,7 +2976,7 @@ class Animal {
     }
 }
 
-class Dog extends Animal {// COMPILER ERROR! No constructor for Animal()
+class Dog extends Animal { // COMPILER ERROR! No constructor for Animal()
 }
 ```
 
@@ -3562,10 +3562,12 @@ public class PolymorphismExample {
 }
 ```
 
-animals[0] contains a reference to Dog Object. When animals[0].bark() method is called method in Dog class is invoked even though the type of reference variable is Animal. 
-animals[1] contains a reference to Animal Object. When animals[1].bark() method is called method in Animal class is invoked.
+```animals[0]``` contains a reference to ```Dog``` object. When ```animals[0].bark()``` method is called, method in Dog class is invoked even though the type of reference variable is ```Animal```. 
+```animals[1]``` contains a reference to ```Animal``` object. When ```animals[1].bark()``` method is called, method in ```Animal``` class is invoked.
+
 #### Covariant Returns
-A sub-class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types.(com.in28minutes.SameType)
+A sub-class is considered to be of same type as its super class. So, in interfaces or abstract class, it is fine to provide implementations using the Sub Class Types as Return Types. (com.in28minutes.SameType)
+
 ### Class Modifiers
 - Let us learn about a few Java Class Modifiers.
 
@@ -3580,16 +3582,17 @@ class DefaultClass{
     
 }
 
-protected class Error{//COMPILER ERROR
+protected class Error{ //COMPILER ERROR
     
 }
 
-private class Error{//COMPILER ERROR
+private class Error{ //COMPILER ERROR
     
 }
 ```
 #### Non-access modifiers 
 strictfp, final, abstract modifiers are valid on a class.
+
 ### Class Access Modifiers
 - Let's learn about a few Java Class Access Modifiers.
 
@@ -3603,7 +3606,7 @@ Default access is also called Package access.
 #### Default Access Class Example
 package com.in28minutes.classmodifiers.defaultaccess.a;
 
-```
+```java
 /* No public before class. So this class has default access*/
 class DefaultAccessClass {
 //Default access is also called package access    
@@ -3641,26 +3644,32 @@ public class ClassInDifferentPackage {
 #### Two Access Modifier Questions
 When we talk about access modifiers, we would discuss two important questions
 #### Is Accessible through reference/instance variable?
+
 We create an instance of the class and try to access the variables and methods declared in the class.
-```
+```java
 ExampleClass example = new ExampleClass();
 
 example.publicVariable = 5;
 example.publicMethod();
 ```
+
 #### Is Accessible through Inheritance?
+
 Can we access the super class variables and methods from a Sub Class?
 ```java
 public class SubClass extends ExampleClass {    
     void subClassMethod(){
-publicVariable = 5;
-protectedVariable = 5;
+        publicVariable = 5;
+        protectedVariable = 5;
     }    
 }
 ```
+
 #### Important Access Things to Remember
 A sub-class trying to access through reference/instance variables, will have the same access as a normal class (non sub-class).
-Access modifiers cannot be applied to local variables
+
+> Access modifiers cannot be applied to local variables
+
 #### Access Modifiers Example
 Let's consider the following class with variables and methods declared with all 4 access modifiers:
 ```java
@@ -3695,39 +3704,41 @@ Let's discuss about access modifiers in order of increasing access.
 a. Private variables and methods can be accessed only in the class they are declared.
 b. Private variables and methods from SuperClass are NOT available in SubClass.
 #### default or package
-a. Default variables and methods can be accessed in the same package Classes.
-b. Default variables and methods from SuperClass are available only to SubClasses in same package.
+a. Default variables and methods can be accessed in the same package classes.
+b. Default variables and methods from SuperClass are available only to SubClasses defined in the same package.
 #### protected
-a. Protected variables and methods can be accessed in the same package Classes.
+a. Protected variables and methods can be accessed in the same package classes.
 b. Protected variables and methods from SuperClass are available to SubClass in any package
 #### public
 a. Public variables and methods can be accessed from every other Java classes.
-b. Public variables and methods from SuperClass are all available directly in the SubClass
+b. Public variables and methods from SuperClass are all available directly in the SubClass.
 #### Access Modifier Example: Class in Same Package
 Look at the code below to understand what can be accessed and what cannot be.
+
 ```java
 package com.in28minutes.membermodifiers.access;
 
 public class TestClassInSamePackage {
     public static void main(String[] args) {
-ExampleClass example = new ExampleClass();
+        ExampleClass example = new ExampleClass();
 
-example.publicVariable = 5;
-example.publicMethod();
+        example.publicVariable = 5;
+        example.publicMethod();
 
-//privateVariable is not visible
-//Below Line, uncommented, would give compiler error
-//example.privateVariable=5; //COMPILE ERROR
-//example.privateMethod();
+        //privateVariable is not visible
+        //Below Line, uncommented, would give compiler error
+        //example.privateVariable=5; //COMPILE ERROR
+        //example.privateMethod();
 
-example.protectedVariable = 5;
-example.protectedMethod();
+        example.protectedVariable = 5;
+        example.protectedMethod();
 
-example.defaultVariable = 5;
-example.defaultMethod();
+        example.defaultVariable = 5;
+        example.defaultMethod();
     }
 }
 ```
+
 #### Access Modifier Example: Class in Different Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```java
@@ -3737,28 +3748,29 @@ import com.in28minutes.membermodifiers.access.ExampleClass;
 
 public class TestClassInDifferentPackage {
     public static void main(String[] args) {
-ExampleClass example = new ExampleClass();
+        ExampleClass example = new ExampleClass();
 
-example.publicVariable = 5;
-example.publicMethod();
+        example.publicVariable = 5;
+        example.publicMethod();
 
-//privateVariable,privateMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.privateVariable=5; //COMPILE ERROR
-//example.privateMethod(); //COMPILE ERROR
+        //privateVariable,privateMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.privateVariable=5; //COMPILE ERROR
+        //example.privateMethod(); //COMPILE ERROR
 
-//protectedVariable,protectedMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.protectedVariable = 5; //COMPILE ERROR
-//example.protectedMethod(); //COMPILE ERROR
+        //protectedVariable,protectedMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.protectedVariable = 5; //COMPILE ERROR
+        //example.protectedMethod(); //COMPILE ERROR
 
-//defaultVariable,defaultMethod are not visible
-//Below Lines, uncommented, would give compiler error
-//example.defaultVariable = 5; //COMPILE ERROR
-//example.defaultMethod(); //COMPILE ERROR
+        //defaultVariable,defaultMethod are not visible
+        //Below Lines, uncommented, would give compiler error
+        //example.defaultVariable = 5; //COMPILE ERROR
+        //example.defaultMethod(); //COMPILE ERROR
     }
 }
 ```
+
 #### Access Modifier Example: Sub Class in Same Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```java
@@ -3767,22 +3779,23 @@ package com.in28minutes.membermodifiers.access;
 public class SubClassInSamePackage extends ExampleClass {
     
     void subClassMethod(){
-publicVariable = 5;
-publicMethod();
+        publicVariable = 5;
+        publicMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//privateVariable=5; //COMPILE ERROR
-//privateMethod();
+        //privateVariable is not visible to SubClass
+        //Below Line, uncommented, would give compiler error
+        //privateVariable=5; //COMPILE ERROR
+        //privateMethod();
 
-protectedVariable = 5;
-protectedMethod();
+        protectedVariable = 5;
+        protectedMethod();
 
-defaultVariable = 5;
-defaultMethod();
+        defaultVariable = 5;
+        defaultMethod();
     }    
 }
 ```
+
 #### Access Modifier Example: Sub Class in Different Package
 Look at the code below to understand what can be accessed and what cannot be.
 ```java
@@ -3793,36 +3806,37 @@ import com.in28minutes.membermodifiers.access.ExampleClass;
 public class SubClassInDifferentPackage extends ExampleClass {
     
     void subClassMethod(){
-publicVariable = 5;
-publicMethod();
+        publicVariable = 5;
+        publicMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//privateVariable=5; //COMPILE ERROR
-//privateMethod();
+        //privateVariable is not visible to SubClass
+        //Below Line, uncommented, would give compiler error
+        //privateVariable=5; //COMPILE ERROR
+        //privateMethod();
 
-protectedVariable = 5;
-protectedMethod();
+        protectedVariable = 5;
+        protectedMethod();
 
-//privateVariable is not visible to SubClass
-//Below Line, uncommented, would give compiler error
-//defaultVariable = 5; //COMPILE ERROR
-//defaultMethod();
+        //privateVariable is not visible to SubClass
+        //Below Line, uncommented, would give compiler error
+        //defaultVariable = 5; //COMPILE ERROR
+        //defaultMethod();
     }    
 }
 ```
+
 ### Final modifier
-- Let's discuss about Final modifier in Java.
+- Let's discuss about `final` modifier in Java.
 
 #### Final class cannot be extended
 Consider the class below which is declared as final.
-```
+```java
 final public class FinalClass {
 }
 ```
 
 Below class will not compile if uncommented. FinalClass cannot be extended.
-```
+```java
 /*
 class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
     
@@ -3831,9 +3845,11 @@ class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
 ```
 
 Example of Final class in Java is the String class.
+
 Final is used very rarely as it prevents re-use of the class.
+
 #### Final methods cannot be overriden.
-Consider the class FinalMemberModifiersExample with method finalMethod which is declared as final.
+Consider the class `FinalMemberModifiersExample` with method `finalMethod` which is declared as final.
 ```java
 public class FinalMemberModifiersExample {
     final void finalMethod(){
@@ -3853,35 +3869,41 @@ class SubClass extends FinalMemberModifiersExample {
     */
 }
 ```
+
 #### Final variable values cannot be changed.
 Once initialized, the value of a final variable cannot be changed.
-```
+```java
 final int finalValue = 5;
 //finalValue = 10; //COMPILER ERROR
 ```
 
 #### Final arguments value cannot be modified.
 Consider the example below:
-```
+
+```java
 void testMethod(final int finalArgument){
     //final argument cannot be modified
     //Below line, uncommented, causes compilation Error
     //finalArgument = 5; //COMPILER ERROR
 }
 ```
-### Other Non access Modifiers
+### Other Non-access Modifiers
 - A class cannot be both abstract and final
 
 #### strictfp
-This modifier can be used on a class and a method. This (strictfp) cannot be used on a variable. 
-IEEE standard for floating points would be followed in the method or class where strictfp modifier is specified.
+- This modifier can be used on a class and a method. This (strictfp) cannot be used on a variable. 
+- IEEE standard for floating points would be followed in the method or class where strictfp modifier is specified.
+
 #### volatile
-Volatile can only be applied to instance variables.
-A volatile variable is one whose value is always written to and read from "main memory". Each thread has its own cache in Java. The volatile variable will not be stored on a Thread cache.
+- Volatile can only be applied to instance variables.
+- A volatile variable is one whose value is always written to and read from "main memory". 
+- Each thread has its own cache in Java. The volatile variable will not be stored on a Thread cache.
+
 #### native
 Can be applied only to methods.
 These methods are implemented in native languages (like C)
-### Static variables and Methods
+
+### Static variables and methods
 - Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. Let's start with a real world example of a Class with static variable and methods.
 
 #### Static variable/Method , Example
@@ -4328,7 +4350,7 @@ return sum;
 #### Variable Argument: only Last Parameter
 Variable Argument should be always the last parameter (or only parameter) of a method. Below example gives a compilation error
 ```java
-    public int sum(int... numbers, float value) {//COMPILER ERROR
+    public int sum(int... numbers, float value) { //COMPILER ERROR
     }
 ```
 #### Variable Argument of Type Custom Class
