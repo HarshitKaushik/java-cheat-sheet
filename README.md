@@ -3044,9 +3044,12 @@ super("Default Dog Name");
 ```
 
 ### Coupling
-- Coupling is a measure of how much a class is dependent on other classes. There should be minimal dependencies between classes. So, we should always aim for low coupling between classes.
+- Coupling is a measure of how much a class is dependent on other classes. 
+- There should be minimal dependencies between classes. 
+- So, we should always aim for low coupling between classes.
 
 #### Coupling Example Problem
+
 Consider the example below:
 ```java
 class ShoppingCartEntry {
@@ -3063,54 +3066,55 @@ class Order {
     private float salesTax;
 
     public Order(ShoppingCart cart, float salesTax) {
-this.cart = cart;
-this.salesTax = salesTax;
+        this.cart = cart;
+        this.salesTax = salesTax;
     }
 
     // This method know the internal details of ShoppingCartEntry and
     // ShoppingCart classes. If there is any change in any of those
     // classes, this method also needs to change.
     public float orderTotalPrice() {
-float cartTotalPrice = 0;
-for (int i = 0; i < cart.items.length; i++) {
-    cartTotalPrice += cart.items[i].price
-    * cart.items[i].quantity;
-}
-cartTotalPrice += cartTotalPrice * salesTax;
-return cartTotalPrice;
+        float cartTotalPrice = 0;
+        for (int i = 0; i < cart.items.length; i++) {
+            cartTotalPrice += cart.items[i].price
+            * cart.items[i].quantity;
+        }
+        cartTotalPrice += cartTotalPrice * salesTax;
+        return cartTotalPrice;
     }
 }
 ```
 
-Method orderTotalPrice in Order class is coupled heavily with ShoppingCartEntry and ShoppingCart classes.  It uses different properties (items, price, quantity) from these classes. If any of these properties change, orderTotalPrice will also change. This is not good for Maintenance. 
+Method ```orderTotalPrice``` in ```Order``` class is coupled heavily with ```ShoppingCartEntry``` and ```ShoppingCart``` classes.  It uses different properties (items, price and quantity) from these classes. If any of these properties change, ```orderTotalPrice``` will also change. This is not good for maintenance.
+
 #### Coupling Example Solution
 
-Consider a better implementation with lesser coupling between classes below: In this implementation, changes in ShoppingCartEntry or CartContents might not affect Order class at all.
+Consider a better implementation with lesser coupling between classes below: In this implementation, changes in `ShoppingCartEntry` or `CartContents` might not affect `Order` class at all.
 
 ```java
 class ShoppingCartEntry
 {
-    float price;
-    int quantity;
+    private float price;
+    private int quantity;
 
     public float getTotalPrice()
     {
-return price * quantity;
+        return price * quantity;
     }
 }
 
 class CartContents
 {
-    ShoppingCartEntry[] items;
+    private ShoppingCartEntry[] items;
 
     public float getTotalPrice()
     {
-float totalPrice = 0;
-for (ShoppingCartEntry item:items)
-{
-    totalPrice += item.getTotalPrice();
-}
-return totalPrice;
+        float totalPrice = 0;
+        for (ShoppingCartEntry item: items)
+        {
+            totalPrice += item.getTotalPrice();
+        }
+        return totalPrice;
     }
 }
 
@@ -3121,16 +3125,17 @@ class Order
 
     public Order(CartContents cart, float salesTax)
     {
-this.cart = cart;
-this.salesTax = salesTax;
+        this.cart = cart;
+        this.salesTax = salesTax;
     }
 
     public float totalPrice()
     {
-return cart.getTotalPrice() * (1.0f + salesTax);
+        return cart.getTotalPrice() * (1.0f + salesTax);
     }
 }
 ```
+
 ### Cohesion
 - Cohesion is a measure of how related the responsibilities of a class are.  A class must be highly cohesive i.e. its responsibilities (methods) should be highly related to one another.
 
@@ -3148,9 +3153,9 @@ class DownloadAndStore{
     }
     
     void doEverything(){
-downloadFromInternet();
-parseData();
-storeIntoDatabase();
+        downloadFromInternet();
+        parseData();
+        storeIntoDatabase();
     }
 }
 ```
@@ -3175,14 +3180,15 @@ class DatabaseStorer {
 
 class DownloadAndStore {
     void doEverything() {
-new InternetDownloader().downloadFromInternet();
-new DataParser().parseData();
-new DatabaseStorer().storeIntoDatabase();
+        new InternetDownloader().downloadFromInternet();
+        new DataParser().parseData();
+        new DatabaseStorer().storeIntoDatabase();
     }
 }
 ```
+
 ### Encapsulation
-- Encapsulation is hiding the implementation of a Class behind a well defined interfaceÓ. Encapsulation helps us to change implementation of a class without breaking other code.
+- Encapsulation is hiding the implementation of a Class behind a well defined interface. Encapsulation helps us to change implementation of a class without breaking other code.
 
 #### Encapsulation Approach 1
 In this approach we create a public variable score. The main method directly accesses the score variable, updates it.
@@ -3196,10 +3202,11 @@ public class CricketScorer {
 Let's use the CricketScorer class.
 ```java
 public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
-scorer.score = scorer.score + 4;
+    CricketScorer scorer = new CricketScorer();
+    scorer.score = scorer.score + 4;
 }
 ```
+
 #### Encapsulation Approach 2
 In this approach, we make score as private and access value through get and set methods. However, the logic of adding 4 to the score is performed in the main method.
 #### Example Class
@@ -3208,11 +3215,11 @@ public class CricketScorer {
     private int score;
 
     public int getScore() {
-return score;
+        return score;
     }
 
     public void setScore(int score) {
-this.score = score;
+        this.score = score;
     }
 }
 ```
@@ -3221,21 +3228,23 @@ Let's use the CricketScorer class.
 
 ```java
 public static void main(String[] args) {
-CricketScorer scorer = new CricketScorer();
+    CricketScorer scorer = new CricketScorer();
 
-int score = scorer.getScore();
-scorer.setScore(score + 4);
+    int score = scorer.getScore();
+    scorer.setScore(score + 4);
 }
 ```
+
 #### Encapsulation Approach 3
 In this approach - For better encapsulation, the logic of doing the four operation also is moved to the CricketScorer class.
+
 #### Example Class
 ```java
 public class CricketScorer {
     private int score;
     
     public void four() {
-score += 4;
+        score += 4;
     }
 
 }
@@ -3244,18 +3253,19 @@ score += 4;
 Let's use the CricketScorer class.
 ```java
 public static void main(String[] args) {
-  CricketScorer scorer = new CricketScorer();
-  scorer.four();
+    CricketScorer scorer = new CricketScorer();
+    scorer.four();
 }
 ```
+
 #### Encapsulation Example
 In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
 
 ### Interface
-- An interface defines a contract for  responsibilities (methods) of a class. Let's look at a few examples of interfaces.
+- An interface defines a contract for responsibilities/methods of a class. Let's look at a few examples of interfaces.
 
 #### Defining an Interface
-An interface is declared by using the keyword interface. Look at the example below: Flyable is an interface.
+An interface is declared by using the keyword `interface`. Look at the example below: Flyable is an interface.
 ```java
 //public abstract are not necessary
 public abstract interface Flyable {
@@ -3265,30 +3275,37 @@ public abstract interface Flyable {
 ```
 #### An interface can contain abstract methods -- NOT TRUE ANY MORE
 In the above example, fly method is abstract since it is only declared (No definition is provided).
+
 #### Implementing an Interface
-We can define a class implementing the interface by using the implements keyword. Let us look at a couple of examples:
+We can define a class implementing the interface by using the `implements` keyword. Let us look at a couple of examples:
+
 #### Example 1
-Class Aeroplane implements Flyable and implements the abstract method fly().
+Class `Aeroplane` implements `Flyable` and implements the abstract method `fly`().
 ```java
 public class Aeroplane implements Flyable{
     @Override
     public void fly() {
-System.out.println("Aeroplane is flying");
+        System.out.println("Aeroplane is flying");
     }
 }
 ```
+
 #### Example 2
 ```java
 public class Bird implements Flyable{
+
     @Override
     public void fly() {
-System.out.println("Bird is flying");
+        System.out.println("Bird is flying");
     }
 }
 ```
+
 #### Using the Interface and Implementation
+
 The interface classes can directly be instantiated and stored in the class reference variables
-```
+
+```java
 Bird bird = new Bird();
 bird.fly(); //Bird is flying
 
@@ -3297,12 +3314,14 @@ aeroplane.fly(); //Aeroplane is flying
 ```
 
 An interface reference variable can hold objects of any implementation of interface.
-```
+
+```java
 Flyable flyable1 = new Bird();
 Flyable flyable2 = new Aeroplane();
 ```
-#### Variables in  an interface
+#### Variables in an interface
 Variables in an interface are always public, static, final. Variables in an interface cannot be declared private.
+
 ```java
 interface ExampleInterface1 {
     //By default - public static final. No other modifier allowed
@@ -3314,6 +3333,7 @@ interface ExampleInterface1 {
     //private int value5 = 10; //COMPILER ERROR
 }
 ```
+
 #### Methods in an interface
 Interface methods are by default public and abstract. A concrete default method (fully defined method) can be created in an interface. Consider the example below:
 ```java
@@ -3324,6 +3344,7 @@ interface ExampleInterface1 {
     
 }
 ```
+
 #### Extending an Interface
 An interface can extend another interface. Consider the example below:
 
@@ -3333,10 +3354,11 @@ interface SubInterface1 extends ExampleInterface1{
 }
 ```
 
-Class implementing SubInterface1 should implement both methods - method3 and method1(from ExampleInterface1)
+Class implementing `SubInterface1` should implement both methods - `method3` and `method1`(from `ExampleInterface1`)
+
 An interface cannot extend a class.
 
-```
+```java
 /* //COMPILE ERROR IF UnCommented
    //Interface cannot extend a Class
 interface SubInterface2 extends Integer{
@@ -3345,7 +3367,7 @@ interface SubInterface2 extends Integer{
 */
 ```
 
-A class can implement multiple interfaces. It should implement all the method declared in all Interfaces being implemented.
+A class can implement multiple interfaces. It should implement all the methods declared in all Interfaces being implemented.
 
 ```java
 interface ExampleInterface2 {
@@ -3358,25 +3380,26 @@ class SampleImpl implements ExampleInterface1,ExampleInterface2{
        result in compilation error. 
      */
     public void method2() {
-System.out.println("Sample Implementation for Method2");
+        System.out.println("Sample Implementation for Method2");
     }
 
     public void method1() {
-System.out.println("Sample Implementation for Method1");
+        System.out.println("Sample Implementation for Method1");
     }
     
 }
 ```
-#### Interface , Things to Remember
-A class should implement all the methods in an interface, unless it is declared abstract.
-A Class can implement multiple interfaces.
-No new checked exceptions can be thrown by implementations of methods in an interface.
+#### Interface, Things to Remember
+- A class should implement all the methods in an interface, unless it is declared abstract.
+- A class can implement multiple interfaces.
+- No new checked exceptions can be thrown by implementations of methods in an interface.
 
 ### Method Overloading
-- A method having the same name as another method (in same class or a sub-class) but having different parameters is called an Overloaded Method.
+- A method having the same name as another method (in same class or a sub-class) but having different parameters is called an overloaded method.
 
 #### Method Overloading Example 1
-doIt method is overloaded in the below example:
+
+`doIt` method is overloaded in the below example:
 ```java
 class Foo{
     public void doIt(int number){
@@ -3387,6 +3410,7 @@ class Foo{
     }
 }
 ```
+
 #### Method Overloading Example 2
 Overloading can also be done from a sub-class.
 ```java
@@ -3397,11 +3421,11 @@ class Bar extends Foo{
 }
 ```
 #### Overloading - Other Rules
-An overloaded method should have different arguments than the original method. It can also have a different return type.
-A method cannot be overloaded just by only changing the return type.
-Overloaded methods are always treated as if they are different methods altogether.
-Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
-Overloaded method invocation is based on the Type of the Reference variable. It is NOT based on the object it refers to.
+- An overloaded method should have different arguments than the original method. It can also have a different return type.
+- A method cannot be overloaded just by only changing the return type.
+- Overloaded methods are always treated as if they are different methods altogether.
+- Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
+- Overloaded method invocation is based on the Type of the Reference variable. It is NOT based on the object it refers to.
 
 - Java Example
   - Constructors
@@ -3421,21 +3445,21 @@ Let's define an Animal class with a method shout.
 ```java
 public class Animal {
     public String bark() {
-return "Don't Know!";
+        return "Don't Know!";
     }
 }
 ```
 
-Let's create a sub-class of Animal , Cat  - overriding the existing shout method in Animal.
+Let's create a sub-class of Animal , Cat - overriding the existing shout method in Animal.
 ```java
 class Cat extends Animal {
     public String bark() {
-return "Meow Meow";
+        return "Meow Meow";
     }
 }
 ```
 
-bark method in Cat class is overriding the bark method in Animal class.
+`bark` method in `Cat` class is overriding the `bark` method in `Animal` class.
 
 - Java Example
   - HashMap public int size() overrides AbstractMap public int size()
@@ -3461,7 +3485,8 @@ class SubClass{
 }
 ```
 
-publicMethod in SubClass can only be declared as public. Keyword protected, private or (default) instead of public would result in Compilation Error.
+`publicMethod` in `SubClass` can only be declared as `public`. Keyword `protected`, `private` or (`default`) instead of public would result in Compilation Error.
+
 #### Example 2
 ```java
 class SuperClass{
@@ -3480,7 +3505,10 @@ class SubClass{
 }
 ```
 
-defaultMethod in SuperClass is declared with default access. Any method overriding it can have access default or greater. So default, protected and public are fine. Overriding method cannot be private.
+`defaultMethod` in SuperClass is declared with `default` access. Any method overriding it can have access `default` or greater. So `default`, `protected` and `public` are fine. 
+
+> Overriding method cannot be private.
+
 #### Overriding method cannot throw new Checked Exceptions
 Consider the example below:
 
@@ -3499,35 +3527,36 @@ class SubClass{
 }
 ```
 
-publicMethod() in SuperClass throws FileNotFoundException. So, the SubClass publicMethod() can throw FileNotFoundException or any sub-class of FileNotFoundException. It can also not throw an Exception (as in the example). But, it cannot throw any new Exception. For example, Òpublic void publicMethod() throws IOExceptionÓ would cause compilation error.
+`publicMethod()` in `SuperClass` throws `FileNotFoundException`. So, the SubClass `publicMethod()` can throw `FileNotFoundException` or any sub-class of `FileNotFoundException`. It can also not throw an `Exception` (as in the example). But, it cannot throw any new Exception. For example, `public void publicMethod() throws IOException` would cause compilation error.
 
 #### Other Overriding Rules
-A Sub Class can override only those methods that are visible to it.
-Methods marked as static or final cannot be overridden.
-You can call the super class method from the overriding method using keyword super.
+- A Sub Class can override only those methods that are visible to it.
+- Methods marked as static or final cannot be overridden.
+- You can call the super class method from the overriding method using keyword super.
+
 #### Overriding and Polymorphism Example
-Overridden method invocation is based on the object referred to. It is not based on the Type of the Reference variable. This is called Polymorphism. Consider the example below:
+Overridden method invocation is based on the object referred to. It is not based on the type of the reference variable. This is called Polymorphism. Consider the example below:
 
 ```java
 class Animal{
     public void bark(){
-System.out.println("Animal Bark");
+        System.out.println("Animal Bark");
     }
 }
 
 class Dog extends Animal{
     public void bark(){
-System.out.println("Dog Bark");
+        System.out.println("Dog Bark");
     }
 }
 
 public class PolymorphismExample {
     public static void main(String[] args) {
 
-Animal[] animals = {new Dog(),new Animal()};
+        Animal[] animals = {new Dog(), new Animal()};
 
-animals[0].bark(); //Dog bark
-animals[1].bark(); //Animal bark
+        animals[0].bark(); //Dog bark
+        animals[1].bark(); //Animal bark
     }
 
 }
