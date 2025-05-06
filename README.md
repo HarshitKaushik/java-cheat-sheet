@@ -4303,7 +4303,7 @@ class OuterClass {
 
 ```
 #### Method inner class is not accessible outside the method
-Look at the commented code below exampleMethod. MethodLocalInnerClass can be instantiated only in the method where it is declared.
+Look at the commented code below `exampleMethod`. `MethodLocalInnerClass` can be instantiated only in the method where it is declared.
 #### Method inner class can access class instance variables
 ```java
 //Can access class instance variables
@@ -4321,26 +4321,26 @@ System.out.println(finalVariable); //Final variable is fine..
 
 #### Variable Arguments Example
 
-```
+```java
     //int(type) followed ... (three dot's) is syntax of a variable argument. 
     public int sum(int... numbers) {
-//inside the method a variable argument is similar to an array.
-//number can be treated as if it is declared as int[] numbers;
-int sum = 0;
-for (int number: numbers) {
-    sum += number;
-}
-return sum;
+        //inside the method a variable argument is similar to an array.
+        //number can be treated as if it is declared as int[] numbers;
+        int sum = 0;
+        for (int number: numbers) {
+            sum += number;
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
-VariableArgumentExamples example = new VariableArgumentExamples();
-//3 Arguments
-System.out.println(example.sum(1, 4, 5)); //10
-//4 Arguments
-System.out.println(example.sum(1, 4, 5, 20)); //30
-//0 Arguments
-System.out.println(example.sum()); //0
+        VariableArgumentExamples example = new VariableArgumentExamples();
+        //3 Arguments
+        System.out.println(example.sum(1, 4, 5)); //10
+        //4 Arguments
+        System.out.println(example.sum(1, 4, 5, 20)); //30
+        //0 Arguments
+        System.out.println(example.sum()); //0
     }
 ```
 #### Variable Arguments Syntax
@@ -4352,14 +4352,14 @@ public int sum(int... numbers) {
 Inside the method a variable argument is similar to an array. For Example: number can be treated in below method as if it is declared as int[] numbers;
 ```java
     public int sum(int... numbers) {
-int sum = 0;
-for (int number: numbers) {
-    sum += number;
-}
-return sum;
+        int sum = 0;
+        for (int number: numbers) {
+            sum += number;
+        }
+        return sum;
     }
 ```
-#### Variable Argument: only Last Parameter
+#### Variable Argument: only last parameter
 Variable Argument should be always the last parameter (or only parameter) of a method. Below example gives a compilation error
 ```java
     public int sum(int... numbers, float value) { //COMPILER ERROR
@@ -4369,104 +4369,108 @@ Variable Argument should be always the last parameter (or only parameter) of a m
 Even a class can be used a variable argument. In the example below, bark method is overloaded with a variable argument method.
 ```java
     class Animal {
-void bark() {
-    System.out.println("Bark");
-}
-void bark(Animal... animals) {
-    for (Animal animal: animals) {
-animal.bark();
-    }
-}
+        void bark() {
+            System.out.println("Bark");
+        }
+        void bark(Animal... animals) {
+            for (Animal animal: animals) {
+                animal.bark();
+            }
+        }
     }
 ```
+
 ### Exception Handling
 - In this tutorial, let's understand the need for exception handling and learn how to handle exceptions. 
 
 #### Example without Exception Handling
-Let's first look an example without exception handling. Method main throws an exception because toString method is invoked on a null object.
+Let's first look at an example without exception handling. Method `main` throws an exception because `toString` method is invoked on a null object.
 ```java
     public static void main(String[] args) {
-String str = null;
-str.toString();
+        String str = null;
+        str.toString();
     }
 ```
 
 Output of above program is
-```
+```bash
 Exception in thread "main" java.lang.NullPointerException at
 com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
 ```
-#### Exception Example 2 , Propagation of an Exception
-In this example, main invokes method1, which invokes method2 which throws a NullPointerException. Check the output of this program.
+
+#### Exception Example 2, Propagation of an Exception
+In this example, `main` invokes `method1`, which invokes `method2` which throws a `NullPointerException`. Check the output of this program.
 ```java
     public static void main(String[] args) {
-method1();
+        method1();
     }
 
     private static void method1() {
-method2();
+        method2();
     }
 
     private static void method2() {
-String str = null;
-str.toString();
+        String str = null;
+        str.toString();
     }
 //Output - Exception in thread "main" java.lang.NullPointerException at
-com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:15)
-at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:10)
-at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
+// com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:15)
+// at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:10)
+// at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:6)
 ```
 
-Look at the stack trace. Exception which is thrown in method2 is propagating to method1 and then to main. This is because there is no exception handling in all 3 methods - main, method1 and method2
+Look at the stack trace. Exception which is thrown in `method2` is propagating to `method1` and then to `main`. This is because there is no exception handling in all 3 methods - `main`, `method1` and `method2`
+
 #### Exception Example 3: Execution of method stopped
 Look at the example below:  A println method call is added after every method call.
 ```java
     public static void main(String[] args) {
-method1();
-System.out.println("Line after Exception - Main");
+        method1();
+        System.out.println("Line after Exception - Main");
     }
 
     private static void method1() {
-method2();
-System.out.println("Line after Exception - Method 1");
+        method2();
+        System.out.println("Line after Exception - Method 1");
     }
 
     private static void method2() {
-String str = null;
-str.toString();
-System.out.println("Line after Exception - Method 2");
+        String str = null;
+        str.toString();
+        System.out.println("Line after Exception - Method 2");
     }
 //Output - Exception in thread "main" java.lang.NullPointerException
-at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:18)
-at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:12)
-at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:7)
+// at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method2(ExceptionHandlingExample1.java:18)
+// at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.method1(ExceptionHandlingExample1.java:12)
+// at com.in28minutes.exceptionhandling.ExceptionHandlingExample1.main(ExceptionHandlingExample1.java:7)
 ```
 
-Note that none of the lines with text "Line after Exception - ****" are executed. If an exception occurs, lines after the line where exception occurred are not executed. Since all three methods main, method1() and method2() do not have any Exception Handling, exception propagates from method2 to method1 to main.
-#### Exception Handling Example 4: Try catch block
+Note that none of the lines with text "Line after Exception - ****" are executed. If an exception occurs, lines after the line where exception occurred are not executed. Since all three methods `main`, `method1()` and `method2()` do not have any exception handling, exception propagates from `method2` to `method1` to `main`.
+
+#### Exception Handling Example 4: Try-catch block
 
 Let's add a try catch block in method2
 
 ```java
     public static void main(String[] args) {
-method1();
-System.out.println("Line after Exception - Main");
+        method1();
+        System.out.println("Line after Exception - Main");
     }
 
     private static void method1() {
-method2();
-System.out.println("Line after Exception - Method 1");
+        method2();
+        System.out.println("Line after Exception - Method 1");
     }
 
     private static void method2() {
-try {
-    String str = null;
-    str.toString();
-    System.out.println("Line after Exception - Method 2");
-} catch (Exception e) {
-    // NOT PRINTING EXCEPTION TRACE- BAD PRACTICE
-    System.out.println("Exception Handled - Method 2");
-}
+        try {
+            String str = null;
+            str.toString();
+            System.out.println("Line after Exception - Method 2");
+        } catch (Exception e) {
+            // NOT PRINTING EXCEPTION TRACE- BAD PRACTICE
+            System.out.println("Exception Handled - Method 2");
+        }
     }
 ```
 
@@ -4477,24 +4481,25 @@ Line after Exception - Method 1
 Line after Exception - Main
 ```
 
-Since Exception Handling is added in the method method2, the exception did not propogate to method1. You can see the "Line after Exception - **" in the output for main, method1 since they are not affected by the exception thrown. Since the exception was handled in method2, method1 and main are not affected by it. This is the main essence of exception handling. However, note that the line after the line throwing exception in method2 is not executed.
+Since, exception handling is added in the method `method2`, the exception did not propogate to `method1`. You can see the "Line after Exception - **" in the output for `main`, `method1` since they are not affected by the exception thrown. Since the exception was handled in `method2`, `method1` and `main` are not affected by it. This is the main essence of exception handling. However, please note that the line after the line throwing exception in method2 is not executed.
 
 Few important things to remember from this example.
-1.If exception is handled, it does not propogate further.
-2.In a try block, the lines after the line throwing the exception are not executed.
+1. If exception is handled, it does not propogate further.
+2. In a try block, the lines after the line throwing the exception are not executed.
+
 #### Exception Handling Example 5: Need for Finally
-Consider the example below: In method2, a connection is opened. However, because of the exception thrown, connection is not closed. This results in unclosed connections.
+Consider the example below: In `method2`, a connection is opened. However, because of the exception thrown, connection is not closed. This results in unclosed connections.
 
 ```java
 package com.in28minutes.exceptionhandling;
 
 class Connection {
     void open() {
-System.out.println("Connection Opened");
+        System.out.println("Connection Opened");
     }
 
     void close() {
-System.out.println("Connection Closed");
+        System.out.println("Connection Closed");
     }
 }
 
@@ -4503,29 +4508,29 @@ public class ExceptionHandlingExample1 {
     // Exception Handling Example 1
     // Let's add a try catch block in method2
     public static void main(String[] args) {
-method1();
-System.out.println("Line after Exception - Main");
+        method1();
+        System.out.println("Line after Exception - Main");
     }
 
     private static void method1() {
-method2();
-System.out.println("Line after Exception - Method 1");
+        method2();
+        System.out.println("Line after Exception - Method 1");
     }
 
     private static void method2() {
-try {
-    Connection connection = new Connection();
-    connection.open();
+        try {
+            Connection connection = new Connection();
+            connection.open();
 
-    // LOGIC
-    String str = null;
-    str.toString();
+            // LOGIC
+            String str = null;
+            str.toString();
 
-    connection.close();
-} catch (Exception e) {
-    // NOT PRINTING EXCEPTION TRACE- BAD PRACTICE
-    System.out.println("Exception Handled - Method 2");
-}
+            connection.close();
+        } catch (Exception e) {
+            // NOT PRINTING EXCEPTION TRACE- BAD PRACTICE
+            System.out.println("Exception Handled - Method 2");
+        }
     }
 }
 ```
@@ -4538,25 +4543,26 @@ Line after Exception - Method 1
 Line after Exception - Main
 ```
 
-Connection that is opened is not closed. Because an exception has occurred in method2, connection.close() is not run. This results in a dangling (un-closed) connection.
+Connection that is opened is not closed. Because an exception has occurred in `method2`, `connection.close()` is not run. This results in a dangling (un-closed) connection.
+
 #### Exception Handling Example 6 - Finally
-Finally block is used when code needs to be executed irrespective of whether an exception is thrown. Let us now move connection.close(); into a finally block. Also connection declaration is moved out of the try block to make it visible in the finally block.
+Finally block is used when code needs to be executed irrespective of whether an exception is thrown. Let us now move `connection.close();` into a `finally` block. Also connection declaration is moved out of the try block to make it visible in the `finally` block.
 
 ```java
     private static void method2() {
-Connection connection = new Connection();
-connection.open();
-try {
-    // LOGIC
-    String str = null;
-    str.toString();
+        Connection connection = new Connection();
+        connection.open();
+        try {
+            // LOGIC
+            String str = null;
+            str.toString();
 
-} catch (Exception e) {
-    // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
-    System.out.println("Exception Handled - Method 2");
-} finally {
-    connection.close();
-}
+        } catch (Exception e) {
+            // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
+            System.out.println("Exception Handled - Method 2");
+        } finally {
+            connection.close();
+        }
     }
 ```
 
@@ -4569,12 +4575,13 @@ Line after Exception - Method 1
 Line after Exception - Main
 ```
 
-Connection is closed even when exception is thrown. This is because connection.close() is called in the finally block.
+Connection is closed even when exception is thrown. This is because `connection.close()` is called in the finally block.
 Finally block is always executed (even when an exception is thrown). So, if we want some code to be always executed we can move it to finally block.
 
 Code in finally is NOT executed only in two situations.
 If exception is thrown in finally.
-If JVM Crashes in between (for example, System.exit()).
+If JVM crashes in between (for example, System.exit()).
+
 #### finally is executed even if there is a return statement in catch or try
 ```java
 private static void method2() {
