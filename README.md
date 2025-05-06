@@ -127,11 +127,11 @@ java HelloWorld
 ```java
 int number;
 number = 5;
-System.out.println(number);//5
+System.out.println(number); //5
 number = number + 2;
-System.out.println(number);//7
+System.out.println(number); //7
 number = number + 2;
-System.out.println(number);//9
+System.out.println(number); //9
 ```
 
 Declaring and Initializing Variables
@@ -146,14 +146,14 @@ TYPE variableName;
 - Variable can be local or global. The local variables can be referenced (i.e., are valid) only within the scope of their method (or function).
 - All six numeric types in Java are signed.
 
-### Primitive Variables
+### primitive variables
 
 Variables that store value.
 
 
 Java defines few types like int (numbers), float(floating point numbers), char (characters). Variables of these types store the value of the variable directly. These are not objects. These are called primitive variables. 
 
-An example is shown below: Primitive Variables contains bits representing the value of the variable.
+An example is shown below: primitive variables contains bits representing the value of the variable.
 
 ```java
 int value = 5;
@@ -224,7 +224,7 @@ Legal Identifier Names - Rules which define a legal identifier name.
 - No limit on length of identifier.
 
 ### Java Keywords
-- Primitive Data Types: byte,short,int,long,float,double,char,boolean
+- primitive Data Types: byte,short,int,long,float,double,char,boolean
 - Flow Control: if, else, for, do, while, switch, case, default, break,
       continue, return
 - Exception Handling: try, catch, finally, throw, throws, assert
@@ -308,7 +308,7 @@ Character Literals
 // For octal, the 0 is to be placed in the beginning of a number.
 int eight = 010; 
 int nine = 011;  
-int invalid = 089;//COMPILER ERROR! 8 and 9 are invalid in Octa
+int invalid = 089; //COMPILER ERROR! 8 and 9 are invalid in Octa
 // For hexadecimal, the 0x or 0X is to be placed in the beginning of a number.
 int sixteen = 0x10; 
 int fifteen = 0XF; 
@@ -322,7 +322,7 @@ float f = 123.456; //COMPILER ERROR! A double value cannot be assigned to a floa
 
 boolean b = true; 
 boolean b=false;
-boolean b = TRUE;//COMPILATION ERROR
+boolean b = TRUE; //COMPILATION ERROR
 boolean b = 0; //COMPILER ERROR. This is not C Language
 
 char ch = a; //COMPILER ERROR
@@ -335,7 +335,7 @@ Assignment operator evaluates the expression on the right hand side and copies t
 
 #### Basic Examples
 ```java
-int value = 35;//35 is copied into the value.
+int value = 35; //35 is copied into the value.
 
 int squareOfValue = value * value; //value * value = 35 * 35 is stored into squareOfValue
 
@@ -402,27 +402,27 @@ int x = (int) 35.35; //Explicit Casting
 
 int bigValue = 280;
 byte small = (byte) bigValue;
-System.out.println(small);//output 24. Only 8 bits remain.
+System.out.println(small); //output 24. Only 8 bits remain.
 
-//float avg = 36.01;//COMPILER ERROR. Default Double
-float avg = (float) 36.01;//Explicit Casting
+//float avg = 36.01; //COMPILER ERROR. Default Double
+float avg = (float) 36.01; //Explicit Casting
 float avg1 = 36.01f;
 float avg2 = 36.01F; //f or F is fine
 
 //byte large = 128; //Literal value bigger than range of variable type causes compilation error
-byte large = (byte) 128;//Causes Truncation!
+byte large = (byte) 128; //Causes truncation!
 ```
 
 #### Compound Assignment Operators
 
-- Examples : +=, -=, *= 
+- Examples : +=, -=, *=, /=
 
 ```java
 int a = 5;
 a += 5; //similar to a = a + 5;
-a *= 10;//similar to a = a * 10;
-a -= 5;//similar to a = a - 5;
-a /= 5;//similar to a = a / 5;
+a *= 10; //similar to a = a * 10;
+a -= 5; //similar to a = a - 5;
+a /= 5; //similar to a = a / 5;
 ```
 
 
@@ -433,79 +433,77 @@ a /= 5;//similar to a = a / 5;
 - Remainder when one number is divided by another.
 
 ```java
-System.out.println(10 % 4);//2
-System.out.println(15 % 4);//3
-System.out.println(-15 % 4);//-3
+System.out.println(10 % 4); //2
+System.out.println(15 % 4); //3
+System.out.println(-15 % 4); //-3
 ```
 
 #### Conditional Operator
-- Conditional Operator is a Ternary Operator (3 Operands)
+- Conditional Operator is a ternary operator (3 Operands)
 - syntax : ```booleanCondition ? ResultIfTrue: ResultIfFalse;```
 
 ```java
 int age = 18;
 
-System.out.println(
-age >= 18 ? "Can Vote": "Cannot Vote");//Can Vote
+System.out.println(age >= 18 ? "Can Vote": "Cannot Vote"); //Can Vote
 
 age = 15;
 
-System.out.println(
-age >= 18 ? "Can Vote": "Cannot Vote");//Cannot Vote
+System.out.println(age >= 18 ? "Can Vote": "Cannot Vote"); //Cannot Vote
 ```
 #### Bitwise Operators
 - You can work at bit level with these operators.
 - & is bitwise AND, | is bitwise OR, ~ is bitwise complement (negation), ^ is bitwise XOR, << is left shift bitwise operator and >> is right shift bitwise operator.
 
 ```java
-System.out.println(25|12);//output will be 29
+System.out.println(25|12); //output will be 29
 /*convert to binary and calculate: 
 00001100 (12 in decimal)
 00011001 (25 in decimal)
 ________
 00011101 (29 in decimal) */
-System.out.println(25&12);//output will be 8
-System.out.println(25^12);//output will be 21
+System.out.println(25&12); //output will be 8
+System.out.println(25^12); //output will be 21
 ```
 
 ### Passing Variables to Methods
 
-- All variables , primitives and references , in Java, are passed to functions using copy-of-variable-value.
+- All variables, primitives and references, in Java, are passed to functions using copy-of-variable-value.
 
 #### Passing Variables to Methods : Example
-- Passing a primitive variable and modifying the value in a method
-- Passing a reference variable and modifying the value in a method
+- Passing a primitive variable and modifying the value in a method.
+- Passing a reference variable and modifying the value in a method.
 
 #### Returning a Value From Method
-- null is a valid return value for an object.
-- You can return andy type that can be implicitly coverted to return type.
+- ```null``` is a valid return value for an object.
+- You can return any type that can be implicitly coverted to return type.
 - You cannot return anything from a void method.
 
 ### Types of Variables
 
-- Different Types of Variables: Static, Member (or instance), Local, Block
+- Different types of variables: static, member (or instance), local, block
 
 #### Instance Variables
 - Declared inside a class outside any method.
 - Each instance of the class would have its own values.
 - Also called member value, field or property.
 
-#### Local Variables
-- Variables declared in a method
-- Local Variables can only be marked with final modifier
-- If the name of a Local Variable is same as the name of an instance variable, it results in shadowing.
+#### Local variables
+- Variables declared in a method.
+- Local variables can only be marked with final modifier.
+- If the name of a Local variable is same as the name of an instance variable, it results in shadowing.
 
-#### Member Variables
+#### Member variables
 - Defined at class level and without keyword static.
 
-#### Static Variable
+#### Static variable
 - Defined at class level and using keyword static.
 
-#### Member Variable and Static Variable
-- Member Variables can be accessed only through object references.
-- Static Variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
+#### Member variable and Static variable
+- Member variables can be accessed only through object references.
+- Static variables can be accessed through a. Class Name and b. Object Reference. It is NOT recommended to use object reference to refer to static variables.
 
-#### Example Static and Member Variables
+#### Example Static and Member variables
 ```java
 public class StaticAndMemberVariables {
     public static void main(String[] args) {
@@ -524,22 +522,22 @@ public class StaticAndMemberVariables {
     //But NOT recommended.
     Actor.count++;
 
-    System.out.println(actor1.name);//ACTOR1
-    System.out.println(actor2.name);//ACTOR2
+    System.out.println(actor1.name); //ACTOR1
+    System.out.println(actor2.name); //ACTOR2
 
     //Next 3 statements refer to same variable
-    System.out.println(actor1.count);//2
-    System.out.println(actor2.count);//2
-    System.out.println(Actor.count);//2
+    System.out.println(actor1.count); //2
+    System.out.println(actor2.count); //2
+    System.out.println(Actor.count); //2
     }
 }
 
 class Actor {
-    //RULE 1: Member Variables can be accessed 
+    //RULE 1: Member variables can be accessed 
     //only through object references
     String name;
     
-    //RULE 2:Static Variables can be accessed 
+    //RULE 2:Static variables can be accessed 
     //through a.Class Name and b.Object Reference
     //It is NOT recommended to use object reference 
     //to refer to static variables.
@@ -548,31 +546,31 @@ class Actor {
 ```
 
 ### Scope of a Variable
-- Scope of a variable defines where (which part of code) a variable can be accessed.
+- Scope of a variable defines which part of the code a variable can be accessed in.
 
 #### Important Rules
-- Static Variable can be used anywhere in the class.
-- Member Variable can be used in any non-static method.
-- Local Variable can be used only in the method where it is declared.
-- Block Variable can be used only in the block (code between { and }) where it is declared.
+- Static variable can be used anywhere in the class.
+- Member variable can be used in any non-static method.
+- Local variable can be used only in the method where it is declared.
+- Block variable can be used only in the block (code between { and }) where it is declared.
 
 #### Variable Scope Examples
 Below code shows all these Rules in action:
 ```java
 
 public class VariablesExample {
-    //RULE 1:Static Variable can be used anywhere in the class. 
+    //RULE 1:Static variable can be used anywhere in the class. 
     static int staticVariable;
     
-    //RULE 2:Member Variable can be used in any non-static method. 
+    //RULE 2:Member variable can be used in any non-static method. 
     int memberVariable;
     
     void method1() {
         //RULE 3: method1LocalVariable can be used only in method1.
         int method1LocalVariable;
 
-        memberVariable = 5;//RULE 2
-        staticVariable = 5;//RULE 1
+        memberVariable = 5; //RULE 2
+        staticVariable = 5; //RULE 1
 
         //Some Code
         {
@@ -581,7 +579,7 @@ public class VariablesExample {
             //Some Code
         }
 
-        //blockVariable = 5;//COMPILER ERROR - RULE 4
+        //blockVariable = 5; //COMPILER ERROR - RULE 4
     }
     
     void method2() {
@@ -589,53 +587,53 @@ public class VariablesExample {
     }
     
     static void staticMethod() {
-        staticVariable = 5;//RULE 1
+        staticVariable = 5; //RULE 1
         //memberVariable = 5; //COMPILER ERROR - RULE 2
     }
 }
 ```
 
 #### Scope Example 1
-- staticVariable is declared using keyword static. 
-- It is available in the instance method method1 and static method named staticMethod.
+- `staticVariable` is declared using keyword `static`. 
+- It is accessible in the instance method `method1` and static method named `staticMethod`.
 
 #### Scope Example 2
-- memberVariable is declared directly in the class  and does NOT use keyword static. So, it is an instance variable. 
-- It is available in the instance method method1 but not accessible in the static method named staticMethod.
+- `memberVariable` is declared directly in the class and does NOT use keyword `static`. So, it is an instance variable. 
+- It is accessible in the instance method `method1` but not accessible in the static method named `staticMethod`.
 
 #### Scope Example 3
-- method1LocalVariable is declared in the method method1. So, it is a local variable. 
-- It is available in the instance method method1 but available in any other  instance or static methods.
+- `method1LocalVariable` is declared in the method `method1`. So, it is a local variable. 
+- It is accessible in the instance method `method1` but not accessible in any other instance or static methods.
 
 #### Scope Example 4
-- blockVariable is declared in a block in method1. So, it is a block variable. 
-- It is available only in the block where it is defined. 
-- It is not accessible any where out side the block , even in the same method.
+- `blockVariable` is declared in a block in `method1`. So, it is a block variable. 
+- It is accessible only in the block where it is defined. 
+- It is not accessible anywhere outside the block, even in the same method.
 
 ### Variable Initialization
 - Initialization defines the default value assigned to a variable if it is not initialized.
 
 #### Important Rules
-- Member/Static variables are alway initialized with default values.
+- Member/Static variables are always initialized with default values.
 - Default values for numeric types is 0, floating point types is 0.0, boolean is false, char  is '\u0000' and for a object reference variable is null.
 - Local variables are not initialized by default by compiler. 
 - Using a local variable before initialization results in a compilation error.
 - Assigning a null value is a valid initialization for reference variables.
 
 #### Variable Initialization Examples
-Lets look at an example program to understand all the rules regarding variable initialization.
+Let's look at an example program to understand all the rules regarding variable initialization.
 
 ```java
 package com.in28minutes.variables;
 
-//RULE1:Member/Static variables are alway initialized with 
-//default values.Default values for numeric types is 0, 
+//RULE1: Member/Static variables are always initialized with 
+//default values. Default values for numeric types is 0, 
 //floating point types is 0.0, boolean is false, 
 //char  is '\u0000' and object reference variable is null.
 
-//RULE2:Local/block variables are NOT initialized by compiler. 
+//RULE2: Local/block variables are NOT initialized by compiler. 
 
-//RULE3    :If local variables are used before initialization, 
+//RULE3: If local variables are used before initialization, 
 //it would result in Compilation Error
 
 public class VariableInitialization {
@@ -643,19 +641,19 @@ public class VariableInitialization {
         Player player = new Player();
 
         //score is an int member variable - default 0
-        System.out.println(player.score);//0 - RULE1
+        System.out.println(player.score); //0 - RULE1
 
         //name is a member reference variable - default null
-        System.out.println(player.name);//null - RULE1
+        System.out.println(player.name); //null - RULE1
 
         int local; //not initialized
-        //System.out.println(local);//COMPILER ERROR! RULE3
+        //System.out.println(local); //COMPILER ERROR! RULE3
 
-        String value1;//not initialized
-        //System.out.println(value1);//COMPILER ERROR! RULE3
+        String value1; //not initialized
+        //System.out.println(value1); //COMPILER ERROR! RULE3
 
-        String value2 = null;//initialized
-        System.out.println(value2);//null - NO PROBLEM.
+        String value2 = null; //initialized
+        System.out.println(value2); //null - NO PROBLEM.
     }
 }
 
@@ -666,8 +664,9 @@ class Player{
 }
 ```
 #### Initialization Example 1
-- player  is an instance of the class Player. It contains member variables named name and score. 
-- All member variables are initialized by default. Since name refers to a String i.e a reference variable it is initialized to null. score is an int variable and hence initialized to 0.
+- `player` is an instance of the class `Player`. It contains member variables named `name` and `score`. 
+- All member variables are initialized by default. Since `name` refers to a String i.e a reference variable it is initialized to null. 
+- `score` is an int variable and hence initialized to 0.
 
 #### Initialization Example 2 
 - local  is a local variable defined in the main method. 
@@ -679,46 +678,49 @@ class Player{
 - [Example 1](src/main/java/com/in28minutes/java/wrapper/WrapperExamples.java)
 - A wrapper class wraps (encloses) around a data type and gives it an object appearance
 - Wrapper: Boolean,Byte,Character,Double,Float,Integer,Long,Short 
-- Primitive: boolean,byte,char ,double, float, int , long,short
+- primitive: boolean,byte,char ,double, float, int , long,short
 - Examples of creating wrapper classes are listed below.
-  - Integer number = new Integer(55);//int;
-  - Integer number2 = new Integer("55");//String
-  - Float number3 = new Float(55.0);//double argument  
-  - Float number4 = new Float(55.0f);//float argument  
-  - Float number5 = new Float("55.0f");//String 
-  - Character c1 = new Character('C');//Only char constructor 
+  - Integer number = new Integer(55); //int;
+  - Integer number2 = new Integer("55"); //String
+  - Float number3 = new Float(55.0); //double argument  
+  - Float number4 = new Float(55.0f); //float argument  
+  - Float number5 = new Float("55.0f"); //String 
+  - Character c1 = new Character('C'); //Only char constructor 
   - Boolean b = new Boolean(true); 
 - Reasons
   - null is a possible value
   - use it in a Collection
   - Object like creation from other types.. like String
 
-- A primitive wrapper class in the Java programming language is one of eight classes provided in the java.lang package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
+- A primitive wrapper class in the Java programming language is one of eight classes provided in the `java.lang` package to provide object methods for the eight primitive types. All of the primitive wrapper classes in Java are immutable.
 
-Wrapper classes are final and immutable.
+- Wrapper classes are final and immutable.
 
+#### List Of Wrapper Classes
+- Wrapper:   Boolean, Byte, Character, Double, Float, Integer, Long, Short
+- primitive: boolean, byte, char, double, float, int, long, short
 
 #### Creating Wrapper Classes
 
 ```java
-Integer number = new Integer(55);//int
-Integer number2 = new Integer("55");//String
+Integer number = new Integer(55); //int
+Integer number2 = new Integer("55"); //String
 
-Float number3 = new Float(55.0);//double argument
-Float number4 = new Float(55.0f);//float argument
-Float number5 = new Float("55.0f");//String
+Float number3 = new Float(55.0); //double argument
+Float number4 = new Float(55.0f); //float argument
+Float number5 = new Float("55.0f"); //String
 
-Character c1 = new Character('C');//Only char constructor
-//Character c2 = new Character(124);//COMPILER ERROR
+Character c1 = new Character('C'); //Only char constructor
+//Character c2 = new Character(124); //COMPILER ERROR
 
 Boolean b = new Boolean(true);
 
 //"true" "True" "tRUe" - all String Values give True
 //Anything else gives false
-Boolean b1 = new Boolean("true");//value stored - true
-Boolean b2 = new Boolean("True");//value stored - true
-Boolean b3 = new Boolean("False");//value stored - false
-Boolean b4 = new Boolean("SomeString");//value stored - false
+Boolean b1 = new Boolean("true"); //value stored - true
+Boolean b2 = new Boolean("True"); //value stored - true
+Boolean b3 = new Boolean("False"); //value stored - false
+Boolean b4 = new Boolean("SomeString"); //value stored - false
 
 b = false;
 ```
@@ -732,10 +734,10 @@ Provide another way of creating a Wrapper Object
 
 ```java
 Integer seven = 
-    Integer.valueOf("111", 2);//binary 111 is converted to 7
+    Integer.valueOf("111", 2); //binary 111 is converted to 7
 
 Integer hundred = 
-    Integer.valueOf("100");//100 is stored in variable
+    Integer.valueOf("100"); //100 is stored in variable
 ```
 
 #### xxxValue methods 
@@ -744,12 +746,12 @@ xxxValue methods help in creating primitives
 
 ```java
 Integer integer = Integer.valueOf(57);
-int primitive = integer.intValue();//57
-float primitiveFloat = integer.floatValue();//57.0f
+int primitive = integer.intValue(); //57
+float primitiveFloat = integer.floatValue(); //57.0f
 
 Float floatWrapper = Float.valueOf(57.0f);
-int floatToInt = floatWrapper.intValue();//57
-float floatToFloat = floatWrapper.floatValue();//57.0f
+int floatToInt = floatWrapper.intValue(); //57
+float floatToFloat = floatWrapper.floatValue(); //57.0f
 ```
 
 #### parseXxx methods
@@ -758,29 +760,27 @@ parseXxx methods are similar to valueOf but they return primitive values
 
 ```java
 int sevenPrimitive = 
-    Integer.parseInt("111", 2);//binary 111 is converted to 7
+    Integer.parseInt("111", 2); //binary 111 is converted to 7
 
 int hundredPrimitive = 
-    Integer.parseInt("100");//100 is stored in variable
+    Integer.parseInt("100"); //100 is stored in variable
 ```
 
-#### static toString method
+#### static toString(...) method
 
 Look at the example of the toString static method below.
 
 ```java
 Integer wrapperEight = new Integer(8);
-System.out.println(Integer.
-toString(wrapperEight));//String Output: 8
+System.out.println(Integer.toString(wrapperEight)); //String Output: 8
 ```
 
-#### Overloaded static toString method
+#### Overloaded static toString(...) method
 
 2nd parameter: radix
 
 ```java
-System.out.println(Integer
-.toString(wrapperEight, 2));//String Output: 1000
+System.out.println(Integer.toString(wrapperEight, 2)); //String Output: 1000
 ```
 
 #### static toYyyyString methods. 
@@ -788,29 +788,26 @@ System.out.println(Integer
 Yyyy can be Hex,Binary,Octal
 
 ```java
-System.out.println(Integer
-.toHexString(wrapperEight));//String Output:8 
-System.out.println(Integer
-.toBinaryString(wrapperEight));//String Output:1000
-System.out.println(Integer
-.toOctalString(wrapperEight));//String Output:10
+System.out.println(Integer.toHexString(wrapperEight)); //String Output:8 
+System.out.println(Integer.toBinaryString(wrapperEight)); //String Output:1000
+System.out.println(Integer.toOctalString(wrapperEight)); //String Output:10
 ```
 
-#### Wrapper Class , Auto Boxing
+#### Wrapper Class, Auto Boxing
 ```java
 Integer ten = new Integer(10);
-ten++;//allowed. Java does the work behind the screen for us
+ten++; //allowed. Java does the work behind the screen for us
 
 ```
 #### Boxing and new instances
-- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However wrapper classes created using new are not reused.
-- Two wrapper objects created using new are not same object.
+- Auto Boxing helps in saving memory by reusing already created Wrapper objects. However wrapper classes created using `new` are not reused.
+- Two wrapper objects created using `new` are not same objects.
 
 ```java
 Integer nineA = new Integer(9);
 Integer nineB = new Integer(9);
-System.out.println(nineA == nineB);//false
-System.out.println(nineA.equals(nineB));//true
+System.out.println(nineA == nineB); //false
+System.out.println(nineA.equals(nineB)); //true
 ```
 
 - Two wrapper objects created using boxing are same object.
@@ -818,17 +815,17 @@ System.out.println(nineA.equals(nineB));//true
 ```java
 Integer nineC = 9;
 Integer nineD = 9;
-System.out.println(nineC == nineD);//true
-System.out.println(nineC.equals(nineD));//true
+System.out.println(nineC == nineD); //true
+System.out.println(nineC.equals(nineD)); //true
 ```
 
 ### String Class
 
-- A String class can store a sequence of characters. String is not a primitive in Java but a Class in its own right.
+- A `String` class can store a sequence of characters. `String` is not a primitive in Java but a class in its own right.
 
 #### Strings are immutable
 
-- Value of a String Object once created cannot be modified. Any modification on a String object creates a new String object.
+- Value of a `String` Object once created cannot be modified. Any modification on a `String` object creates a new `String` object.
 
 ```java
 String str3 = "value1";
@@ -836,7 +833,7 @@ str3.concat("value2");
 System.out.println(str3); //value1
 ```
 
-Note that the value of str3 is not modified in the above example.  The result should be assigned to a new reference variable (or same variable can be reused).
+Please note that the value of ```str3`` is not modified in the above example. The result should be assigned to a new reference variable.
 
 ```java
 String concat = str3.concat("value2");
@@ -869,10 +866,12 @@ String str2 = new String("value");
 - Following statement creates 1 string object (created on the pool) and 1 reference variable.
 
 ```java
-String str1 = "value"; 
+String str1 = "value";
+// It creates one String literal in the String constant pool
+// and one reference variable.
 ```
 
-- However, if new operator is used to create string object, the new object is created on the heap. Following piece of code create 2 objects.
+- However, if `new` operator is used to create string object, the new object is created on the heap. Following piece of code create 2 objects.
 
 ```java
 //1. String Literal "value" - created in the "String constant pool"
@@ -882,22 +881,22 @@ String str2 = new String("value");
 
 #### String Method Examples
 
-String class defines a number of methods to get information about the string content.
+`String` class defines a number of methods to get information about the string content.
 
 ```java
 String str = "abcdefghijk";
 ```
 
-##### Get information from String
+#### Get information from String
 
 Following methods help to get information from a String.
 
 ```java
 //char charAt(int paramInt)
 System.out.println(str.charAt(2)); //prints a char - c
-System.out.println("ABCDEFGH".length());//8
+System.out.println("ABCDEFGH".length()); //8
 System.out.println("abcdefghij".toString()); //abcdefghij
-System.out.println("ABC".equalsIgnoreCase("abc"));//true
+System.out.println("ABC".equalsIgnoreCase("abc")); //true
 
 //Get All characters from index paramInt
 //String substring(int paramInt)
@@ -914,29 +913,29 @@ System.out.println(s1.equals(s2)); // true
 
 #### String Manipulation methods
 
-Most important thing to remember is a String object cannot be modified. When any of these methods are called, they return a new String with the modified value. The original String remains unchanged.
+Most important thing to remember is a `String` object cannot be modified. When any of these methods are called, they return a new `String` with the modified value. The original `String` remains unchanged.
 
 ```java
 //String concat(String paramString)
-System.out.println(str.concat("lmn"));//abcdefghijklmn
+System.out.println(str.concat("lmn")); //abcdefghijklmn
 
 //String replace(char paramChar1, char paramChar2)
-System.out.println("012301230123".replace('0', '4'));//412341234123
+System.out.println("012301230123".replace('0', '4')); //412341234123
 
 //String replace(CharSequence paramCharSequence1, CharSequence paramCharSequence2)
-System.out.println("012301230123".replace("01", "45"));//452345234523
+System.out.println("012301230123".replace("01", "45")); //452345234523
 
 System.out.println("ABCDEFGHIJ".toLowerCase()); //abcdefghij
 
 System.out.println("abcdefghij".toUpperCase()); //ABCDEFGHIJ
 
-//trim removes leading and trailings spaces
+//trim removes leading and trailing spaces
 System.out.println(" abcd  ".trim()); //abcd
 ```
 ### String Concatenation Operator
 
 #### Three Rules of String Concatenation
-- RULE1: Expressions are evaluated from left to right.Except if there are parenthesis.
+- RULE1: Expressions are evaluated from left to right. Except if there are parenthesis.
 - RULE2: number + number = number
 - RULE3: number + String = String
 
@@ -953,7 +952,7 @@ System.out.println(5 + 5 + 25); //35
 
 ### Increment and Decrement Operators
 
-- Lets learn about the increment and decrement operators in Java.
+- Let's learn about the increment and decrement operators in Java.
 
 #### Basics of Increment and Decrement Operators
 
@@ -963,37 +962,38 @@ Except for a minor difference ++i,i++ is similar to i = i+1 and --i,i-- is simil
 
 #### Increment Operators
 
-Pre increment statement returns value after increment. Post increment statement returns value before increment
+Pre-increment statement returns value after increment. Post-increment statement returns value before increment.
 
 ```java
 int i = 25;
-int j = ++i;//i is incremented to 26, assigned to j
-System.out.println(i + " " + j);//26 26
+int j = ++i; //i is incremented to 26, assigned to j
+System.out.println(i + " " + j); //26 26
 
 i = 25;
-j = i++;//i value(25) is assigned to j, then incremented to 26
-System.out.println(i + " " + j);//26 25
+j = i++; //i value(25) is assigned to j, then incremented to 26
+System.out.println(i + " " + j); //26 25
 ```
+
 #### Decrement Operators
 
 Decrement Operators are similar to increment operators.
 
-```
+```java
 i = 25;
-j = --i;//i is decremented to 24, assigned to j
-System.out.println(i + " " + j);//24 24
+j = --i; //i is decremented to 24, assigned to j
+System.out.println(i + " " + j); //24 24
 
 i = 25;
-j = i--;//i value(25) is assigned to j, then decremented to 24
-System.out.println(i + " " + j);//24 25
+j = i--; //i value(25) is assigned to j, then decremented to 24
+System.out.println(i + " " + j); //24 25
 ```
 
 ### Relational Operators
 
-- Relation Operators are used to compare operands. They a always return true or false. List of Relation Operators include <, <=, >, >=, ==, and !=.
+- Relational operators are used to compare operands. They always return ```true``` or ```false```. List of Relation Operators include <, <=, >, >=, ==, and !=.
 
-#### Relation Operators Examples
-Let's consider a few examples of relational operators. Let's assume a int variable named number with a value 7.
+### Relational Operators Examples
+Let's consider a few examples of relational operators. Let's assume an int variable named number with a value 7.
 
 ```java
 int number = 7;
@@ -1002,60 +1002,62 @@ int number = 7;
 #### greater than operator
 
 ```java
-System.out.println(number > 5);//true
-System.out.println(number > 7);//false
+System.out.println(number > 5); //true
+System.out.println(number > 7); //false
 ```
 
 #### greater than equal to operator
 ```java
-System.out.println(number >= 7);//true
+System.out.println(number >= 7); //true
 ```
 
 #### less than operator
 ```java
-System.out.println(number < 9);//true
-System.out.println(number < 7);//false
+System.out.println(number < 9); //true
+System.out.println(number < 7); //false
 ```
 
 #### less than equal to operator
 ```java
-System.out.println(number <= 7);//true
+System.out.println(number <= 7); //true
 ```
 
 #### is equal to operator
 ```java
-System.out.println(number == 7);//true
-System.out.println(number == 9);//false
+System.out.println(number == 7); //true
+System.out.println(number == 9); //false
 ```
 
 #### NOT equal to operator
 ```java
-System.out.println(number != 9);//true
-System.out.println(number != 7);//false
+System.out.println(number != 9); //true
+System.out.println(number != 7); //false
 ```
 
 > single = is assignment operator and == is comparison. Below statement uses =.
 
 ```java
-System.out.println(number = 7);//7
+System.out.println(number = 7); //7
 ```
+
 #### == (equals) operator
 Let's look at how == equals operator works with primitives and reference variables.
 
-#### Primitive Variables
+#### primitive variables
 
-- Equality for Primitives only compares values
+- Equality for primitives only compares values
 
 ```java
 int a = 5;
 int b = 5;
 ```
 
-Below statement compares if a and b have same value.
+Below statement compares if `a` and `b` have same value.
 
 ```java
-System.out.println(a == b);//true
+System.out.println(a == b); //true
 ```
+
 #### Reference Variables
 
 ```java
@@ -1066,12 +1068,12 @@ Integer bReference = new Integer(5);
 For reference variables, == compares if they are referring to the same object.
 
 ```java
-System.out.println(aReference == bReference);//false
+System.out.println(aReference == bReference); //false
 
 bReference = aReference;
 
 //Now both are referring to same object
-System.out.println(aReference == bReference);//true
+System.out.println(aReference == bReference); //true
 ```
 
 ### Bitwise operators
@@ -1113,26 +1115,26 @@ System.out.println("a= " + a); // a = 5
 - True when both operands are true.
 
 ```java
-System.out.println(true && true);//true
-System.out.println(true && false);//false
-System.out.println(false && true);//false
-System.out.println(false && false);//false
+System.out.println(true && true); //true
+System.out.println(true && false); //false
+System.out.println(false && true); //false
+System.out.println(false && false); //false
 ```
 #### Short Circuit Or Operator - ||
 
 True when atleast one of operands are true.
 
 ```java
-System.out.println(true || true);//true
-System.out.println(true || false);//true
-System.out.println(false || true);//true
-System.out.println(false || false);//false
+System.out.println(true || true); //true
+System.out.println(true || false); //true
+System.out.println(false || true); //true
+System.out.println(false || false); //false
 ```
 
 > Certification Tip : Logical Operators work with boolean values but not numbers.
 
 ```java
-//System.out.println(5 || 6);//COMPILER ERROR
+//System.out.println(5 || 6); //COMPILER ERROR
 ```
 #### Short circuit operators are Lazy 
 
@@ -1143,9 +1145,9 @@ System.out.println(false || false);//false
 
 ```java
 int i = 10;
-System.out.println(true || ++i==11);//true
-System.out.println(false && ++i==11);//false
-System.out.println(i);//i remains 10, as ++i expressions are not executed.
+System.out.println(true || ++i==11); //true
+System.out.println(false && ++i==11); //false
+System.out.println(i); //i remains 10, as ++i expressions are not executed.
 ```
 
 #### Operator & and |
@@ -1156,24 +1158,24 @@ System.out.println(i);//i remains 10, as ++i expressions are not executed.
 
 ```java
 int j = 10;
-System.out.println(true | ++j==11);//true
-System.out.println(false & ++j==12);//false
-System.out.println(j);//j becomes 12, as both ++j expressions are executed
+System.out.println(true | ++j==11); //true
+System.out.println(false & ++j==12); //false
+System.out.println(j); //j becomes 12, as both ++j expressions are executed
 ```
 
 #### Operator exclusive-OR (^)
 - Result is true only if one of the operands is true.
 ```java
-System.out.println(true ^ false);//true
-System.out.println(false ^ true);//true
-System.out.println(true ^ true);//false
-System.out.println(false ^ false);//false
+System.out.println(true ^ false); //true
+System.out.println(false ^ true); //true
+System.out.println(true ^ true); //false
+System.out.println(false ^ false); //false
 ```
 #### Not Operator (!)
 Result is the negation of the expression.
 ```java
-System.out.println(!false);//true
-System.out.println(!true);//false
+System.out.println(!false); //true
+System.out.println(!true); //false
 ```
 ### Arrays
 - TODO : Why do we need arrays?
@@ -1185,9 +1187,9 @@ int[] marks;
 // Creating an array
 marks = new int[5]; // 5 is size of array
 
-int marks2[] = new int[5];//Declaring and creating an array in same line.
+int marks2[] = new int[5]; //Declaring and creating an array in same line.
 
-System.out.println(marks2[0]);//New Arrays are always initialized with default values - 0
+System.out.println(marks2[0]); //New Arrays are always initialized with default values - 0
 
 //Index of elements in an array runs from 0 to length - 1
 marks[0] = 25;
@@ -1196,15 +1198,15 @@ marks[2] = 50;
 marks[3] = 10;
 marks[4] = 5;
 
-System.out.println(marks[2]);//Printing a value from array
+System.out.println(marks[2]); //Printing a value from array
 
 //Printing a 1D Array
 int marks5[] = { 25, 30, 50, 10, 5 };
 System.out.println(marks5); //[I@6db3f829
 System.out.println(
-    Arrays.toString(marks5));//[25, 30, 50, 10, 5]
+    Arrays.toString(marks5)); //[25, 30, 50, 10, 5]
 
-int length = marks.length;//Length of an array: Property length
+int length = marks.length; //Length of an array: Property length
 
 //Enhanced For Loop
 for (int mark: marks) {
@@ -1249,8 +1251,8 @@ Arrays.toString(matrix3));
 System.out.println(Arrays.deepToString(matrix3)); 
 //[[1, 2, 3], [4, 5, 6]]
 
-System.out.println(matrix3[0]);//[I@86c347 - matrix3[0] is a 1D Array
-System.out.println(Arrays.toString(matrix3[0]));//[1, 2, 3]
+System.out.println(matrix3[0]); //[I@86c347 - matrix3[0] is a 1D Array
+System.out.println(Arrays.toString(matrix3[0])); //[1, 2, 3]
 ```
 
 #### Other Array Operations
@@ -1272,7 +1274,7 @@ System.out.println(Arrays
 
 int rollNos[] = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
-System.out.println(Arrays.toString(rollNos));//[5, 7, 9, 12]
+System.out.println(Arrays.toString(rollNos)); //[5, 7, 9, 12]
 
 ```
 
@@ -1283,7 +1285,7 @@ Person[] persons = new Person[3];
 
 //By default, an array of 3 reference variables is created.
 //The person objects are not created
-System.out.println(persons[0]);//null
+System.out.println(persons[0]); //null
 
 //Let's create the new objects
 persons[0] = new Person();
@@ -1316,9 +1318,9 @@ int marks[]; //Not Readable
 int[] runs; //Readable
 
 
-//int values[5];//Compilation Error!Declaration of an Array should not include size. 
+//int values[5]; //Compilation Error!Declaration of an Array should not include size. 
 
-//marks = new int[];//COMPILER ERROR! Size of an array is mandatory to create an array.
+//marks = new int[]; //COMPILER ERROR! Size of an array is mandatory to create an array.
 
 
 //Declaring 2D Array Examples:
@@ -1337,17 +1339,17 @@ int[] matrix2[]; //Legal but not readable. Avoid.
 //Cross assigment of primitive arrays is ILLEGAL
 int[] ints = new int[5];
 short[] shorts = new short[5];
-//ints = shorts;//COMPILER ERROR
-//ints = (int[])shorts;//COMPILER ERROR
+//ints = shorts; //COMPILER ERROR
+//ints = (int[])shorts; //COMPILER ERROR
 
 
 //The first dimension of a 2D array is mandatory
-matrixA = new int[3][];//FINE
-//matrixA = new int[][5];//COMPILER ERROR
-//matrixA = new int[][];//COMPILER ERROR
+matrixA = new int[3][]; //FINE
+//matrixA = new int[][5]; //COMPILER ERROR
+//matrixA = new int[][]; //COMPILER ERROR
 
 //Each row in a 2D Array can have a different size. This is called a Ragged Array.
-matrixA = new int[3][];//FINE
+matrixA = new int[3][]; //FINE
 matrixA[0] = new int[3];
 matrixA[0] = new int[4];
 matrixA[0] = new int[5];
@@ -1365,27 +1367,27 @@ if(true){
 }
 
 if(false){
-    System.out.println("Will NOT be printed");//Not executed
+    System.out.println("Will NOT be printed"); //Not executed
 }
 
 //Example 1
 int x = 5;
 
 if(x==5){
-    System.out.println("x is 5");//executed since x==5 is true
+    System.out.println("x is 5"); //executed since x==5 is true
 }
 
 //Example 2
 x = 6;
 if(x==5){
-    System.out.println("x is 5");//Not executed since x==5 is false
+    System.out.println("x is 5"); //Not executed since x==5 is false
 }
 
 //Example 3
 int y = 10;
 
 if(y==10){
-    System.out.println("Y is 10");//executed-condn y==10 is true
+    System.out.println("Y is 10"); //executed-condn y==10 is true
 } else {
     System.out.println("Y is Not 10");
 }
@@ -1394,33 +1396,33 @@ if(y==10){
 y = 11;
 
 if(y==10){
-    System.out.println("Y is 10");//NOT executed
+    System.out.println("Y is 10"); //NOT executed
 } else {
-    System.out.println("Y is Not 10");//executed
+    System.out.println("Y is Not 10"); //executed
 }
 
 //Example 5
 int z = 15;
 //Only one condition is executed. Rest of the conditions are skipped.
 if(z==10){
-    System.out.println("Z is 10");//NOT executed
+    System.out.println("Z is 10"); //NOT executed
 } else if(z==12){
-    System.out.println("Z is 12");//NOT executed
+    System.out.println("Z is 12"); //NOT executed
 } else if(z==15){
-    System.out.println("Z is 15");//executed. 
+    System.out.println("Z is 15"); //executed. 
 } else {
-    System.out.println("Z is Something Else.");//NOT executed
+    System.out.println("Z is Something Else."); //NOT executed
 }
 
 z = 18;
 if(z==10){
-    System.out.println("Z is 10");//NOT executed
+    System.out.println("Z is 10"); //NOT executed
 } else if(z==12){
-    System.out.println("Z is 12");//NOT executed
+    System.out.println("Z is 12"); //NOT executed
 } else if(z==15){
-    System.out.println("Z is 15");//NOT executed
+    System.out.println("Z is 15"); //NOT executed
 } else {
-    System.out.println("Z is Something Else.");//executed
+    System.out.println("Z is Something Else."); //executed
 }
 
 //If else Example: without Blocks
@@ -1428,7 +1430,7 @@ int number = 5;
 if(number < 0) 
     number = number + 10; //Not executed
     number++; //This statement is not part of if. Executed.
-System.out.println(number);//prints 6
+System.out.println(number); //prints 6
 ```
 #### If else Puzzles
 
@@ -1502,11 +1504,11 @@ int x1 = 0;
 boolean isTrue = false;
 
 if(isTrue==true){
-    System.out.println("TRUE TRUE");//Will not be printed
+    System.out.println("TRUE TRUE"); //Will not be printed
 }
 
 if(isTrue=true){
-    System.out.println("TRUE");//Will be printed.
+    System.out.println("TRUE"); //Will be printed.
 }
 
 //Condition is isTrue=true. This is assignment. Returns true. So, code in if is executed.
@@ -1525,7 +1527,7 @@ case 1:
     System.out.println(1);
     break;
 case 2:
-    System.out.println(2);//PRINTED
+    System.out.println(2); //PRINTED
     break;
 case 3:
     System.out.println(3);
@@ -1693,7 +1695,7 @@ int count = 0;
 do{
     System.out.print(count);
     count++;
-}while(count < 5);//while this condn is true, loop is executed.
+}while(count < 5); //while this condn is true, loop is executed.
 //output is 01234
 ```
 
@@ -1783,7 +1785,7 @@ for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
 System.out.print(j + "" + k);
 if (k == 5) {
-    break;//Takes out of loop using k
+    break; //Takes out of loop using k
 }
     }
 }
@@ -1799,7 +1801,7 @@ outer:
        for (int k = 0; k < 10; k++) {
              System.out.print(j + "" + k);
              if (k == 5) {
-               break outer;//Takes out of loop using j
+               break outer; //Takes out of loop using j
              }
         }
     }
@@ -1841,7 +1843,7 @@ Continue statement takes execution to next iteration of inner most loop.
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
        if (k == 5) {
-          continue;//skips to next iteration of k loop
+          continue; //skips to next iteration of k loop
         }
         System.out.print(j + "" + k);
     }
@@ -1857,7 +1859,7 @@ outer:
     for (int j = 0; j < 2; j++) {
         for (int k = 0; k < 10; k++) {
             if (k == 5) {
-                continue outer;//skips to next iteration of j loop
+                continue outer; //skips to next iteration of j loop
             }
             System.out.print(j + "" + k);
         }
@@ -1903,14 +1905,14 @@ public class Enum {
         Season season = Season.valueOf("FALL");
 
         // Converting Enum to String
-        System.out.println(season.name());// FALL
+        System.out.println(season.name()); // FALL
 
         // Default ordinals of enum
         // By default java assigns ordinals in order
-        System.out.println(Season.WINTER.ordinal());// 0
-        System.out.println(Season.SPRING.ordinal());// 1
-        System.out.println(Season.SUMMER.ordinal());// 2
-        System.out.println(Season.FALL.ordinal());// 3
+        System.out.println(Season.WINTER.ordinal()); // 0
+        System.out.println(Season.SPRING.ordinal()); // 1
+        System.out.println(Season.SUMMER.ordinal()); // 2
+        System.out.println(Season.FALL.ordinal()); // 3
 
         // Looping an enum => We use method values
         for (Season season1 : Season.values()) {
@@ -1921,8 +1923,8 @@ public class Enum {
         // Comparing two Enums
         Season season1 = Season.FALL;
         Season season2 = Season.FALL;
-        System.out.println(season1 == season2);// true
-        System.out.println(season1.equals(season2));// true
+        System.out.println(season1 == season2); // true
+        System.out.println(season1.equals(season2)); // true
     }
 }
 ```
@@ -1938,17 +1940,17 @@ Season season = Season.valueOf("FALL");
 Function name() is used to find String value of an enum.
 ```java
 //Converting Enum to String
-System.out.println(season.name());//FALL
+System.out.println(season.name()); //FALL
 ```
 
 Java assigns default ordinals to an enum in order. However, it is not recommended to use ordinals to perform logic.
 ```java
 //Default ordinals of enum
 // By default java assigns ordinals in order
-System.out.println(Season.WINTER.ordinal());//0
-System.out.println(Season.SPRING.ordinal());//1
-System.out.println(Season.SUMMER.ordinal());//2
-System.out.println(Season.FALL.ordinal());//3
+System.out.println(Season.WINTER.ordinal()); //0
+System.out.println(Season.SPRING.ordinal()); //1
+System.out.println(Season.SUMMER.ordinal()); //2
+System.out.println(Season.FALL.ordinal()); //3
 ```
 
 Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the  function values().
@@ -1965,8 +1967,8 @@ Comparing two Enums
 //Comparing two Enums
 Season season1 = Season.FALL;
 Season season2 = Season.FALL;
-System.out.println(season1 == season2);//true
-System.out.println(season1.equals(season2));//true
+System.out.println(season1 == season2); //true
+System.out.println(season1.equals(season2)); //true
 ```
 
 #### Enum Example 2
@@ -1999,7 +2001,7 @@ public class EnumAdvanced {
                 if (season.getCode() == code)
                     return season;
             }
-            throw new RuntimeException("value not found");// Just for kicks
+            throw new RuntimeException("value not found"); // Just for kicks
         }
 
         // Using switch statement on an enum
@@ -2013,7 +2015,7 @@ public class EnumAdvanced {
             case SUMMER:
                 return 20;
             }
-            return -1;// Dummy since Java does not recognize this is possible :)
+            return -1; // Dummy since Java does not recognize this is possible :)
         }
 
     };
@@ -2027,11 +2029,11 @@ public class EnumAdvanced {
          * SeasonCustomized(1);
          */
 
-        System.out.println(season.getCode());// 1
+        System.out.println(season.getCode()); // 1
 
-        System.out.println(season.getExpectedMaxTemperature());// 5
+        System.out.println(season.getExpectedMaxTemperature()); // 5
 
-        System.out.println(SeasonCustomized.valueOf(4));// FALL
+        System.out.println(SeasonCustomized.valueOf(4)); // FALL
 
     }
 
@@ -2133,9 +2135,9 @@ public class EnumAdvanced2 {
     public static void main(String[] args) {
         SeasonCustomized season = SeasonCustomized.WINTER;
 
-        System.out.println(season.getExpectedMaxTemperature());// 5
+        System.out.println(season.getExpectedMaxTemperature()); // 5
 
-        System.out.println(SeasonCustomized.FALL.getExpectedMaxTemperature());// 10
+        System.out.println(SeasonCustomized.FALL.getExpectedMaxTemperature()); // 10
 
     }
 
@@ -2165,7 +2167,7 @@ System.out.println(str.hashCode());
 System.out.println(str.clone());
 
 if(str instanceof Object){
-    System.out.println("I extend Object");//Will be printed
+    System.out.println("I extend Object"); //Will be printed
 }
 ```
 
@@ -2194,8 +2196,8 @@ Since Hero extends Actor, the methods defined in Actor are also available throug
 ```
 Hero hero = new Hero();
 //act method inherited from Actor
-hero.act();//Act
-hero.fight();//fight
+hero.act(); //Act
+hero.fight(); //fight
 ```
 
 Let's look at another class extending Actor class - Comedian.
@@ -2213,8 +2215,8 @@ Methods in Animal class can be executed from an instance of Comedian class.
 ```java
 Comedian comedian = new Comedian();
 //act method inherited from Actor
-comedian.act();//Act
-comedian.performComedy();//Comedy
+comedian.act(); //Act
+comedian.performComedy(); //Comedy
 ```
 
 #### Super class reference variable can hold an object of sub class
@@ -2289,7 +2291,7 @@ Execution
 Animal animal1 = new Animal();
 System.out.println(animal1.shout()); //Don't Know!
 
-Animal animal2 = new Dog();//Animal reference used to store Dog object
+Animal animal2 = new Dog(); //Animal reference used to store Dog object
 
 //Reference variable type => Animal
 //Object referred to => Dog
@@ -2297,7 +2299,7 @@ Animal animal2 = new Dog();//Animal reference used to store Dog object
 System.out.println(animal2.shout()); //BOW BOW
 
 //Cannot invoke sub class method with super class reference variable.
-//animal2.run();//COMPILE ERROR
+//animal2.run(); //COMPILE ERROR
 
 ```
 
@@ -2331,23 +2333,23 @@ SubClass2 subClass2 = new SubClass2();
 SomeOtherClass someOtherClass = new SomeOtherClass();
 
 //We can run instanceof operator on the different instances created earlier.
-System.out.println(subClass instanceof SubClass);//true
-System.out.println(subClass instanceof SuperClass);//true
-System.out.println(subClassObj instanceof SuperClass);//true
+System.out.println(subClass instanceof SubClass); //true
+System.out.println(subClass instanceof SuperClass); //true
+System.out.println(subClassObj instanceof SuperClass); //true
 
-System.out.println(subClass2 instanceof SuperClassImplementingInteface);//true
+System.out.println(subClass2 instanceof SuperClassImplementingInteface); //true
 
 //instanceof can be used with interfaces as well. 
 //Since Super Class implements the interface, below code prints true.
 System.out.println(subClass2 
-instanceof Interface);//true
+instanceof Interface); //true
 
 //If the type compared is unrelated to the object, a compilation error occurs.
 //System.out.println(subClass 
-//    instanceof SomeOtherClass);//Compiler Error
+//    instanceof SomeOtherClass); //Compiler Error
 
 //Object referred by subClassObj(SubClass)- NOT of type SomeOtherClass
-System.out.println(subClassObj instanceof SomeOtherClass);//false
+System.out.println(subClassObj instanceof SomeOtherClass); //false
 ```
 
 ### Class, Object, State and Behavior
@@ -2444,7 +2446,7 @@ class Animal {
 Animal animal = new Animal("Tommy", "Dog");
 
 //Output does not show the content of animal (what name? and what type?).
-System.out.println(animal);//com.in28minutes.Animal@f7e6a96
+System.out.println(animal); //com.in28minutes.Animal@f7e6a96
 ```
 
 To show the content of the animal object, we can override the default implementation of toString method provided by Object class.
@@ -2470,7 +2472,7 @@ class Animal {
 Animal animal = new Animal("Tommy","Dog");
 
 //Output now shows the content of the animal object. 
-System.out.println(animal);//Animal [name=Tommy, type=Dog]
+System.out.println(animal); //Animal [name=Tommy, type=Dog]
 ```
 
 ### equals method
@@ -2505,14 +2507,14 @@ Client client2 = new Client(25);
 Client client3 = client1;
 
 //client1 and client2 are pointing to different client objects.
-System.out.println(client1 == client2);//false
+System.out.println(client1 == client2); //false
 
 //client3 and client1 refer to the same client objects.
-System.out.println(client1 == client3);//true
+System.out.println(client1 == client3); //true
 
 //similar output to ==
-System.out.println(client1.equals(client2));//false
-System.out.println(client1.equals(client3));//true
+System.out.println(client1.equals(client2)); //false
+System.out.println(client1.equals(client3)); //true
 
 //overriding equals method
 class Client {
@@ -2544,10 +2546,10 @@ Client client2 = new Client(25);
 Client client3 = client1;
 
 //both id's are 25
-System.out.println(client1.equals(client2));//true
+System.out.println(client1.equals(client2)); //true
 
 //both id's are 25
-System.out.println(client1.equals(client3));//true
+System.out.println(client1.equals(client3)); //true
 ```
 Any equals implementation should satisfy these properties:
 - Reflexive. For any reference value x, x.equals(x) returns true.
@@ -2629,7 +2631,7 @@ abstract void abstractMethod2();
 
 //Abstract method can be declared only in Abstract Class. 
 class NormalClass{
-    abstract void abstractMethod();//COMPILER ERROR
+    abstract void abstractMethod(); //COMPILER ERROR
 }
 
 // Abstract class can contain fully defined non-abstract methods. 
@@ -2723,7 +2725,7 @@ this.name = name;
     public static void main(String[] args) {
 // Since we provided a constructor, compiler does not
 // provide a default constructor.
-// Animal animal = new Animal();//COMPILER ERROR!
+// Animal animal = new Animal(); //COMPILER ERROR!
 
 // The only way we can create Animal1 object is by using
 Animal animal = new Animal("Tommy");
@@ -2748,7 +2750,7 @@ this.name = name;
     public static void main(String[] args) {
 // Since we provided a constructor, compiler does not
 // provide a default constructor.
-// Animal animal = new Animal();//COMPILER ERROR!
+// Animal animal = new Animal(); //COMPILER ERROR!
 
 // The only way we can create Animal1 object is by using
 Animal animal = new Animal("Tommy");
@@ -2785,7 +2787,7 @@ public Animal() {
 public Animal() {
     System.out.println("Creating an Animal");
     //this(string), if called, should always the first statement in a constructor.
-    //this("Default Name");//COMPILER ERROR
+    //this("Default Name"); //COMPILER ERROR
 }
 ```
 #### Constructor Example 5 
@@ -2793,7 +2795,7 @@ Member variables/methods should not be used in constructor calls (super or this)
 ```java
 public Animal() {
     //member variable cannot be used in a constructor call
-    this(name);//COMPILER ERROR since name is member variable
+    this(name); //COMPILER ERROR since name is member variable
 }
 ```
 #### Constructor Example 6: Constructor cannot be directly called  
@@ -2806,7 +2808,7 @@ class Animal {
     }
 
     public method() {
-Animal();// Compiler error
+Animal(); // Compiler error
     }
 }
 ```
@@ -2849,21 +2851,21 @@ It is almost as if super() method is invoked as the first line of every construc
 ```java
 class Animal {
     public Animal() {
-super();// IMPLICIT CALL
+super(); // IMPLICIT CALL
 System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() {
-super();// IMPLICIT CALL
+super(); // IMPLICIT CALL
 System.out.println("Dog Constructor");
     }
 }
 
 class Labrador extends Dog {
     public Labrador() {
-super();// IMPLICIT CALL
+super(); // IMPLICIT CALL
 System.out.println("Labrador Constructor");
     }
 }
@@ -2951,7 +2953,7 @@ class Dog extends Animal {
 
 public class ConstructorExamples {
     public static void main(String[] args) {
-// Dog dog = new Dog("Terry");//COMPILER ERROR
+// Dog dog = new Dog("Terry"); //COMPILER ERROR
     }
 }
 ```
@@ -3214,10 +3216,10 @@ System.out.println("Bird is flying");
 The interface classes can directly be instantiated and stored in the class reference variables
 ```
 Bird bird = new Bird();
-bird.fly();//Bird is flying
+bird.fly(); //Bird is flying
 
 Aeroplane aeroplane = new Aeroplane();
-aeroplane.fly();//Aeroplane is flying
+aeroplane.fly(); //Aeroplane is flying
 ```
 
 An interface reference variable can hold objects of any implementation of interface.
@@ -3235,7 +3237,7 @@ interface ExampleInterface1 {
     public int value2 = 15;
     public static int value3 = 20;
     public static final int value4 = 25;
-    //private int value5 = 10;//COMPILER ERROR
+    //private int value5 = 10; //COMPILER ERROR
 }
 ```
 #### Methods in an interface
@@ -3243,8 +3245,8 @@ Interface methods are by default public and abstract. A concrete default method 
 ```java
 interface ExampleInterface1 {
     //By default - public abstract. No other modifier allowed
-    void method1();//method1 is public and abstract
-    //private void method6();//COMPILER ERROR!
+    void method1(); //method1 is public and abstract
+    //private void method6(); //COMPILER ERROR!
     
 }
 ```
@@ -3450,8 +3452,8 @@ public class PolymorphismExample {
 
 Animal[] animals = {new Dog(),new Animal()};
 
-animals[0].bark();//Dog bark
-animals[1].bark();//Animal bark
+animals[0].bark(); //Dog bark
+animals[1].bark(); //Animal bark
     }
 
 }
@@ -3486,7 +3488,7 @@ private class Error{//COMPILER ERROR
 #### Non-access modifiers 
 strictfp, final, abstract modifiers are valid on a class.
 ### Class Access Modifiers
-- Lets learn about a few Java Class Access Modifiers.
+- Let's learn about a few Java Class Access Modifiers.
 
 #### public class modifier
 A public class is visible to all other classes.
@@ -3640,17 +3642,17 @@ example.publicMethod();
 //privateVariable,privateMethod are not visible
 //Below Lines, uncommented, would give compiler error
 //example.privateVariable=5; //COMPILE ERROR
-//example.privateMethod();//COMPILE ERROR
+//example.privateMethod(); //COMPILE ERROR
 
 //protectedVariable,protectedMethod are not visible
 //Below Lines, uncommented, would give compiler error
 //example.protectedVariable = 5; //COMPILE ERROR
-//example.protectedMethod();//COMPILE ERROR
+//example.protectedMethod(); //COMPILE ERROR
 
 //defaultVariable,defaultMethod are not visible
 //Below Lines, uncommented, would give compiler error
-//example.defaultVariable = 5;//COMPILE ERROR
-//example.defaultMethod();//COMPILE ERROR
+//example.defaultVariable = 5; //COMPILE ERROR
+//example.defaultMethod(); //COMPILE ERROR
     }
 }
 ```
@@ -3761,7 +3763,7 @@ Consider the example below:
 void testMethod(final int finalArgument){
     //final argument cannot be modified
     //Below line, uncommented, causes compilation Error
-    //finalArgument = 5;//COMPILER ERROR
+    //finalArgument = 5; //COMPILER ERROR
 }
 ```
 ### Other Non access Modifiers
@@ -3776,10 +3778,10 @@ A volatile variable is one whose value is always written to and read from "main 
 #### native
 Can be applied only to methods.
 These methods are implemented in native languages (like C)
-### Static Variables and Methods
+### Static variables and Methods
 - Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire Class. Each instance of the Class (object) will NOT have a unique copy of a static variable. Let's start with a real world example of a Class with static variable and methods.
 
-#### Static Variable/Method , Example
+#### Static variable/Method , Example
 count variable in Cricketer class is static. The method to get the count value getCount() is also a static method. 
 
 ```java
@@ -3801,12 +3803,12 @@ Cricketer cricketer2 = new Cricketer();
 Cricketer cricketer3 = new Cricketer();
 Cricketer cricketer4 = new Cricketer();
 
-System.out.println(Cricketer.getCount());//4
+System.out.println(Cricketer.getCount()); //4
     }
 }
 ```
 4 instances of the Cricketer class are created. Variable count is incremented with every instance created in the constructor. 
-#### Static Variables and Methods Example 2
+#### Static variables and Methods Example 2
 Example class below explains all the rules associated with access static variables and static methods.
 ```java
 public class StaticModifierExamples {
@@ -3837,8 +3839,8 @@ StaticModifierExamples example = new StaticModifierExamples();
 //instance variables and methods are only accessible through object references
 example.instanceVariable = 10;
 example.instanceMethod();
-//StaticModifierExamples.instanceVariable = 10;//COMPILER ERROR
-//StaticModifierExamples.instanceMethod();//COMPILER ERROR
+//StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
+//StaticModifierExamples.instanceMethod(); //COMPILER ERROR
 
 //static variables and methods are accessible through object references and Class Name.
 example.staticVariable = 10;
@@ -3875,8 +3877,8 @@ Instance variables and methods are only accessible through object references.
 ```
 example.instanceVariable = 10;
 example.instanceMethod();
-//StaticModifierExamples.instanceVariable = 10;//COMPILER ERROR
-//StaticModifierExamples.instanceMethod();//COMPILER ERROR
+//StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
+//StaticModifierExamples.instanceMethod(); //COMPILER ERROR
 ```
 
 Static variables and methods are accessible through object references and Class Name.
@@ -3909,7 +3911,7 @@ When code below is run, static method in Animal is executed. Static method invoc
 
 ```
 Animal animal = new Dog();
-animal.StaticMethod();//Animal Static Method
+animal.StaticMethod(); //Animal Static Method
 ```
 #### Local variables cannot be declared as static
 Example below:
@@ -4149,8 +4151,8 @@ System.out
 .println(outerClassInstanceVariable);
 
 //Cannot access method's non-final local variables
-//localVariable = 5;//Compiler Error
-System.out.println(finalVariable);//Final variable is fine..
+//localVariable = 5; //Compiler Error
+System.out.println(finalVariable); //Final variable is fine..
     }
 }
 
@@ -4160,7 +4162,7 @@ m1.method();
     }
 
     //MethodLocalInnerClass can be instantiated only in the method where it is declared
-    //MethodLocalInnerClass m1 = new MethodLocalInnerClass();//COMPILER ERROR
+    //MethodLocalInnerClass m1 = new MethodLocalInnerClass(); //COMPILER ERROR
 
 }
 ```
@@ -4174,8 +4176,8 @@ System.out.println(outerClassInstanceVariable);
 #### Method inner class cannot access method's non-final local variables
 ```java
 //Cannot access method's non-final local variables
-//localVariable = 5;//Compiler Error
-System.out.println(finalVariable);//Final variable is fine..
+//localVariable = 5; //Compiler Error
+System.out.println(finalVariable); //Final variable is fine..
 ```
 ### Variable Arguments
 - Variable Arguments allow calling a method with different number of parameters.
@@ -4197,11 +4199,11 @@ return sum;
     public static void main(String[] args) {
 VariableArgumentExamples example = new VariableArgumentExamples();
 //3 Arguments
-System.out.println(example.sum(1, 4, 5));//10
+System.out.println(example.sum(1, 4, 5)); //10
 //4 Arguments
-System.out.println(example.sum(1, 4, 5, 20));//30
+System.out.println(example.sum(1, 4, 5, 20)); //30
 //0 Arguments
-System.out.println(example.sum());//0
+System.out.println(example.sum()); //0
     }
 ```
 #### Variable Arguments Syntax
@@ -4534,8 +4536,8 @@ this.currency = currency;
 this.amount = amount;
     }
 
-    String currency;// Should be an Enum
-    int amount;// Should ideally use BigDecimal
+    String currency; // Should be an Enum
+    int amount; // Should ideally use BigDecimal
 }
 
 // AmountAdder class has method addAmounts which is throwing a RuntimeException
@@ -4571,7 +4573,7 @@ Let us now try to change the method addAmounts to throw an Exception instead of 
 class AmountAdder {
     static Amount addAmounts(Amount amount1, Amount amount2) {
 if (!amount1.currency.equals(amount2.currency)) {
-    throw new Exception("Currencies don't match");// COMPILER ERROR!// Unhandled exception type Exception
+    throw new Exception("Currencies don't match"); // COMPILER ERROR!// Unhandled exception type Exception
 }
 return new Amount(amount1.currency, amount1.amount + amount2.amount);
     }
@@ -4817,9 +4819,9 @@ console.format("\nEntered Text is %s", text);
 #### Format/Printf Examples
 Let's look at a few examples to quickly understand printf function. 
 ```java
-System.out.printf("%d", 5);//5
-System.out.printf("My name is %s", "Rithu");//My name is Rithu
-System.out.printf("%s is %d Years old", "Rithu", 5);//Rithu is 5 Years old
+System.out.printf("%d", 5); //5
+System.out.printf("My name is %s", "Rithu"); //My name is Rithu
+System.out.printf("%s is %d Years old", "Rithu", 5); //Rithu is 5 Years old
 ```
 
 In the simplest form, string to be formatted starts with % followed by conversion indicator => b - boolean c - char d - integer f - floating point s - string.
@@ -4865,7 +4867,7 @@ System.out.printf("%5d","Test");
 System.out.printf("%3$.1f %2$s %1$d", 123, "Test", 123.4); //prints 123.4 Test 123
 
 //format method has the same behavior as printf method 
-System.out.format("%5.2f", 1234.5678);//prints 1234.57
+System.out.format("%5.2f", 1234.5678); //prints 1234.57
 ```
 ### String Buffer & String Builder
 - StringBuffer and StringBuilder are used when you want to modify values of a string frequently. String Buffer class is thread safe where as String Builder is NOT thread safe.
@@ -4882,16 +4884,16 @@ System.out.println(stringbuffer); //123456789
 StringBuilder sb = new StringBuilder("0123456789");
 
 //StringBuilder delete(int startIndex, int endIndexPlusOne)
-System.out.println(sb.delete(3, 7));//012789
+System.out.println(sb.delete(3, 7)); //012789
 
 StringBuilder sb1 = new StringBuilder("abcdefgh");
 
 //StringBuilder insert(int indext, String whatToInsert)
-System.out.println(sb1.insert(3, "ABCD"));//abcABCDdefgh
+System.out.println(sb1.insert(3, "ABCD")); //abcABCDdefgh
 
 StringBuilder sb2 = new StringBuilder("abcdefgh");
 //StringBuilder reverse()
-System.out.println(sb2.reverse());//hgfedcba
+System.out.println(sb2.reverse()); //hgfedcba
 ```
 
 Similar functions exist in StringBuffer also.
@@ -4899,7 +4901,7 @@ Similar functions exist in StringBuffer also.
 All functions also return a reference to the object after modifying it.This allows a concept called method chaining.
 ```java
 StringBuilder sb3 = new StringBuilder("abcdefgh");
-System.out.println(sb3.reverse().delete(5, 6).insert(3, "---"));//hgf---edba
+System.out.println(sb3.reverse().delete(5, 6).insert(3, "---")); //hgf---edba
 ```
 ### Date
 - Date is no longer the class Java recommends for storing and manipulating date and time. Most of methods in Date are deprecated. Use Calendar class instead. Date internally represents date-time as number of milliseconds (a long value) since 1st Jan 1970.
@@ -4911,7 +4913,7 @@ Date now = new Date();
 System.out.println(now.getTime());
 ```
 #### Manipulating Date Object
-Lets now look at adding a few hours to a date object. All date manipulation to date needs to be done by adding milliseconds to the date. For example, if we want to add 6 hour, we convert 6 hours into millseconds. 6 hours = 6 * 60 * 60 * 1000 milliseconds. Below examples shows specific code.
+Let's now look at adding a few hours to a date object. All date manipulation to date needs to be done by adding milliseconds to the date. For example, if we want to add 6 hour, we convert 6 hours into millseconds. 6 hours = 6 * 60 * 60 * 1000 milliseconds. Below examples shows specific code.
 
 ```
 Date date = new Date();
@@ -4930,62 +4932,62 @@ Formatting Dates is done by using DateFormat class. Let's look at a few examples
 ```java
 //Formatting Dates
 System.out.println(DateFormat.getInstance().format(
-date));//10/16/12 5:18 AM
+date)); //10/16/12 5:18 AM
 ```
 
 Formatting Dates with a locale
 ```java
 System.out.println(DateFormat.getDateInstance(
 DateFormat.FULL, new Locale("it", "IT"))
-.format(date));//martedÒ 16 ottobre 2012
+.format(date)); //martedÒ 16 ottobre 2012
 
 System.out.println(DateFormat.getDateInstance(
 DateFormat.FULL, Locale.ITALIAN)
-.format(date));//martedÒ 16 ottobre 2012
+.format(date)); //martedÒ 16 ottobre 2012
 
 //This uses default locale US
 System.out.println(DateFormat.getDateInstance(
-DateFormat.FULL).format(date));//Tuesday, October 16, 2012
+DateFormat.FULL).format(date)); //Tuesday, October 16, 2012
 
 System.out.println(DateFormat.getDateInstance()
-.format(date));//Oct 16, 2012
+.format(date)); //Oct 16, 2012
 System.out.println(DateFormat.getDateInstance(
-DateFormat.SHORT).format(date));//10/16/12
+DateFormat.SHORT).format(date)); //10/16/12
 System.out.println(DateFormat.getDateInstance(
-DateFormat.MEDIUM).format(date));//Oct 16, 2012
+DateFormat.MEDIUM).format(date)); //Oct 16, 2012
 
 System.out.println(DateFormat.getDateInstance(
-DateFormat.LONG).format(date));//October 16, 2012
+DateFormat.LONG).format(date)); //October 16, 2012
 ```
 #### Format Date's using SimpleDateFormat 
 Let's look at a few examples of formatting dates using SimpleDateFormat.
 ```java
 System.out.println(new SimpleDateFormat("yy-MM-dd")
-.format(date));//12-10-16
+.format(date)); //12-10-16
 System.out
 .println(new SimpleDateFormat("yy-MMM-dd")
-.format(date));//12-Oct-16
+.format(date)); //12-Oct-16
 System.out.println(new SimpleDateFormat(
-"yyyy-MM-dd").format(date));//2012-10-16
+"yyyy-MM-dd").format(date)); //2012-10-16
 
 //Parse Dates using DateFormat
 Date date2 = DateFormat.getDateInstance(
 DateFormat.SHORT).parse("10/16/12");
-System.out.println(date2);//Tue Oct 16 00:00:00 GMT+05:30 2012
+System.out.println(date2); //Tue Oct 16 00:00:00 GMT+05:30 2012
 
 //Creating Dates using SimpleDateFormat
 Date date1 = new SimpleDateFormat("yy-MM-dd")
 .parse("12-10-16");
-System.out.println(date1);//Tue Oct 16 00:00:00 GMT+05:30 2012
+System.out.println(date1); //Tue Oct 16 00:00:00 GMT+05:30 2012
 ```
 #### Default Locale
 ```
 Locale defaultLocale = Locale.getDefault();
 
 System.out.println(defaultLocale
-.getDisplayCountry());//United States
+.getDisplayCountry()); //United States
 System.out.println(defaultLocale
-.getDisplayLanguage());//English
+.getDisplayLanguage()); //English
 ```
 ### Calendar
 - Calendar class is used in Java to manipulate Dates. Calendar class provides easy ways to add or reduce days, months or years from a date. It also provide lot of details about a date (which day of the year? Which week of the year? etc.)
@@ -5000,35 +5002,35 @@ Calendar calendar = Calendar.getInstance();
 Setting day, month or year on a calendar object is simple. Call the set method with appropriate Constant for Day, Month or Year. Next parameter is the value.
 ```
 calendar.set(Calendar.DATE, 24);
-calendar.set(Calendar.MONTH, 8);//8 - September
+calendar.set(Calendar.MONTH, 8); //8 - September
 calendar.set(Calendar.YEAR, 2010);
 ```
 #### Calendar get method
 Let's get information about a particular date - 24th September 2010. We use the calendar get method. The parameter passed indicates what value we would want to get from the calendar , day or month or year or .. Few examples of the values you can obtain from a calendar are listed below.
 ```java
-System.out.println(calendar.get(Calendar.YEAR));//2010
-System.out.println(calendar.get(Calendar.MONTH));//8
-System.out.println(calendar.get(Calendar.DATE));//24
-System.out.println(calendar.get(Calendar.WEEK_OF_MONTH));//4
-System.out.println(calendar.get(Calendar.WEEK_OF_YEAR));//39
-System.out.println(calendar.get(Calendar.DAY_OF_YEAR));//267
-System.out.println(calendar.getFirstDayOfWeek());//1 -> Calendar.SUNDAY
+System.out.println(calendar.get(Calendar.YEAR)); //2010
+System.out.println(calendar.get(Calendar.MONTH)); //8
+System.out.println(calendar.get(Calendar.DATE)); //24
+System.out.println(calendar.get(Calendar.WEEK_OF_MONTH)); //4
+System.out.println(calendar.get(Calendar.WEEK_OF_YEAR)); //39
+System.out.println(calendar.get(Calendar.DAY_OF_YEAR)); //267
+System.out.println(calendar.getFirstDayOfWeek()); //1 -> Calendar.SUNDAY
 ```
 #### Calendar - Modify a Date
 We can use the calendar add and roll methods to modify a date. Calendar add method can be used to find a date 5 days or 5 months before the date by passing a ,5 i.e. a negative 5. 
 ```
 calendar.add(Calendar.DATE, 5);
-System.out.println(calendar.getTime());//Wed Sep 29 2010
+System.out.println(calendar.getTime()); //Wed Sep 29 2010
 calendar.add(Calendar.MONTH, 1);
-System.out.println(calendar.getTime());//Fri Oct 29 2010
+System.out.println(calendar.getTime()); //Fri Oct 29 2010
 calendar.add(Calendar.YEAR, 2);
-System.out.println(calendar.getTime());//Mon Oct 29 2012
+System.out.println(calendar.getTime()); //Mon Oct 29 2012
 ```
 #### Roll method
 Roll method will only the change the value being modified. YEAR remains unaffected when MONTH is changed, for instance.
 ```
 calendar.roll(Calendar.MONTH, 5);
-System.out.println(calendar.getTime());//Mon Mar 29 2012
+System.out.println(calendar.getTime()); //Mon Mar 29 2012
 ```
 #### Creating calendar: Example 2
 ```
@@ -5039,52 +5041,52 @@ Calendar gregorianCalendar = new GregorianCalendar(
 Done by getting the date using calendar.getTime() and using the usual formatting of dates.
 ```java
 System.out.println(DateFormat.getInstance().format(
-calendar.getTime()));//3/29/12 11:39 AM
+calendar.getTime())); //3/29/12 11:39 AM
 ```
 ### Number Format
 - Number format is used to format a number to different locales and different formats.
 
 #### Format number Using Default locale
 ```java
-System.out.println(NumberFormat.getInstance().format(321.24f));//321.24
+System.out.println(NumberFormat.getInstance().format(321.24f)); //321.24
 ```
 #### Format number using locale
 Formatting a number using Netherlands locale
 ```java
-System.out.println(NumberFormat.getInstance(new Locale("nl")).format(4032.3f));//4.032,3
+System.out.println(NumberFormat.getInstance(new Locale("nl")).format(4032.3f)); //4.032,3
 ```
 
 Formatting a number using Germany locale
 ```java
-System.out.println(NumberFormat.getInstance(Locale.GERMANY).format(4032.3f));//4.032,3
+System.out.println(NumberFormat.getInstance(Locale.GERMANY).format(4032.3f)); //4.032,3
 ```
 #### Formatting a Currency using Default locale
 ```java
-System.out.println(NumberFormat.getCurrencyInstance().format(40324.31f));//$40,324.31
+System.out.println(NumberFormat.getCurrencyInstance().format(40324.31f)); //$40,324.31
 ```
 #### Format currency using locale
 ```java
 formatting a Currency using Netherlands locale
-System.out.println(NumberFormat.getCurrencyInstance(new Locale("nl")).format(40324.31f));//? 40.324,31
+System.out.println(NumberFormat.getCurrencyInstance(new Locale("nl")).format(40324.31f)); //? 40.324,31
 ```
 
 Setting maximum fraction digits for a float
 ```java
 numberFormat numberFormat = NumberFormat.getInstance();
-System.out.println(numberFormat.getMaximumFractionDigits());//3
+System.out.println(numberFormat.getMaximumFractionDigits()); //3
 numberFormat.setMaximumFractionDigits(5);
-System.out.println(numberFormat.format(321.24532f));//321.24533
+System.out.println(numberFormat.format(321.24532f)); //321.24533
 ```
 #### Parsing using NumberFormat
 Parsing a float value using number format
 ```java
-System.out.println(numberFormat.parse("9876.56"));//9876.56
+System.out.println(numberFormat.parse("9876.56")); //9876.56
 ```
 
 Parsing only number value using number format
 ```java
 numberFormat.setParseIntegerOnly(true);
-System.out.println(numberFormat.parse("9876.56"));//9876
+System.out.println(numberFormat.parse("9876.56")); //9876
 ```
 ### Collection Interfaces
 - Arrays are not dynamic. Once an array of a particular size is declared, the size cannot be modified. To add a new element to the array, a new array has to be created with bigger size and all the elements from the old array copied to new array. Collections are used in situations where data is dynamic. Collections allow adding an element, deleting an element and host of other operations. There are a number of Collections in Java allowing to choose the right Collection for the right context. Before looking into Collection classes, let's take a quick look at all the important collection interfaces and the operations they allow. 
@@ -5266,7 +5268,7 @@ List<Integer> integers = new ArrayList<Integer>();
 
 Code like below is permitted because of auto boxing. 5 is auto boxed into Integer object and stored in ArrayList.
 ```java
-Integers.add(5);//new Integer(5)
+Integers.add(5); //new Integer(5)
 ```
 
 Add method (by default) adds the element at the end of the list.
@@ -5276,19 +5278,19 @@ Below example shows how to create and use a String ArrayList. ArrayList can have
 List<String> arraylist = new ArrayList<String>();
 
 //adds at the end of list
-arraylist.add("Sachin");//[Sachin]
+arraylist.add("Sachin"); //[Sachin]
 
 //adds at the end of list
-arraylist.add("Dravid");//[Sachin, Dravid]
+arraylist.add("Dravid"); //[Sachin, Dravid]
 
 //adds at the index 0
-arraylist.add(0, "Ganguly");//[Ganguly, Sachin, Dravid]
+arraylist.add(0, "Ganguly"); //[Ganguly, Sachin, Dravid]
 
 //List allows duplicates - Sachin is present in the list twice
-arraylist.add("Sachin");//[ Ganguly, Sachin, Dravid, Sachin]
+arraylist.add("Sachin"); //[ Ganguly, Sachin, Dravid, Sachin]
 
-System.out.println(arraylist.size());//4
-System.out.println(arraylist.contains("Dravid"));//true
+System.out.println(arraylist.size()); //4
+System.out.println(arraylist.contains("Dravid")); //true
 ```
 #### Iterating around a list
 ```
@@ -5296,7 +5298,7 @@ Iterator<String> arraylistIterator = arraylist
 .iterator();
 while (arraylistIterator.hasNext()) {
     String str = arraylistIterator.next();
-    System.out.println(str);//Prints the 4 names in the list on separate lines.
+    System.out.println(str); //Prints the 4 names in the list on separate lines.
 }
 ```
 
@@ -5304,25 +5306,25 @@ while (arraylistIterator.hasNext()) {
 indexOf() function - returns index of element if element is found. Negative number otherwise.
 ```java
 //example1 - value is present
-System.out.println(arraylist.indexOf("Dravid"));//2
+System.out.println(arraylist.indexOf("Dravid")); //2
 //example2 - value is not present
-System.out.println(arraylist.indexOf("Bradman"));//-1
+System.out.println(arraylist.indexOf("Bradman")); //-1
 ```
 
 get() function - get value at specified index.
 ```java
-System.out.println(arraylist.get(1));//Sachin
+System.out.println(arraylist.get(1)); //Sachin
 ```
 #### remove() function
 remove() function has two variations.
 ```java
 //Using the object as parameter
 //Dravid is removed from the list
-arraylist.remove("Dravid");//[Ganguly, Sachin, Sachin]
+arraylist.remove("Dravid"); //[Ganguly, Sachin, Sachin]
 
 //Using index as argument. 
 //Object at index 1 (Sachin) is removed
-arraylist.remove(1);//[Ganguly, Sachin]
+arraylist.remove(1); //[Ganguly, Sachin]
 ```
 #### Sorting Collections
 ```java
@@ -5331,12 +5333,12 @@ numbers.add("one");
 numbers.add("two");
 numbers.add("three");
 numbers.add("four");
-System.out.println(numbers);//[one, two, three, four]
+System.out.println(numbers); //[one, two, three, four]
 
 //Strings - By Default - are sorted alphabetically
 Collections.sort(numbers);
 
-System.out.println(numbers);//[four, one, three, two]
+System.out.println(numbers); //[four, one, three, two]
 ```
 #### List of Objects of a Custom Class
 Consider the following class Cricketer.
@@ -5462,7 +5464,7 @@ System.out.println(Arrays
 ```java
 String values[] = { "value1", "value2", "value3" };
 List<String> valuesList = Arrays.asList(values);
-System.out.println(valuesList);//[value1, value2, value3]
+System.out.println(valuesList); //[value1, value2, value3]
 ```
 #### Other List interface implementations
 Other classes that implement List interface are Vector and LinkedList.
@@ -5482,16 +5484,16 @@ HashSet implements set interface. Sets do not allow duplicates. HashSet does not
 Set<String> hashset = new HashSet<String>();
 
 hashset.add("Sachin");
-System.out.println(hashset);//[Sachin]
+System.out.println(hashset); //[Sachin]
 
 hashset.add("Dravid");
-System.out.println(hashset);//[Sachin, Dravid]
+System.out.println(hashset); //[Sachin, Dravid]
 ```
 
 Let's try to add Sachin to the Set now. Sachin is Duplicate. So will not be added. returns false.
 ```
-hashset.add("Sachin");//returns false since element is not added
-System.out.println(hashset);//[Sachin, Dravid]
+hashset.add("Sachin"); //returns false since element is not added
+System.out.println(hashset); //[Sachin, Dravid]
 ```
 #### LinkedHashSet
 LinkedHashSet implements set interface and exposes similar operations to a HashSet. Difference is that LinkedHashSet maintains insertion order. When we iterate a LinkedHashSet, we would get the elements back in the order in which they were inserted.
@@ -5501,24 +5503,24 @@ TreeSet implements Set, SortedSet and NavigableSet interfaces.TreeSet is similar
 Set<String> treeSet = new TreeSet<String>();
 
 treeSet.add("Sachin");
-System.out.println(treeSet);//[Sachin]
+System.out.println(treeSet); //[Sachin]
 ```
 
 Notice that the list is sorted after inserting Dravid.
 ```java
 //Alphabetical order
 treeSet.add("Dravid");
-System.out.println(treeSet);//[Dravid, Sachin]
+System.out.println(treeSet); //[Dravid, Sachin]
 ```
 
 Notice that the list is sorted after inserting Ganguly.
 ```
 treeSet.add("Ganguly");
-System.out.println(treeSet);//[Dravid, Ganguly, Sachin]
+System.out.println(treeSet); //[Dravid, Ganguly, Sachin]
 
 //Sachin is Duplicate. So will not be added. returns false.
-treeSet.add("Sachin");//returns false since element is not added
-System.out.println(treeSet);//[Dravid, Ganguly, Sachin]
+treeSet.add("Sachin"); //returns false since element is not added
+System.out.println(treeSet); //[Dravid, Ganguly, Sachin]
 ```
 Objects that are inserted into a TreeSet should be comparable.
 #### TreeSet - NavigableSet interface examples 1
@@ -5536,16 +5538,16 @@ NavigableSet interface has following methods.
 Lower method finds the highest element lower than specified element. Floor method finds the highest element lower than or equal to specified element.  Corresponding methods for finding lowest number higher than specified element are higher and ceiling. A few examples using the Set created earlier below.
 ```java
 //Find the highest number which is lower than 25
-System.out.println(numbersTreeSet.lower(25));//5
+System.out.println(numbersTreeSet.lower(25)); //5
 
 //Find the highest number which is lower than or equal to 25
-System.out.println(numbersTreeSet.floor(25));//25
+System.out.println(numbersTreeSet.floor(25)); //25
 
 //Find the lowest number higher than 25
-System.out.println(numbersTreeSet.higher(25));//35
+System.out.println(numbersTreeSet.higher(25)); //35
 
 //Find the lowest number higher than or equal to 25
-System.out.println(numbersTreeSet.ceiling(25));//25
+System.out.println(numbersTreeSet.ceiling(25)); //25
 ```
 #### NavigableSet subSet,headSet,tailSet Methods in TreeSet 
 ```
@@ -5556,7 +5558,7 @@ exampleTreeSet.add(105);
 exampleTreeSet.add(35);
 exampleTreeSet.add(5);
 
-System.out.println(exampleTreeSet);//[5, 25, 35, 55, 105]
+System.out.println(exampleTreeSet); //[5, 25, 35, 55, 105]
 ```
 
 All the three methods - subSet,headSet,tailSet - are inclusive with Lower Limit and NOT inclusive with higher limit.
@@ -5565,7 +5567,7 @@ In the sub set below, Lower Limit is inclusive - 25 included. Higher limit is no
 //Get sub set with values >=25 and <55
 SortedSet<Integer> subTreeSet = exampleTreeSet
 .subSet(25, 55);
-System.out.println(subTreeSet);//[25, 35]
+System.out.println(subTreeSet); //[25, 35]
 ```
 
 In the sub set below, Higher limit not inclusive - 55 excluded.
@@ -5573,51 +5575,51 @@ In the sub set below, Higher limit not inclusive - 55 excluded.
 //Get sub set with values <55
 SortedSet<Integer> headTreeSet = exampleTreeSet
 .headSet(55);
-System.out.println(headTreeSet);//[5, 25, 35]
+System.out.println(headTreeSet); //[5, 25, 35]
 
 //Get sub set with values >=35
 SortedSet<Integer> tailTreeSet = exampleTreeSet
 .tailSet(35);
-System.out.println(tailTreeSet);//[35, 55, 105]
+System.out.println(tailTreeSet); //[35, 55, 105]
 //In the sub set, Lower limit inclusive - 35 included.
 
 //Get sub set with value >=25 and <=55 (both inclusive parameters - true)
 SortedSet<Integer> subTreeSetIncl = exampleTreeSet
 .subSet(25, true, 55, true);
-System.out.println(subTreeSetIncl);//[25, 35, 55]
+System.out.println(subTreeSetIncl); //[25, 35, 55]
 
 //Get sub set with value >25 and <55 (both inclusive parameters - false)
 SortedSet<Integer> subTreeSetNotIncl = exampleTreeSet
 .subSet(25, false, 55, false);
-System.out.println(subTreeSetNotIncl);//[35]
+System.out.println(subTreeSetNotIncl); //[35]
 
 //Get sub set with values <=55. Inclusive set to true.
 SortedSet<Integer> headTreeSetIncl = exampleTreeSet
 .headSet(55, true);
-System.out.println(headTreeSetIncl);//[5, 25, 35, 55]
+System.out.println(headTreeSetIncl); //[5, 25, 35, 55]
 
 //Get sub set with values >35. Inclusive set to false.
 SortedSet<Integer> tailTreeSetNotIncl = exampleTreeSet
 .tailSet(35, false);
-System.out.println(tailTreeSetNotIncl);//[55, 105]
+System.out.println(tailTreeSetNotIncl); //[55, 105]
 ```
 
 All the sub set methods  - subSet,headSet,tailSet - return dynamic sub sets. When original set is modified (addition or deletion), corresponding changes can affect the sub sets as well. 
 ```java
-System.out.println(exampleTreeSet);//[5, 25, 35, 55, 105]
-System.out.println(subTreeSet);//[25, 35]
-System.out.println(headTreeSet);//[5, 25, 35]
-System.out.println(tailTreeSet);//[35, 55, 105]
+System.out.println(exampleTreeSet); //[5, 25, 35, 55, 105]
+System.out.println(subTreeSet); //[25, 35]
+System.out.println(headTreeSet); //[5, 25, 35]
+System.out.println(tailTreeSet); //[35, 55, 105]
 ```
 
 Let's now insert a value 30 into the exampleTreeSet. Remember that subTreeSet, headTreeSet, tailTreeSet are sub sets of exampleTreeSet.
 ```
 exampleTreeSet.add(30);
 
-System.out.println(exampleTreeSet);//[5, 25, 30, 35, 55, 105]
-System.out.println(subTreeSet);//[25, 30, 35]
-System.out.println(headTreeSet);//[5, 30, 25, 35]
-System.out.println(tailTreeSet);//[35, 55, 105]
+System.out.println(exampleTreeSet); //[5, 25, 30, 35, 55, 105]
+System.out.println(subTreeSet); //[25, 30, 35]
+System.out.println(headTreeSet); //[5, 30, 25, 35]
+System.out.println(tailTreeSet); //[35, 55, 105]
 ```
 
 30 is in the range of subTreeSet and headTreeSet. So, it is printed as part of exampleTreeSet, subTreeSet and headTreeSet.
@@ -5625,10 +5627,10 @@ System.out.println(tailTreeSet);//[35, 55, 105]
 //Let's now add 65 to the set
 exampleTreeSet.add(65);
 
-System.out.println(exampleTreeSet);//[5, 25, 30, 35, 55, 65, 105]
-System.out.println(subTreeSet);//[25, 30, 35]
-System.out.println(headTreeSet);//[5, 30, 25, 35]
-System.out.println(tailTreeSet);//[35, 55, 65, 105]
+System.out.println(exampleTreeSet); //[5, 25, 30, 35, 55, 65, 105]
+System.out.println(subTreeSet); //[25, 30, 35]
+System.out.println(headTreeSet); //[5, 30, 25, 35]
+System.out.println(tailTreeSet); //[35, 55, 65, 105]
 ```
 
 65 is printed as part of exampleTreeSet and tailTreeSet.
@@ -5641,26 +5643,26 @@ treeSetOrig.add(25);
 treeSetOrig.add(35);
 treeSetOrig.add(5);
 
-System.out.println(treeSetOrig);//[5, 25, 35, 55]
+System.out.println(treeSetOrig); //[5, 25, 35, 55]
 //descendingSet method returns the tree set in reverse order
 TreeSet<Integer> treeSetDesc = (TreeSet<Integer>) treeSetOrig
 .descendingSet();
-System.out.println(treeSetDesc);//[55, 35, 25, 5]
+System.out.println(treeSetDesc); //[55, 35, 25, 5]
 ```
 
 pollFirst returns the first element and removes it from the set.
 ```java
-System.out.println(treeSetOrig);//[5, 25, 35, 55]
-System.out.println(treeSetOrig.pollFirst());//5
-System.out.println(treeSetOrig);//[25, 35, 55]
+System.out.println(treeSetOrig); //[5, 25, 35, 55]
+System.out.println(treeSetOrig.pollFirst()); //5
+System.out.println(treeSetOrig); //[25, 35, 55]
 //In above example element 5 is removed from the set and also removed from the tree set.
 ```
 
 pollLast returns the last element and removes it from the set.
 ```java
-System.out.println(treeSetOrig);//[25, 35, 55]
-System.out.println(treeSetOrig.pollLast());//55
-System.out.println(treeSetOrig);//[25, 35]
+System.out.println(treeSetOrig); //[25, 35, 55]
+System.out.println(treeSetOrig.pollLast()); //55
+System.out.println(treeSetOrig); //[25, 35]
 ```
 ### Map Interface
 - Let's take a look at different implementations of the Map interface.
@@ -5682,10 +5684,10 @@ hashmap.put("bradman", new Cricketer("Bradman",
 #### Hash Map Methods
 get method gets the value of the matching key.
 ```java
-System.out.println(hashmap.get("ponting"));//Ponting 11500
+System.out.println(hashmap.get("ponting")); //Ponting 11500
 
 //if key is not found, returns null.
-System.out.println(hashmap.get("lara"));//null
+System.out.println(hashmap.get("lara")); //null
 ```
 
 If existing key is reused, it would replace existing value with the new value passed in.
@@ -5696,7 +5698,7 @@ hashmap.put("ponting", new Cricketer("Ponting",
 11800));
 
 //gets the recently updated value
-System.out.println(hashmap.get("ponting"));//Ponting 11800
+System.out.println(hashmap.get("ponting")); //Ponting 11800
 ```
 #### TreeMap
 TreeMap is similar to HashMap except that it stores keys in sorted order. It implements NavigableMap interface and SortedMap interfaces along with the Map interface.
@@ -5747,16 +5749,16 @@ numbersTreeMap
 lowerKey method finds the highest key lower than specified key. floorKey method finds the highest key lower than or equal to specified key.  Corresponding methods for finding lowest key higher than specified key are higher and ceiling. A few examples using the Map created earlier below.
 ```java
 //Find the highest key which is lower than 25
-System.out.println(numbersTreeMap.lowerKey(25));//5
+System.out.println(numbersTreeMap.lowerKey(25)); //5
 
 //Find the highest key which is lower than or equal to 25
-System.out.println(numbersTreeMap.floorKey(25));//25
+System.out.println(numbersTreeMap.floorKey(25)); //25
 
 //Find the lowest key higher than 25
-System.out.println(numbersTreeMap.higherKey(25));//35
+System.out.println(numbersTreeMap.higherKey(25)); //35
 
 //Find the lowest key higher than or equal to 25
-System.out.println(numbersTreeMap.ceilingKey(25));//25
+System.out.println(numbersTreeMap.ceilingKey(25)); //25
 ```
 #### NavigableMap Interface Examples (TreeMap) Set II
 Methods similar to subSet,headSet,tailSet (of TreeSet) are available in TreeMap as well. They are called subMap, headMap, tailMap.They have the similar signatures and results as the corresponding TreeSet Methods. They are inclusive with Lower Limit and NOT inclusive with higher limit - unless the (optional) inclusive flag is passed. The resultant sub map's are dynamic. If original map get modified, the sub map might be affected as well.
@@ -5772,7 +5774,7 @@ exampleTreeMap
 .put(45, new Cricketer("Lara", 10000));
 
 //Lower limit (5) inclusive, Uppper Limit(25) NOT inclusive
-System.out.println(exampleTreeMap.subMap(5, 25));//{5=Bradman 9996}
+System.out.println(exampleTreeMap.subMap(5, 25)); //{5=Bradman 9996}
 
 System.out.println(exampleTreeMap.headMap(30));
 //{5=Bradman 9996, 25=Dravid 12000}
@@ -5805,7 +5807,7 @@ pollFirstEntry returns the first entry in the map and removes it from the map.
 ```java
 System.out.println(treeMapOrig);
 //{5=Bradman 9996, 25=Dravid 12000, 45=Lara 10000, 55=Sachin 14000}
-System.out.println(treeMapOrig.pollFirstEntry());//5=Bradman 9996
+System.out.println(treeMapOrig.pollFirstEntry()); //5=Bradman 9996
 System.out.println(treeMapOrig);
 //{25=Dravid 12000, 45=Lara 10000, 55=Sachin 14000}
 //In above example element 5 is removed from the set and also removed from the tree set.
@@ -5815,7 +5817,7 @@ pollLastEntry returns the last entry from the map and removes it from the map.
 ```java
 System.out.println(treeMapOrig);
 //{25=Dravid 12000, 45=Lara 10000, 55=Sachin 14000}
-System.out.println(treeMapOrig.pollLastEntry());//55=Sachin 14000
+System.out.println(treeMapOrig.pollLastEntry()); //55=Sachin 14000
 System.out.println(treeMapOrig);
 //{25=Dravid 12000, 45=Lara 10000}
 ```
@@ -5835,19 +5837,19 @@ priorityQueue.offer(15);
 priorityQueue.offer(9);
 priorityQueue.offer(45);
 
-System.out.println(priorityQueue);//[9, 24, 15, 45]
+System.out.println(priorityQueue); //[9, 24, 15, 45]
 ```
 #### Peek method examples
 ```java
 //peek method get the element with highest priority.
-System.out.println(priorityQueue.peek());//9
+System.out.println(priorityQueue.peek()); //9
 //peek method does not change the queue
-System.out.println(priorityQueue);//[9, 24, 15, 45]
+System.out.println(priorityQueue); //[9, 24, 15, 45]
 
 //poll method gets the element with highest priority.
-System.out.println(priorityQueue.poll());//9
+System.out.println(priorityQueue.poll()); //9
 //peek method removes the highest priority element from the queue.
-System.out.println(priorityQueue);//[24, 15, 45]
+System.out.println(priorityQueue); //[24, 15, 45]
 
 //This comparator gives high priority to the biggest number.
 Comparator reverseComparator = new Comparator<Integer>() {
@@ -5870,7 +5872,7 @@ priorityQueueDesc.offer(9);
 priorityQueueDesc.offer(45);
 
 //45 is the largest element. Our custom comparator gives priority to highest number.
-System.out.println(priorityQueueDesc.peek());//45
+System.out.println(priorityQueueDesc.peek()); //45
 ```
 
 #### Collections static methods
@@ -5976,7 +5978,7 @@ restrictedListInteger.add(2);
 String not valid substitute for constraint "T extends Number".
 ```java
 //MyListRestricted<String> restrictedStringList = 
-//new MyListRestricted<String>();//COMPILER ERROR
+//new MyListRestricted<String>(); //COMPILER ERROR
 ```
 #### Generic Method Example
 A generic type can be declared as part of method declaration as well. Then the generic type can be used anywhere in the method (return type, parameter type, local or block variable type).
@@ -6035,7 +6037,7 @@ List method works with List<Animal>. Gives compilation error with List<Dog>.
 ```
 doSomethingList(animalsList);
 //List<Dog> not compatible with List<Animal>
-//doSomethingList(dogsList);//COMPILER ERROR
+//doSomethingList(dogsList); //COMPILER ERROR
 ```
 
 Summary :  List<Dog> not compatible with List<Animal> even thought Dog extends Animal. However, Dog[] is compatible with Animal[].
@@ -6045,8 +6047,8 @@ Consider the methods below:
     static void doSomethingListModified(List<? extends Animal> animals) {
 //Adding an element into  a list declared with ? is prohibited.
 
-//animals.add(new Animal());//COMPILER ERROR!
-//animals.add(new Dog());//COMPILER ERROR!
+//animals.add(new Animal()); //COMPILER ERROR!
+//animals.add(new Dog()); //COMPILER ERROR!
     }
 ```
 
@@ -6060,8 +6062,8 @@ Method declared with List<? super Dog> compiles with both List<Animal> and List<
 ```
     static void doSomethingListModifiedSuper(List<? super Dog> animals) {
 //Adding an element into  a list declared with ? is prohibited.
-//animals.add(new Animal());//COMPILER ERROR!
-//animals.add(new Dog());//COMPILER ERROR!
+//animals.add(new Animal()); //COMPILER ERROR!
+//animals.add(new Dog()); //COMPILER ERROR!
     }
 ```
 
@@ -6077,8 +6079,8 @@ Below method can be called with a List declared with any type implementing the i
     static void doSomethingListInterface(List<? extends Serializable> animals) {
 //Adding an element into  a list declared with ? is prohibited.
 
-//animals.add(new Animal());//COMPILER ERROR!
-//animals.add(new Dog());//COMPILER ERROR!
+//animals.add(new Animal()); //COMPILER ERROR!
+//animals.add(new Dog()); //COMPILER ERROR!
     }
 ```
 #### Generics and Collections , Few more Examples and Rules
@@ -6142,8 +6144,8 @@ System.out.println(file.createNewFile());
 Getting full path of file.
 ```java
 System.out.println(file.getAbsolutePath());
-System.out.println(file.isFile());//true
-System.out.println(file.isDirectory());//false
+System.out.println(file.isFile()); //true
+System.out.println(file.isDirectory()); //false
 ```
 
 Renaming a file
@@ -6161,7 +6163,7 @@ File directory = new File("src/com/rithus");
 Print full directory path
 ```java
 System.out.println(directory.getAbsolutePath());
-System.out.println(directory.isDirectory());//true
+System.out.println(directory.isDirectory()); //true
 ```
 
 This does not create the actual file.
@@ -6181,7 +6183,7 @@ System.out.println(Arrays.toString(directory.list()));
 #### Creating a directory
 ```java
 File newDirectory = new File("newfolder");
-System.out.println(newDirectory.mkdir());//true - First Time
+System.out.println(newDirectory.mkdir()); //true - First Time
 ```
 #### Creating a file in a new directory
 ```java
@@ -6191,7 +6193,7 @@ File newFile = new File(notExistingDirectory,"newFile");
 //Will throw Exception if uncommented: No such file or directory
 //newFile.createNewFile();
 
-System.out.println(newDirectory.mkdir());//true - First Time
+System.out.println(newDirectory.mkdir()); //true - First Time
 ```
 #### Read and write from a File
 Implementations of Writer and Reader abstract classes help us to write and read (content of) files.
@@ -6230,19 +6232,19 @@ FileReader fileReader = new FileReader(file);
 char[] temp = new char[25];
 
 //fileReader reads entire file and stores it into temp
-System.out.println(fileReader.read(temp));//18 - No of characters Read from file
+System.out.println(fileReader.read(temp)); //18 - No of characters Read from file
 
-System.out.println(Arrays.toString(temp));//output below
+System.out.println(Arrays.toString(temp)); //output below
 //[H, o, w,  , a, r, e,  , y, o, u,  , d, o, i, n, g, ?, , , , , ,]
 
-fileReader.close();//Always close anything you opened:)
+fileReader.close(); //Always close anything you opened:)
 ```
 #### FileReader Constructors
 FileReader constructors can accept file(File) or the path to file (String) as argument.
 ```java
 FileReader fileReader2 = new FileReader("FileName.txt");
-System.out.println(fileReader2.read(temp));//24
-System.out.println(Arrays.toString(temp));//output below
+System.out.println(fileReader2.read(temp)); //24
+System.out.println(Arrays.toString(temp)); //output below
 ```
 
 ### BufferedWriter and BufferedReader
@@ -6301,7 +6303,7 @@ printWriter.println("Some Text");
 
 //writes "Formatted Number: 4.50000" to the file
 printWriter.printf("Formatted Number: %5.5f", 4.5);
-printWriter.flush();//Always flush a writer
+printWriter.flush(); //Always flush a writer
 printWriter.close();
 ```
 #### Reading the file created using BufferedReader
@@ -6359,9 +6361,9 @@ ObjectInputStream objectInputStream = new ObjectInputStream(
 fileInputStream);
 Rectangle rectangle = (Rectangle) objectInputStream.readObject();
 objectInputStream.close();
-System.out.println(rectangle.length);// 5
-System.out.println(rectangle.breadth);// 6
-System.out.println(rectangle.area);// 30
+System.out.println(rectangle.length); // 5
+System.out.println(rectangle.breadth); // 6
+System.out.println(rectangle.area); // 30
 ```
 #### Serialization , Transient variables
 Area in the previous example is a calculated value. It is unnecessary to serialize and deserialize. We can calculate it when needed. In this situation, we can make the variable transient. Transient variables are not serialized. (transient int area;)
@@ -6385,9 +6387,9 @@ area = length * breadth;
 If you run the program again, you would get following output
 
 ```java
-System.out.println(rectangle.length);// 5
-System.out.println(rectangle.breadth);// 6
-System.out.println(rectangle.area);// 0
+System.out.println(rectangle.length); // 5
+System.out.println(rectangle.breadth); // 6
+System.out.println(rectangle.area); // 0
 ```
 
 Note that the value of rectangle.area is set to 0. Variable area is marked transient. So, it is not stored into the serialized file. And when de-serialization happens area value is set to default value i.e. 0.
@@ -6406,9 +6408,9 @@ area = this.length * this.breadth;
 When an object of Rectangle class is de-serialized, Java invokes the readObject method. The area is recalculated in this method. If we run the program again, we get the calculated area value back. Remember that area is not part of the serialized file. It is re-calculated in the readObject method.
 
 ```java
-System.out.println(rectangle.length);// 5
-System.out.println(rectangle.breadth);// 6
-System.out.println(rectangle.area);// 30
+System.out.println(rectangle.length); // 5
+System.out.println(rectangle.breadth); // 6
+System.out.println(rectangle.area); // 30
 ```
 #### Serialization , writeObject method
 
@@ -6423,9 +6425,9 @@ os.defaultWriteObject();
 
 If you run the above program again, you would get following output
 ```java
-System.out.println(rectangle.length);//5
-System.out.println(rectangle.breadth);//6
-System.out.println(rectangle.area);//30
+System.out.println(rectangle.length); //5
+System.out.println(rectangle.breadth); //6
+System.out.println(rectangle.area); //30
 ```
 #### Serializing an Object chain
 Objects of one class might contain objects of other classes. When serializing and de-serializing, we might need to serialize and de-serialize entire object chain. Look at the class below. An object of class House contains an object of class Wall.
@@ -6565,8 +6567,8 @@ System.out.println("After -> DanceType:" + hero.danceType + " Name:"
 
 Code executes successfully but after de-serialization, the values of super class instance variables are not retained. They are set to their initial values. 
 When subclass is serializable and superclass is not, the state of subclass variables is retained. However, for the super class, initialization (constructors and initializers) happens again.
-#### Serialization and Static Variables
-Static Variables are not part of the object. They are not serialized.
+#### Serialization and Static variables
+Static variables are not part of the object. They are not serialized.
 ### Threads
 - Threads allow Java code to run in parallel. Let's first understand the need for threading and then look into how to create a thread and what is synchronization?
 
@@ -6926,7 +6928,7 @@ Look at the example code below:
 ```java
 Thread3.start();
 thread2.start();
-thread3.join();//wait for thread 3 to complete
+thread3.join(); //wait for thread 3 to complete
 System.out.println("Thread3 is completed.");
 thread4.start();
 ```
@@ -7264,7 +7266,7 @@ public class InitializerExamples {
 //This is a static initializers. Run only when Class is first loaded.
 //Only static variables can be accessed
 System.out.println("Static Initializer");
-//i = 6;//COMPILER ERROR
+//i = 6; //COMPILER ERROR
 System.out.println("Count when Static Initializer is run is " + count);
     }
 
@@ -7353,7 +7355,7 @@ public void removeSomeListener(MyListener listener){
 
 }
 ```
-#### Private Member Variables
+#### Private Member variables
 Good practice is to have all member variables in a class declared as private.
 ```java
 private String name;
@@ -7434,93 +7436,93 @@ Let's test regular expressions by using the method we created earlier: regex().
 #### Simple Regular Expressions
 Search for 12 in the string
 ```java
-regex("12", "122345612");//[0<12>, 7<12>]
+regex("12", "122345612"); //[0<12>, 7<12>]
 ```
 
 Certain characters escaped by \ have special meaning in regular expressions. For example, /s matches a whitespace character.  Remember that to represent \ in a string, we should prepend \ to it. Let us see a few examples below.
 ```java
-System.out.println("\\");//prints \ (only one slash)
+System.out.println("\\"); //prints \ (only one slash)
 ```
 
 Space character - \s
 ```java
-regex("\\s", "12 1234 123 ");//[2< >, 7< >, 11< >]
+regex("\\s", "12 1234 123 "); //[2< >, 7< >, 11< >]
 ```
 
 Digit - \d
 ```java
-regex("\\d", "12 12");//[0<1>, 1<2>, 3<1>, 4<2>]
+regex("\\d", "12 12"); //[0<1>, 1<2>, 3<1>, 4<2>]
 ```
 
 Word character (letter, digits or underscore) - \w
 ```java
-regex("\\w", "ab 12 _");//[0<a>, 1<b>, 3<1>, 4<2>, 6<_>]
+regex("\\w", "ab 12 _"); //[0<a>, 1<b>, 3<1>, 4<2>, 6<_>]
 ```
 
 Square brackets are used in regular expressions to search for a range of characters. Few examples below.
 look for a,b,c,d,1,2,3,4 =>Note that this does not look for capital A,B,C,D
 ```java
-regex("[a-d1-4]", "azbkdm 15AB");//[0<a>, 2<b>, 4<d>, 7<1>]
-regex("[a-dA-D]", "abyzCD");//[0<a>, 1<b>, 4<C>, 5<D>]
+regex("[a-d1-4]", "azbkdm 15AB"); //[0<a>, 2<b>, 4<d>, 7<1>]
+regex("[a-dA-D]", "abyzCD"); //[0<a>, 1<b>, 4<C>, 5<D>]
 ```
 #### Regular Expressions , Multiple Characters
 + is used in regular expression to look for 1 or more characters. For example a+ looks for 1 or more character a's.
 ```java
-regex("a+", "aaabaayza");//[0<aaa>, 4<aa>, 8<a>]
+regex("a+", "aaabaayza"); //[0<aaa>, 4<aa>, 8<a>]
 ```
 
 Look for one or more characters from a to z (only small case).
 ```java
-regex("[a-z]+", "abcZ2xyzN1yza");//[0<abc>, 5<xyz>, 10<yza>]
+regex("[a-z]+", "abcZ2xyzN1yza"); //[0<abc>, 5<xyz>, 10<yza>]
 //0123456789012
 ```
 #### Regular Expressions , Look for Repetitions
 Regular expressions can be joined together to look for a combination.
 a+b+ looks 1 or more a's and 1 or more b's next to each other. Notice that only a's or only b's do not match.
 ```java
-regex("a+b+", "aabcacaabbbcbb");//[0<aab>, 6<aabbb>]
+regex("a+b+", "aabcacaabbbcbb"); //[0<aab>, 6<aabbb>]
 ```
 #### * - 0 or more repetitions.
 Below expression looks for 1 or more a's followed by 0 or more b's followed by 1 or more c's. abc => match. ac=> match (since we used * for b). ab => does not match.
 ```java
-regex("a+b*c+", "abcdacdabdbc");//[0<abc>, 4<ac>]
+regex("a+b*c+", "abcdacdabdbc"); //[0<abc>, 4<ac>]
 ```
 #### ? - 0 or 1 repetitions.
 a+b*c? looks for 1 or more a's followed by 0 or more b's followed by 0 or 1 c's. a => matches. ab => matches. abc=>matches. abcc => does not match (only 0 or 1 c's)
 ```java
-regex("a+b*c?", "adabdabcdabccd");//[0<a>, 2<ab>, 5<abc>, 9<abc>]
+regex("a+b*c?", "adabdabcdabccd"); //[0<a>, 2<ab>, 5<abc>, 9<abc>]
 ```
 
 ^a looks for anything other than a
 ```java
-regex("[^a]+", "bcadefazyx");//[0<bc>, 3<def>, 7<zyx>]
+regex("[^a]+", "bcadefazyx"); //[0<bc>, 3<def>, 7<zyx>]
 ```
 
 [^abcd]+a looks for anything which is not a or b or c or d, repeated 0 or more times, followed by a
 ```java
-regex("[^abcd]+a", "efgazyazyzb");//[0<efga>, 4<zya>]
+regex("[^abcd]+a", "efgazyazyzb"); //[0<efga>, 4<zya>]
 ```
 #### . matches any character
 a.c looks for Ôa' followed by any character followed by Ôc'. abc => match abbc => no match (. matches 1 character only)
 ```java
-regex("a.c", "abca ca!cabbc");//[0<abc>, 3<a c>, 6<a!c>]
+regex("a.c", "abca ca!cabbc"); //[0<abc>, 3<a c>, 6<a!c>]
 ```
 #### Greedy Regular Expressions
 a+ matches a, aa,aaa,aaaa, aaaaa. If you look at the output of the below expression, it matches the biggest only aaaaa. This is called greedy behaviour. similar behavior is shown by *.
 ```java
-regex("a+", "aaaaab");//[0<aaaaa>]
+regex("a+", "aaaaab"); //[0<aaaaa>]
 ```
 
 You can make + reluctant (look for smallest match) by appending ?
 ```java
-regex("a+?", "aaaaab");//[0<a>, 1<a>, 2<a>, 3<a>, 4<a>]
+regex("a+?", "aaaaab"); //[0<a>, 1<a>, 2<a>, 3<a>, 4<a>]
 ```
 
 Similarly *? is reluctant match for the greedy *
 If you want to look for characters . or * in a regular expression, then you should escape them.
 Example: If I want to look for ...(3 dots), we should use \.\.\. To represent \.\.\. as string we should put two \'s instead of 1.
 ```java
-regex("\\.\\.\\.", "...a....b...c");//[0<...>, 4<...>, 9<...>]
+regex("\\.\\.\\.", "...a....b...c"); //[0<...>, 4<...>, 9<...>]
 ```
 #### Regular Expression using Scanner class
 Below code shows how Scanner class can be used to execute regular expression.  findInLine method in Scanner returns the match , if a match is found. Otherwise, it returns null.
@@ -7540,7 +7542,7 @@ matches.add(token);
 ```
 #### Example
 ```java
-regexUsingScanner("a+?", "aaaaab");//[a, a, a, a, a]
+regexUsingScanner("a+?", "aaaaab"); //[a, a, a, a, a]
 ```
 ### Tokenizing
 - Tokenizing means splitting a string into several sub strings based on delimiters. For example, delimiter ; splits the string ac;bd;def;e into four sub strings ac, bd, def and e. Delimiter can in itself be any of the regular expression(s) we looked at earlier. String.split(regex) function takes regex as an argument.
@@ -7553,7 +7555,7 @@ private static void tokenize(String string,String regex) {
 ```
 #### Example:
 ```
-tokenize("ac;bd;def;e",";");//[ac, bd, def, e]
+tokenize("ac;bd;def;e",";"); //[ac, bd, def, e]
 ```
 #### Tokenizing using Scanner Class
 ```java
@@ -7569,7 +7571,7 @@ matches.add(scanner.next());
 ```
 #### Example:
 ```
-tokenizeUsingScanner("ac;bd;def;e",";");//[ac, bd, def, e]
+tokenizeUsingScanner("ac;bd;def;e",";"); //[ac, bd, def, e]
 ```
 #### Scanner Class: Other Functions
 ```java
