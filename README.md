@@ -4585,20 +4585,20 @@ If JVM crashes in between (for example, System.exit()).
 #### finally is executed even if there is a return statement in catch or try
 ```java
 private static void method2() {
-Connection connection = new Connection();
-connection.open();
-try {
-    // LOGIC    
-    String str = null;
-    str.toString();
-    return;
-} catch (Exception e) {
-    // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
-    System.out.println("Exception Handled - Method 2");
-    return;
-} finally {
-    connection.close();
-}
+        Connection connection = new Connection();
+        connection.open();
+        try {
+            // LOGIC    
+            String str = null;
+            str.toString();
+            return;
+        } catch (Exception e) {
+            // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
+            System.out.println("Exception Handled - Method 2");
+            return;
+        } finally {
+            connection.close();
+        }
     }
 ```
 #### Exception Handling Syntax
@@ -4606,15 +4606,15 @@ Let's look at a few quirks about Exception Handling syntax.
 #### try without a catch is allowed
 ```java
 private static void method2() {
-Connection connection = new Connection();
-connection.open();
-try {
-    // LOGIC
-    String str = null;
-    str.toString();
-} finally {
-    connection.close();
-}
+        Connection connection = new Connection();
+        connection.open();
+        try {
+            // LOGIC
+            String str = null;
+            str.toString();
+        } finally {
+            connection.close();
+        }
     }
 ```
 
@@ -4630,13 +4630,13 @@ Try without a catch is useful when you would want to do something (close a conne
 Below method would give a Compilation Error!! (End of try block)
 ```java
     private static void method2() {
-Connection connection = new Connection();
-connection.open();
-try {
-    // LOGIC
-    String str = null;
-    str.toString();
-}//COMPILER ERROR!!
+        Connection connection = new Connection();
+        connection.open();
+        try {
+            // LOGIC
+            String str = null;
+            str.toString();
+        }//COMPILER ERROR!!
     }
 ```
 #### Exception Handling Hierarchy
@@ -4660,13 +4660,14 @@ class CheckedException2 extends CheckedException1{}
 class UnCheckedException extends RuntimeException{}
 class UnCheckedException2 extends UnCheckedException{}
 ```
+
 #### Errors
 Error is used in situations when there is nothing a programmer can do about an error. Ex: StackOverflowError, OutOfMemoryError.
 #### Exception
 Exception is used when a programmer can handle the exception.
-#### Un-Checked Exception
-RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For Example: RuntimeException,UnCheckedException,UnCheckedException2 are unchecked or RunTime Exceptions. There are subclasses of RuntimeException (which means they are subclasses of Exception also.)
-#### Checked Exception
+#### Un-checked exception
+RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For Example: RuntimeException, UnCheckedException, UnCheckedException2 are unchecked or RunTime Exceptions. These are subclasses of RuntimeException (which means they are subclasses of Exception also.)
+#### checked exception
 Other Exception Classes (which don't fit the earlier definition). These are also called Checked Exceptions. Exception, CheckedException1,CheckedException2 are checked exceptions. They are subclasses of Exception which are not subclasses of RuntimeException.
 
 #### Throwing RuntimeException in method
@@ -4676,8 +4677,8 @@ Method addAmounts in Class AmountAdder adds amounts. If amounts are of different
 ```java
 class Amount {
     public Amount(String currency, int amount) {
-this.currency = currency;
-this.amount = amount;
+        this.currency = currency;
+        this.amount = amount;
     }
 
     String currency; // Should be an Enum
@@ -4687,17 +4688,17 @@ this.amount = amount;
 // AmountAdder class has method addAmounts which is throwing a RuntimeException
 class AmountAdder {
     static Amount addAmounts(Amount amount1, Amount amount2) {
-if (!amount1.currency.equals(amount2.currency)) {
-    throw new RuntimeException("Currencies don't match");
-}
-return new Amount(amount1.currency, amount1.amount + amount2.amount);
+        if (!amount1.currency.equals(amount2.currency)) {
+            throw new RuntimeException("Currencies don't match");
+        }
+        return new Amount(amount1.currency, amount1.amount + amount2.amount);
     }
 }
 
 public class ExceptionHandlingExample2 {
 
     public static void main(String[] args) {
-AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
+        AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
     }
 
 }
@@ -4710,7 +4711,7 @@ at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHan
 ```
 
 Exception message shows the type of exception(java.lang.RuntimeException) and the string message passed to the RuntimeException constructor("Currencies don't match");
-#### Throwing Exception (Checked Exception) in method
+#### Throwing Exception (checked exception) in method
 Let us now try to change the method addAmounts to throw an Exception instead of RuntimeException. It gives us a compilation error.
 
 ```java
@@ -4731,21 +4732,21 @@ Let's look at how to declare throwing an exception from a method.
 ```java
 class AmountAdder {
     static Amount addAmounts(Amount amount1, Amount amount2) throws Exception {
-if (!amount1.currency.equals(amount2.currency)) {
-    throw new Exception("Currencies don't match");
-}
-return new Amount(amount1.currency, amount1.amount + amount2.amount);
+        if (!amount1.currency.equals(amount2.currency)) {
+            throw new Exception("Currencies don't match");
+        }
+        return new Amount(amount1.currency, amount1.amount + amount2.amount);
     }
 }
 ```
 
-Look at the line "static Amount addAmounts(Amount amount1, Amount amount2) throws Exception". This is how we declare that a method throws Exception. This results in compilation error in main method. This is because Main method is calling a method which is declaring that it might throw Exception. Main method again has two options a. Throw b. Handle
+Look at the line "static Amount addAmounts(Amount amount1, Amount amount2) throws Exception". This is how we declare that a method throws Exception. This results in compilation error in main method. This is because Main method is calling a method which is declaring that it might throw Exception. Main method again has two options a. Throw b. Handle   
 
 Code with main method throwing the exception below
 
 ```java
     public static void main(String[] args) throws Exception {
-AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
+        AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
     }
 ```
 #### Output
@@ -4754,23 +4755,25 @@ Exception in thread "main" java.lang.Exception: Currencies don't match
 at com.in28minutes.exceptionhandling.AmountAdder.addAmounts(ExceptionHandlingExample2.java:17)
 at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:28)
 ```
+
 #### Handling an Exception
-main can also handle the exception instead of declaring throws. Code for it below.
+`main` can also handle the exception instead of declaring throws. Code for it below.
 ```java
 public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",5));
-} catch (Exception e) {
-    System.out.println("Exception Handled in Main");
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",5));
+        } catch (Exception e) {
+            System.out.println("Exception Handled in Main");
+        }
     }
 ```
 #### Output
 ```
 Exception Handled in Main
 ```
+
 #### Custom Defined Exception Classes
-For the scenario above we can create a customized exception, CurrenciesDoNotMatchException. If we want to make it a Checked Exception, we can make it extend Exception class. Otherwise, we can extend RuntimeException class.
+For the scenario above we can create a customized exception, `CurrenciesDoNotMatchException`. If we want to make it a checked Exception, we can make it extend `Exception` class. Otherwise, we can extend `RuntimeException` class.
 #### Extending Exception Class
 ```java
 class CurrenciesDoNotMatchException extends Exception{
@@ -4783,10 +4786,10 @@ No we can change the method addAmounts to throw CurrenciesDoNotMatchException - 
 class AmountAdder {
     static Amount addAmounts(Amount amount1, Amount amount2)
     throws CurrenciesDoNotMatchException {
-if (!amount1.currency.equals(amount2.currency)) {
-    throw new CurrenciesDoNotMatchException();
-}
-return new Amount(amount1.currency, amount1.amount + amount2.amount);
+        if (!amount1.currency.equals(amount2.currency)) {
+            throw new CurrenciesDoNotMatchException();
+        }
+        return new Amount(amount1.currency, amount1.amount + amount2.amount);
     }
 }
 ```
@@ -4796,12 +4799,12 @@ main method needs to be changed to catch: CurrenciesDoNotMatchException
 ```java
 public class ExceptionHandlingExample2 {
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
-    5));
-} catch (CurrenciesDoNotMatchException e) {
-    System.out.println("Exception Handled in Main" + e.getClass());
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
+            5));
+        } catch (CurrenciesDoNotMatchException e) {
+            System.out.println("Exception Handled in Main" + e.getClass());
+        }
     }
 }
 ```
@@ -4816,11 +4819,11 @@ Let's change main method to handle Exception instead of CurrenciesDoNotMatchExce
 ```java
 public class ExceptionHandlingExample2 {
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",5));
-} catch (Exception e) {
-    System.out.println("Exception Handled in Main" + e.getClass());
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",5));
+        } catch (Exception e) {
+            System.out.println("Exception Handled in Main" + e.getClass());
+        }
     }
 }
 ```
@@ -4845,14 +4848,14 @@ Exception Handled in Mainclass com.in28minutes.exceptionhandling.CurrenciesDoNot
 
 Change methods addAmounts in AmountAdder to remove the declaration " throws CurrenciesDoNotMatchException"
 
-No compilation error occurs since RuntimeException and subclasses of RuntimeException are not Checked Exception's. So, they don't need to be handled or declared. If you are interested in handling them, go ahead and handle them. But, java does not require you to handle them.
+No compilation error occurs since RuntimeException and subclasses of RuntimeException are not checked exception's. So, they don't need to be handled or declared. If you are interested in handling them, go ahead and handle them. But, java does not require you to handle them.
 
 Remove try catch from main method. It is not necessary since CurrenciesDoNotMatchException is now a RuntimeException.
 
 ```java
 public class ExceptionHandlingExample2 {
     public static void main(String[] args) {
-AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
+        AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR", 5));
     }
 }
 ```
@@ -4867,14 +4870,14 @@ Now, let's add two catch blocks to the main
 ```java
 public class ExceptionHandlingExample2 {
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
-    5));
-} catch (CurrenciesDoNotMatchException e) {
-    System.out.println("Handled CurrenciesDoNotMatchException");
-} catch (Exception e) {
-    System.out.println("Handled Exception");
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
+            5));
+        } catch (CurrenciesDoNotMatchException e) {
+            System.out.println("Handled CurrenciesDoNotMatchException");
+        } catch (Exception e) {
+            System.out.println("Handled Exception");
+        }
     }
 }
 ```
@@ -4890,14 +4893,14 @@ We can have two catch blocks for a try. Order of Handling of exceptions: a. Same
 Specific Exception catch blocks should be before the catch block for a Generic Exception. For example, CurrenciesDoNotMatchException should be before Exception. Below code gives a compilation error.
 ```java
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
-    5));
-} catch (Exception e) { // COMPILER ERROR!!
-    System.out.println("Handled Exception");
-} catch (CurrenciesDoNotMatchException e) {
-    System.out.println("Handled CurrenciesDoNotMatchException");
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("DOLLAR",
+            5));
+        } catch (Exception e) { // COMPILER ERROR!!
+            System.out.println("Handled Exception");
+        } catch (CurrenciesDoNotMatchException e) {
+            System.out.println("Handled CurrenciesDoNotMatchException");
+        }
     }
 ```
 #### Catch block handles only specified Exceptions (and sub types)
@@ -4905,14 +4908,14 @@ A catch block of type ExceptionType can only catch types ExceptionType and sub c
 
 ```java
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("RUPEE",
-    5));
-    String string = null;
-    string.toString();
-} catch (CurrenciesDoNotMatchException e) {
-    System.out.println("Handled CurrenciesDoNotMatchException");
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("RUPEE",
+            5));
+            String string = null;
+            string.toString();
+        } catch (CurrenciesDoNotMatchException e) {
+            System.out.println("Handled CurrenciesDoNotMatchException");
+        }
     }
 
     //Output : Exception in thread "main" java.lang.NullPointerException at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHandlingExample2.java:34)
@@ -4924,17 +4927,18 @@ Since NullPointerException is not a sub-class of CurrenciesDoNotMatchException i
 In all above examples we have not followed an Exception Handling good practice(s). Never Completely Hide Exceptions. At the least log them. printStactTrace method prints the entire stack trace when an exception occurs. If you handle an exception, it is always a good practice to log the trace.
 ```java
     public static void main(String[] args) {
-try {
-    AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("RUPEE",
-    5));
-    String string = null;
-    string.toString();
-} catch (CurrenciesDoNotMatchException e) {
-    System.out.println("Handled CurrenciesDoNotMatchException");
-    e.printStackTrace();
-}
+        try {
+            AmountAdder.addAmounts(new Amount("RUPEE", 5), new Amount("RUPEE",
+            5));
+            String string = null;
+            string.toString();
+        } catch (CurrenciesDoNotMatchException e) {
+            System.out.println("Handled CurrenciesDoNotMatchException");
+            e.printStackTrace();
+        }
     }
 ```
+
 ### Console
 - Console is used to read input from keyboard and write output.
 
@@ -4944,7 +4948,7 @@ try {
 Console console = System.console();
 ```
 #### Console utility methods 
-```
+```java
 console.printf("Enter a Line of Text");
 
 String text = console.readLine();
@@ -4952,7 +4956,7 @@ console.printf("Enter a Password");
 ```
 
 Password doesn't show what is being entered
-```
+```java
 char[] password = console.readPassword();
 
 console.format("\nEntered Text is %s", text);
@@ -5059,7 +5063,7 @@ System.out.println(now.getTime());
 #### Manipulating Date Object
 Let's now look at adding a few hours to a date object. All date manipulation to date needs to be done by adding milliseconds to the date. For example, if we want to add 6 hour, we convert 6 hours into millseconds. 6 hours = 6 * 60 * 60 * 1000 milliseconds. Below examples shows specific code.
 
-```
+```java
 Date date = new Date();
 
 //Increase time by 6 hrs
@@ -5125,7 +5129,7 @@ Date date1 = new SimpleDateFormat("yy-MM-dd")
 System.out.println(date1); //Tue Oct 16 00:00:00 GMT+05:30 2012
 ```
 #### Default Locale
-```
+```java
 Locale defaultLocale = Locale.getDefault();
 
 System.out.println(defaultLocale
@@ -5144,7 +5148,7 @@ Calendar calendar = Calendar.getInstance();
 ```
 #### Calendar set day, month and year
 Setting day, month or year on a calendar object is simple. Call the set method with appropriate Constant for Day, Month or Year. Next parameter is the value.
-```
+```java
 calendar.set(Calendar.DATE, 24);
 calendar.set(Calendar.MONTH, 8); //8 - September
 calendar.set(Calendar.YEAR, 2010);
@@ -5162,7 +5166,7 @@ System.out.println(calendar.getFirstDayOfWeek()); //1 -> Calendar.SUNDAY
 ```
 #### Calendar - Modify a Date
 We can use the calendar add and roll methods to modify a date. Calendar add method can be used to find a date 5 days or 5 months before the date by passing a ,5 i.e. a negative 5. 
-```
+```java
 calendar.add(Calendar.DATE, 5);
 System.out.println(calendar.getTime()); //Wed Sep 29 2010
 calendar.add(Calendar.MONTH, 1);
@@ -5172,12 +5176,12 @@ System.out.println(calendar.getTime()); //Mon Oct 29 2012
 ```
 #### Roll method
 Roll method will only the change the value being modified. YEAR remains unaffected when MONTH is changed, for instance.
-```
+```java
 calendar.roll(Calendar.MONTH, 5);
 System.out.println(calendar.getTime()); //Mon Mar 29 2012
 ```
 #### Creating calendar: Example 2
-```
+```java
 Calendar gregorianCalendar = new GregorianCalendar(
 2011, 7, 15);
 ```
@@ -5241,24 +5245,24 @@ size() methods returns number of elements in the collection. Other important met
 ```java
 interface Collection<E> extends Iterable<E>
 {
-  boolean add(E paramE);
-  boolean remove(Object paramObject);
+    boolean add(E paramE);
+    boolean remove(Object paramObject);
 
-  int size();
-  boolean isEmpty();
-  void clear();
+    int size();
+    boolean isEmpty();
+    void clear();
 
-  boolean contains(Object paramObject);
-  boolean containsAll(Collection<?> paramCollection);
-  
-  boolean addAll(Collection<? extends E> paramCollection);
-  boolean removeAll(Collection<?> paramCollection);
-  boolean retainAll(Collection<?> paramCollection);
-  
+    boolean contains(Object paramObject);
+    boolean containsAll(Collection<?> paramCollection);
 
-  Iterator<E> iterator();
+    boolean addAll(Collection<? extends E> paramCollection);
+    boolean removeAll(Collection<?> paramCollection);
+    boolean retainAll(Collection<?> paramCollection);
 
-  //A NUMBER OF OTHER METHODS AS WELL..
+
+    Iterator<E> iterator();
+
+    //A NUMBER OF OTHER METHODS AS WELL..
 }
 ```
 #### List Interface 
@@ -5270,20 +5274,20 @@ Other important methods are listed below:
 ```java
 interface List<E> extends Collection<E>
 {
-  boolean addAll(int paramInt, Collection<? extends E> paramCollection);
+    boolean addAll(int paramInt, Collection<? extends E> paramCollection);
 
-  E get(int paramInt);
-  E set(int paramInt, E paramE);
+    E get(int paramInt);
+    E set(int paramInt, E paramE);
 
-  void add(int paramInt, E paramE);
-  E remove(int paramInt);
+    void add(int paramInt, E paramE);
+    E remove(int paramInt);
 
-  int indexOf(Object paramObject);
-  int lastIndexOf(Object paramObject);
+    int indexOf(Object paramObject);
+    int lastIndexOf(Object paramObject);
 
-  ListIterator<E> listIterator();
-  ListIterator<E> listIterator(int paramInt);
-  List<E> subList(int paramInt1, int paramInt2);
+    ListIterator<E> listIterator();
+    ListIterator<E> listIterator(int paramInt);
+    List<E> subList(int paramInt1, int paramInt2);
 }
 ```
 #### Map Interface
@@ -5302,34 +5306,34 @@ Other important methods are shown below:
 ```java
 interface Map<K, V>
 {
-  int size();
-  boolean isEmpty();
+    int size();
+    boolean isEmpty();
 
-  boolean containsKey(Object paramObject);
-  boolean containsValue(Object paramObject);
+    boolean containsKey(Object paramObject);
+    boolean containsValue(Object paramObject);
 
-  V get(Object paramObject);
-  V put(K paramK, V paramV);
-  V remove(Object paramObject);
+    V get(Object paramObject);
+    V put(K paramK, V paramV);
+    V remove(Object paramObject);
 
-  void putAll(Map<? extends K, ? extends V> paramMap);
-  void clear();
+    void putAll(Map<? extends K, ? extends V> paramMap);
+    void clear();
 
-  Set<K> keySet();
-  Collection<V> values();
-  Set<Entry<K, V>> entrySet();
+    Set<K> keySet();
+    Collection<V> values();
+    Set<Entry<K, V>> entrySet();
 
-  boolean equals(Object paramObject);
-  int hashCode();
-
-  public static abstract interface Entry<K, V>
-  {
-    K getKey();
-    V getValue();
-    V setValue(V paramV);
     boolean equals(Object paramObject);
     int hashCode();
-  }
+
+    public static abstract interface Entry<K, V>
+    {
+        K getKey();
+        V getValue();
+        V setValue(V paramV);
+        boolean equals(Object paramObject);
+        int hashCode();
+    }
 }
 ```
 #### Set Interface
