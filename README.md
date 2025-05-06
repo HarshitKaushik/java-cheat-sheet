@@ -1181,7 +1181,7 @@ System.out.println(!false); //true
 System.out.println(!true); //false
 ```
 
-## Arrays
+### Arrays
 
 - TODO: Why do we need arrays?
 - Arrays allow storing multiple values of same type in a contiguous memory.
@@ -1679,7 +1679,7 @@ switch (number) {
 }    
 ```
 
-## Loops
+### Loops
 A loop is used to run same code again and again.
 
 ### While Loop
@@ -1863,7 +1863,7 @@ outer:
 ```
 
 ### Continue Statement
-- Continue statement skips rest of the statements in the loop and starts next iteration
+- Continue statement skips rest of the statements in the loop and starts the next iteration
 
 ```java
 for (int i = 0; i < 10; i++) {
@@ -1908,6 +1908,7 @@ for (int j = 0; j < 2; j++) {
 //So 05 and 05 are not printed to the console.
 
 ```
+
 Label Example
 ```java
 outer:
@@ -1983,10 +1984,12 @@ public class Enum {
     }
 }
 ```
+
 Enum Rules
 - Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
 
 Conversion of Enum : Function valueOf(String)  is used to convert a string to enum.
+
 ```java
 //Converting String to Enum
 Season season = Season.valueOf("FALL");
@@ -2008,7 +2011,7 @@ System.out.println(Season.SUMMER.ordinal()); //2
 System.out.println(Season.FALL.ordinal()); //3
 ```
 
-Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the  function values().
+Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the function values().
 ```java
 //Looping an enum => We use method values
 for (Season season1: Season.values()) {
@@ -2017,7 +2020,8 @@ for (Season season1: Season.values()) {
 }
 ```
 
-Comparing two Enums 
+Comparing two Enums
+
 ```java
 //Comparing two Enums
 Season season1 = Season.FALL;
@@ -2117,7 +2121,8 @@ SeasonCustomized(int code) {
 ```
 
 Each of the Season Type's is created by assigning a value for code.
-```
+
+```java
 WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 ```
 
