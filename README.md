@@ -40,25 +40,37 @@ G --> N[Any other platform Instructions]
 
 - JVM (Java Virtual Machine)
   - runs the Java bytecode.
-- JRE
+- JRE (Java Runtime Environment)
   - JVM + Libraries + Other Components (to run applets and other java applications)
-- JDK
+- JDK (Java Development Kit)
   - JRE + Compilers + Debuggers
 
 ### ClassLoader
 
-- Find and Loads Java Classes!
+- Finds and Loads Java Classes. Class loaders are responsible for loading Java classes during runtime dynamically to the JVM (Java Virtual Machine).
 
 Three Types
 - System Class Loader - Loads all application classes from CLASSPATH
 - Extension Class Loader - Loads all classes from extension directory
 - Bootstrap Class Loader - Loads all the Java core files
 
-Order of execution of ClassLoaders
+- A bootstrap or primordial class loader is the parent of all the others. This is because **the bootstrap class loader is written in native code**, not Java – so it doesn't show up as a Java class. Due to this reason, the behavior of the bootstrap class loader will differ across JVMs.
+
+- There are three important features of class loaders.
+
+- Delegation Model - class loaders follow the delegation model where on request to find a class or resource, a ```ClassLoader``` instance will delegate the search of the class or resource to the parent class loader.
+
+- Unique Classes - As a consequence of the delegation model, it's easy to ensure unique classes as we always try to delegate upwards.
+
+- Visibility - In addition, children class loaders are visible to classes loaded by its parent class loaders.
+
+- Custom ClassLoaders - The built-in class loader would suffice in most of the cases where the files are already in the file system. However, in scenarios where we need to load classes out of the local hard drive or a network, we may need to make use of custom class loaders.
+
+#### Order of execution of ClassLoaders
 - JVM needs to find a class, it starts with System Class Loader. 
 - If it is not found, it checks with Extension Class Loader. 
 - If it not found, it goes to the Bootstrap Class Loader. 
-- If a class is still not found, a ClassNotFoundException is thrown.
+- If a class is still not found, a ```ClassNotFoundException``` is thrown.
 
 ### First Java Program
 
@@ -77,11 +89,11 @@ Notes
 - When a program runs, Java should know which line of code has to be run first. public static void main(String[] args) is the first method that is run when a program is executed.
 
 
-> Java, like any other programming language, is particular about syntax!!
+> Java, like any other programming language, is particular about syntax!
 
 
-### Using Java and JavaC
-There are two steps involved in running a Java Program
+### Using Java and Javac
+There are two steps involved in running a Java Program.
 - Compilation
 - Execution
 
@@ -92,21 +104,22 @@ We use javac to compile java code.
 ```
 javac HelloWorld.java
 ```
-- You should see two files HelloWorld.java and HelloWorld.class in the folder.
-- HelloWorld.class contains the java bytecode
+- You should see two files ```HelloWorld.java``` and ```HelloWorld.class``` in the folder.
+- ```HelloWorld.class``` contains the java bytecode.
 
 #### Execution
 - Now we can run the program using JVM
 - execute the command below
-```
+
+```bash
 java HelloWorld
 ```
 - You should see the output "Hello World" printed in the console.
 
 ### Class and Object
-- What is a class?
-- Definining an instance of a class - an object
-- Invoking a method on the object
+- What is a class? A class is a user-defined blueprint or prototype from which objects are created. It represents the set of properties or methods that are common to all objects of one type.  
+- Defining an instance of a class is called an object.
+- Invoking a method on the object.
 
 ### Variables
 - Value of a variable changes during the course of a program execution.
@@ -124,13 +137,13 @@ System.out.println(number);//9
 Declaring and Initializing Variables
 - Declaration is give a variable a name and type
 
-```
+```java
 TYPE variableName;
 ```
 
 #### Tips
 - Two or more variables of single type can be declared together.
-- Variable can be local or global. The local variables can be referenced (ie, are valid) only within the scope of their method (or function).
+- Variable can be local or global. The local variables can be referenced (i.e., are valid) only within the scope of their method (or function).
 - All six numeric types in Java are signed.
 
 ### Primitive Variables
@@ -204,28 +217,56 @@ What will happen? What would happen if the same was done with primitive variable
 ### Identifiers
 Names given to a class, method, interface, variables are called identifiers.
 
-Legal Identifier Names
-- Combination of letters, numbers, $ and under-score(_)
-- Cannot start with a number
-- Cannot be a keyword
-- No limit on length of identifier
+Legal Identifier Names - Rules which define a legal identifier name.
+- Combination of letters, numbers, $ and under-score(_).
+- Cannot start with a number.
+- Cannot be a keyword.
+- No limit on length of identifier.
 
 ### Java Keywords
-List of Java Keywords
-- Primitives DataTypes    : byte,short,int,long,float,double,char,boolean
-- Flow Control    : if, else,for,do, while, switch, case, default, break,
-      continue,return
-- Exception Handling      : try, catch, finally,throw,throws,assert
-- Modifiers       : public,private,protected,final,static,native,abstract,
-      synchronized,transient,volatile,strictfp
-- Class Related   : class,interface,package,extends,implements,import
-- Object Related  : new, instanceof,super,this
-- Literals    : true, false, null
-- Others      : void, enum
-- Unused  : goto,const
+- Primitive Data Types: byte,short,int,long,float,double,char,boolean
+- Flow Control: if, else, for, do, while, switch, case, default, break,
+      continue, return
+- Exception Handling: try, catch, finally, throw, throws, assert
+- Modifiers: public, private, protected, final, static, native, abstract,
+      synchronized, transient, volatile, strictfp
+- Class Related: class, interface, package, extends, implements, import
+- Object Related: new, instanceof, super, this
+- Literals: true, false, null
+- Others: void, enum
+- Unused: goto, const
+
+The ```native``` keyword is applied to a method to indicate that the method is implemented in native code using JNI (Java Native Interface). ```native``` is a modifier applicable only for methods and we can’t apply it anywhere else.  
+
+The ```synchronized``` keyword is used when multi-threaded programs come to a situation where multiple threads try to access the same resources and finally produce erroneous and unforeseen results. Java provides a way of creating threads and synchronizing their task by using synchronized blocks. Synchronized blocks in Java are marked with the ```synchronized``` keyword. A synchronized block in Java is synchronized on some object. All synchronized blocks synchronized on the same object can only have one thread executing inside them at a time. All other threads attempting to enter the synchronized block are blocked until the thread inside the synchronized block exits the block.  
+
+Following is the general form of a synchronized block:  
+
+```
+// Only one thread can execute at a time. 
+// sync_object is a reference to an object
+// whose lock associates with the monitor. 
+// The code is said to be synchronized on
+// the monitor object
+synchronized(sync_object)
+{
+   // Access shared variables and other
+   // shared resources
+}
+```
+
+The ```abstract``` keyword is a non-access modifier applicable for classes, methods but not variables. It is used to achieve abstraction which is one of the pillars of Object Oriented Programming(OOP).  
+
+The ```transient``` is a variable modifier used in serialization. At the time of serialization, if we don’t want to save value of a particular variable in a file, then we use the ```transient``` keyword. When JVM comes across the ```transient``` keyword, it ignores the original value of the variable and saves the default value of that variable's data type. The ```transient``` keyword plays an important role to meet security constraints. There are various real-life examples where we don’t want to save private data in file.
+
+The ```volatile``` keyword is used to mark a variable as "being stored in main memory". More precisely that means, that every read of a volatile variable will be read from the computer's main memory, and not from the CPU cache, and that every write to a volatile variable will be written to main memory, and not just to the CPU cache.  
+
+When a class or an interface is declared with ```strictfp``` modifier, then all methods declared in the class/interface, and all nested types declared in the class, are implicitly ```strictfp```.
+
+The ```strictfp``` cannot be used with abstract methods. However, it can be used with abstract classes/interfaces.
 
 ### Literals
-Any primitive data type value in source code is called Literal.
+Any primitive data type value in source code is called a literal.
 
 There are four types of literals:
 - Integer & Long
@@ -245,18 +286,18 @@ Integer Literals
 Long Literals 
 - All 3 integer formats: Decimal, Octal and Hexadecimal can be used to represent long by appending with L or l.
 
-Floating point Literals
+Floating-point Literals
 - Numbers with decimal points. Example: ```double d = 123.456;```
 - To declare a float, append f. Example: float f = 123.456f;
 - Floating point literals are double by default.
-- Appending d or D at end of double literal is optional Example: ```double d = 123.456D;```
+- Appending d or D at end of double literal is optional. Example: ```double d = 123.456D;```
 
 Boolean Literals
 - Valid boolean values are true and false. 
 - TRUE, FALSE or True, False are invalid.
 
 Character Literals
-- Represented by single character between single quotes  Example: ```char a = 'a'```
+- Represented by single character between single quotes. Example: ```char a = 'a'```
 - Unicode Representation also can be used. Prefix with \u. Example: char letterA = '\u0041';
 - A number value can also be assigned to character. Example: char letterB = 66; Numeric value can be from 0 to 65535;
 - Escape code can be used to represent a character that cannot be typed as literal. Example: char newLine = '\n';
@@ -264,24 +305,27 @@ Character Literals
 #### Puzzles 
 
 ```java
+// For octal, the 0 is to be placed in the beginning of a number.
 int eight = 010; 
-int nine=011;  
-int invalid = 089;//COMPILER ERROR! 8 and 9 are invalid in Octal
+int nine = 011;  
+int invalid = 089;//COMPILER ERROR! 8 and 9 are invalid in Octa
+// For hexadecimal, the 0x or 0X is to be placed in the beginning of a number.
 int sixteen = 0x10; 
 int fifteen = 0XF; 
 int fourteen = 0xe;
-int x = 23,000;
+int x = 23,000; //COMPILER ERROR! Comma character is extra.
 long a = 123456789l; 
-long b = 0x9ABCDEFGHL; 
-long c = 0123456789L;
+long b = 0x9ABCDEFGHL; //COMPILER ERROR! Invalid hexadecimal code.
+long c = 0123456789L; //COMPILER ERROR! 8 and 9 are invalid in Octal.
 
-float f = 123.456;//COMPILER ERROR! A double value cannot be assigned to a float.
+float f = 123.456; //COMPILER ERROR! A double value cannot be assigned to a float.
 
-boolean b = true; boolean b=false;
+boolean b = true; 
+boolean b=false;
 boolean b = TRUE;//COMPILATION ERROR
 boolean b = 0; //COMPILER ERROR. This is not C Language
 
-char ch = a;
+char ch = a; //COMPILER ERROR
 char a = 97;
 char ch1 = 66000; //COMPILER ERROR!
 ```
@@ -291,9 +335,9 @@ Assignment operator evaluates the expression on the right hand side and copies t
 
 #### Basic Examples
 ```java
-int value = 35;//35 is copied into 35
+int value = 35;//35 is copied into the value.
 
-int squareOfValue = value * value;//value * value = 35 * 35 is stored into squareOfValue
+int squareOfValue = value * value; //value * value = 35 * 35 is stored into squareOfValue
 
 int twiceOfValue = value * 2;
 ```
@@ -312,7 +356,7 @@ actor1.setName("Actor1");
 
 Actor actor2 = actor1;
 actor2.setName("Actor2");
-System.out.println(actor1.getName());//Actor2
+System.out.println(actor1.getName()); //Actor2
 
 ```
 
@@ -320,13 +364,13 @@ System.out.println(actor1.getName());//Actor2
 
 Casting is used when we want to convert one data type to another. 
 
-- A literal integer is by default int. Operation involving int-sized or less always result in int.
-- Floating point literals are by default double
+- A literal integer is by default ```int```. Operation involving int-sized or less always result in int.
+- Floating-point literals are by default ```double```.
 
 #### Implicit Casting
 
 - Implicit Casting is done directly by the compiler.
-  - Example : Widening Conversions i.e. storing smaller values in larger variable types.
+  - Example: Widening Conversions i.e. storing smaller values in larger variable types.
 
 
 ```java
@@ -334,8 +378,8 @@ byte b = 10; //byte b = (int) 10; Example below compiles because compiler introd
 
 short n1 = 5;
 short n2 = 6;
-//short sum = n1 + n2;//COMPILER ERROR
-short sum = (short)(n1 + n2);//Needs an explicit cast
+short sum = n1 + n2; //COMPILER ERROR
+short sum = (short)(n1 + n2); //Needs an explicit cast
 
 byte b = 5;
 b += 5; //Compiles because of implicit conversion
@@ -347,14 +391,14 @@ float f = 100; //Implicit Casting
 
 #### Explicit Casting
 - Explicit Casting needs to be specified by programmer in code.
-  - Example: Narrowing Conversions. Storing larger values into smaller variable types;
+- Example: Narrowing Conversions. Storing larger values into smaller variable types;
 - Explicit casting would cause truncation of value if the value stored is greater than the size of the variable.
 
 ```java
 long number1 = 25678;
-int number2 = (int)number1;//Explicit Casting
-//int x = 35.35;//COMPILER ERROR
-int x = (int)35.35;//Explicit Casting
+int number2 = (int) number1; //Explicit Casting
+int x = 35.35; //COMPILER ERROR
+int x = (int) 35.35; //Explicit Casting
 
 int bigValue = 280;
 byte small = (byte) bigValue;
