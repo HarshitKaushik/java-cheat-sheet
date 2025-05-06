@@ -1122,7 +1122,7 @@ System.out.println(false && false); //false
 ```
 #### Short Circuit Or Operator - ||
 
-True when atleast one of operands are true.
+True when at least one of operands are true.
 
 ```java
 System.out.println(true || true); //true
@@ -1149,6 +1149,9 @@ System.out.println(true || ++i==11); //true
 System.out.println(false && ++i==11); //false
 System.out.println(i); //i remains 10, as ++i expressions are not executed.
 ```
+
+
+> In Java logical operators, if the evaluation of a logical expression exit in between before complete evaluation, then it is known as Short-circuit. A short circuit happens because the result is clear even before the complete evaluation of the expression, and the result is returned. Short circuit evaluation avoids unnecessary work and leads to efficient processing.
 
 #### Operator & and |
 - Logical Operators &, | are similar to &&, || except that they don't short ciruit. 
@@ -1177,11 +1180,20 @@ Result is the negation of the expression.
 System.out.println(!false); //true
 System.out.println(!true); //false
 ```
-### Arrays
-- TODO : Why do we need arrays?
+
+## Arrays
+
+- TODO: Why do we need arrays?
+- Arrays allow storing multiple values of same type in a contiguous memory.
+- **Once an array is created, its size cannot be increased or decreased.**
+- New arrays are always initialized with default values.
+   - byte,short,int,long    0
+   - float,double 0.0 
+   - boolean false
+   - object null
 
 ```java
-//Declaring an Array
+//Declaring an array
 int[] marks;
 
 // Creating an array
@@ -1243,13 +1255,12 @@ for (int[] array: matrix) {
 // Printing a 2D Array
 int[][] matrix3 = { { 1, 2, 3 }, { 4, 5, 6 } };
 System.out.println(matrix3); //[[I@1d5a0305
-System.out.println(
-
-Arrays.toString(matrix3)); 
-//[[I@6db3f829, [I@42698403]
+System.out.println(Arrays.toString(matrix3)); //[[I@6db3f829, [I@42698403]
 
 System.out.println(Arrays.deepToString(matrix3)); 
 //[[1, 2, 3], [4, 5, 6]]
+// A bit tricky
+// .toString(...) vs .deepToString(...)
 
 System.out.println(matrix3[0]); //[I@86c347 - matrix3[0] is a 1D Array
 System.out.println(Arrays.toString(matrix3[0])); //[1, 2, 3]
@@ -1262,15 +1273,14 @@ System.out.println(Arrays.toString(matrix3[0])); //[1, 2, 3]
 int[] numbers1 = { 1, 2, 3 };
 int[] numbers2 = { 4, 5, 6 };
 
-System.out.println(Arrays
-.equals(numbers1, numbers2)); //false
+System.out.println(Arrays.equals(numbers1, numbers2)); //false
 
 int[] numbers3 = { 1, 2, 3 };
 
 System.out.println(Arrays
 .equals(numbers1, numbers3)); //true
 
-// Sorting an Array
+// Sorting an array
 
 int rollNos[] = { 12, 5, 7, 9 };
 Arrays.sort(rollNos);
@@ -1307,7 +1317,7 @@ Person[][] persons2D =
 #### Array Certification Tips and Puzzles
 ```java
 
-//You can Declare, Create and Initialize Array on same line.
+//You can declare, create and initialize array on same line.
 int marks3[] = { 25, 30, 50, 10, 5 };
 
 //Leaving additional comma is not a problem. (note that comma after 5)
@@ -1318,7 +1328,7 @@ int marks[]; //Not Readable
 int[] runs; //Readable
 
 
-//int values[5]; //Compilation Error!Declaration of an Array should not include size. 
+//int values[5]; //Compilation Error!Declaration of an array should not include size. 
 
 //marks = new int[]; //COMPILER ERROR! Size of an array is mandatory to create an array.
 
@@ -1336,7 +1346,8 @@ int[] matrix2[]; //Legal but not readable. Avoid.
 //COMPILE ERROR!!
 //int marks4[] = {10,15.0}; //10 is int 15.0 is float
 
-//Cross assigment of primitive arrays is ILLEGAL
+//Cross-assigment of primitive arrays is ILLEGAL
+// A bit tricky.
 int[] ints = new int[5];
 short[] shorts = new short[5];
 //ints = shorts; //COMPILER ERROR
@@ -1358,7 +1369,7 @@ matrixA[0] = new int[5];
 
 ### If Else Condition
 - Conditionally execute code! 
-- Code inside If is executed only if the condition is true.
+- Code inside `if` block is executed only if the condition is true.
 
 // Basic Example
 ```java
@@ -1387,7 +1398,7 @@ if(x==5){
 int y = 10;
 
 if(y==10){
-    System.out.println("Y is 10"); //executed-condn y==10 is true
+    System.out.println("Y is 10"); //executed-condition y==10 is true
 } else {
     System.out.println("Y is Not 10");
 }
@@ -1472,15 +1483,15 @@ int m = 15;
 
 if(m>20)
     if(m<20)
-System.out.println("m>20");
+        System.out.println("m>20");
     else
-System.out.println("Who am I?");
+        System.out.println("Who am I?");
 
 //Nothing is printed to output. 
 
 //Code above is similar to the code snippet shown below
 
-if(m>20) {//Condn is false. So, code in if is not executed
+if(m>20) {//Condition is false. So, code in if is not executed
     if(m<20)
 System.out.println("m>20");
     else
@@ -1546,7 +1557,7 @@ Important Tips
 
 ```java
 //Switch Statement Example 2 , No Breaks
-number = 2;
+int number = 2;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1560,20 +1571,20 @@ default:
 ```
 
 Output of above switch
-```
+```bash
 2
 3
 Default
 ```
 
-Since there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
+Since, there is no break after case 2, execution falls through to case 3. There is no break in case 3 as well. So, execution falls through to default. 
 
 > Code in switch is executed from a matching case until a break or end of switch statement is encountered.
 
-
 Switch Statement Example 3 , Few Break's
+
 ```java
-number = 2;
+int number = 2;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1587,17 +1598,20 @@ default:
     break;
 }
 ```
+
 Program Output 
+
 ```java
 number is 2 or 3.
 ```
+
 Case 2 matches. Since there is no code in case 2, execution falls through to case 3, executes the println. Break statement takes execution out of the switch.
 
-Switch Statement Example 4 , Let's Default
+Switch Statement Example 4, Let's Default
 - default is executed if none of the case's match. 
 
 ```java
-number = 10;
+int number = 10;
 switch (number) {
 case 1:
     System.out.println(1);
@@ -1613,14 +1627,17 @@ default:
     break;
 }
 ```
+
 Code Output
-```
+
+```bash
 Default
 ```
 
 Switch Statement Example 5 - Default need not be Last 
+
 ```java
-number = 10;
+int number = 10;
 switch (number) {
 default:
     System.out.println("Default");
@@ -1636,12 +1653,13 @@ case 3:
     break;
 }
 ```
+
 Output 
 ```
 Default
 ```
-#### Switch statement Example 6
 
+#### Switch statement Example 6
 
 Switch can be used only with char, byte, short, int, String or enum
 
@@ -1651,10 +1669,10 @@ long l = 15;
 }*/
 ```
 
-Case value should be a compile time constant.
+Case value should be a compile-time constant.
 
 ```java
-number = 10;
+int number = 10;
 switch (number) {
 //case number>5://COMPILER ERROR. Cannot have a condition
 //case number://COMPILER ERROR. Should be constant.
@@ -1665,10 +1683,36 @@ switch (number) {
 A loop is used to run same code again and again.
 
 ### While Loop
+
+How does a While loop executes?
+
+1. Control falls into the while loop.
+2. The flow jumps to Condition
+3. Condition is tested.
+    1. If Condition yields true, the flow goes into the Body.
+    2. If Condition yields false, the flow goes outside the loop
+4. The statements inside the body of the loop get executed.
+5. Updation takes place.
+6. Control flows back to Step 2.
+7. The while loop has ended and the flow has gone outside.
+
+```
+while (test_expression)
+{
+    // statements
+    update_expression;
+}
+```
+
+The first loop offered by Java is a While loop.
+
+
+While loop Example 1.
+
 ```java
 int count = 0;
 
-while(count < 5){//while this condn is true, loop is executed.
+while(count < 5){ //while this condition is true, loop is executed.
     System.out.print(count);
     count++;
 }
@@ -1677,9 +1721,9 @@ while(count < 5){//while this condn is true, loop is executed.
 
 While loop Example 2
 
-```
+```java
 count = 5;
-while(count < 5){//condn is false. So, code in while is not executed.
+while(count < 5){//condition is false. So, code in while is not executed.
     System.out.print(count);
     count++;
 }//Nothing is printed to output
@@ -1695,13 +1739,13 @@ int count = 0;
 do{
     System.out.print(count);
     count++;
-}while(count < 5); //while this condn is true, loop is executed.
+}while(count < 5); //while this condition is true, loop is executed.
 //output is 01234
 ```
 
 Do While loop Example 2
 ```java
-count = 5;
+int count = 5;
 do{
     System.out.print(count);
     count++;
@@ -1711,7 +1755,7 @@ do{
 
 ### For Loop
 
-For loop is used to loop code specified number of times.
+For loop is used to loop a block of code specified number of times.
 
 For Loop Example 1
 ```java
@@ -1720,6 +1764,7 @@ for (int i = 0; i < 10; i++) {
 }
 //Output - 0123456789
 ```
+
 Syntax - For loop statement has 3 parts
 - Initialization => int i=0. Initialization happens the first time a for loop is run.
 - Condition => i<10. Condition is checked every time before the loop is executed.
@@ -1732,8 +1777,10 @@ for (int i = 0,j = 0; i < 10; i++,j--) {
 }
 //Output - 0123456789
 ```
+
 #### Enhanced For Loop
 Enhanced for loop can be used to loop around array's or List's.
+
 ```java
 int[] numbers = {1,2,3,4,5};
 
@@ -1742,17 +1789,19 @@ for(int number:numbers){
 }
 //Output - 12345
 ```
+
 Any of 3 parts in a for loop can be empty.
+
 ```java
 for (;;) {
-    System.out.print("I will be looping for ever..");
+    System.out.println("I will be looping forever...");
 }
 //Infinite loop => Loop executes until the program is terminated.
 ```
 
 ### Break Statement
 
-Break statement breaks out of a loop
+Break statement is used to break out of a loop or a switch block.
 
 Example 1
 ```java
@@ -1763,16 +1812,17 @@ for (int i = 0; i < 10; i++) {
     }
 }
 //Output - 012345
-//Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. ÒBreak statementÓ stops the execution of the loop and takes execution to the first statement after the loop.
+//Even though the for loop runs from 0 to 10, execution stops at i==5 because of the break statement. Break statement stops the execution of the loop and takes execution to the first statement after the loop.
 ```
 
 Break can be used in a while also.
+
 ```java
 int i = 0;
 while (i < 10) {
     System.out.print(i);
     if (i == 5) {
-break;
+        break;
     }
     i++;
 }
@@ -1783,18 +1833,22 @@ Break statement takes execution out of inner most loop.
 ```java
 for (int j = 0; j < 2; j++) {
     for (int k = 0; k < 10; k++) {
-System.out.print(j + "" + k);
-if (k == 5) {
-    break; //Takes out of loop using k
-}
+        System.out.print(j + "" + k);
+        if (k == 5) {
+            break; //Takes out of loop using k
+        }
     }
 }
+
 //Output - 000102030405101112131415
 //Each time the value of k is 5 the break statement is executed. 
 //The break statement takes execution out of the k loop and proceeds to the next value of j.
 
 ```
+
 Labels can be used to label and refer to specific for loop in a nested for loop.
+(A bit tricky!)
+
 ```java
 outer:
     for (int j = 0; j < 2; j++) {
@@ -1807,6 +1861,7 @@ outer:
     }
 //Output - 000102030405
 ```
+
 ### Continue Statement
 - Continue statement skips rest of the statements in the loop and starts next iteration
 
@@ -5472,7 +5527,7 @@ Other classes that implement List interface are Vector and LinkedList.
 Vector has the same operations as an ArrayList. However, all methods in Vector are synchronized. So, we can use Vector if we share a list between two threads and we would want to them synchronized.
 #### LinkedList
 Linked List extends List and Queue.Other than operations exposed by the Queue interface,  LinkedList has the same operations as an ArrayList. However, the underlying implementation of Linked List is different from that of an ArrayList. 
-ArrayList uses an Array kind of structure to store elements. So, inserting and deleting from an ArrayList are expensive operations. However, search of an ArrayList is faster than LinkedList.
+ArrayList uses an array kind of structure to store elements. So, inserting and deleting from an ArrayList are expensive operations. However, search of an ArrayList is faster than LinkedList.
 LinkedList uses a linked representation. Each object holds a link to the next element. Hence, insertion and deletion are faster than ArrayList. But searching is slower.
 ### Set Interface
 - HashSet, LinkedHashSet and TreeSet implement the Set interface. Let's look at examples of these collection classes.
