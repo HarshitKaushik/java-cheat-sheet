@@ -4316,6 +4316,76 @@ System.out.println(outerClassInstanceVariable);
 System.out.println(finalVariable); //Final variable is fine..
 ```
 
+Here's your content formatted in **perfect Markdown**:
+
+---
+
+### Inner Class Shadowing in Java
+
+In Java, if an inner class declares fields or methods with the same names as fields or methods in its enclosing class, the inner fields or methods are said to **shadow** those in the outer class.
+
+### 🔍 Example
+
+```java
+public class Outer {
+
+    private String text = "I am Outer private!";
+
+    public class Inner {
+
+        private String text = "I am Inner private";
+
+        public void printText() {
+            System.out.println(text);
+        }
+    }
+}
+```
+
+In the above example:
+
+* Both the `Outer` and `Inner` classes contain a field named `text`.
+* When the `Inner` class refers to `text`, it accesses **its own** `text` field.
+* When the `Outer` class refers to `text`, it accesses **its own** `text` field.
+
+### 👇 Accessing the Outer Class Field
+
+Java allows the **inner class** to refer to the `text` field of the **outer class** using the syntax:
+
+```java
+Outer.this.text
+```
+
+This specifies: **"Access the text field from the enclosing Outer instance."**
+
+### 🧪 Updated Example
+
+```java
+public class Outer {
+
+    private String text = "I am Outer private!";
+
+    public class Inner {
+
+        private String text = "I am Inner private";
+
+        public void printText() {
+            System.out.println(text);             // Inner class field
+            System.out.println(Outer.this.text);  // Outer class field
+        }
+    }
+}
+```
+
+### 🔎 Output when `printText()` is called:
+
+```
+I am Inner private
+I am Outer private!
+```
+
+This demonstrates how **shadowing works** and how to **explicitly refer** to outer class members from an inner class.
+
 ### Variable Arguments
 - Variable Arguments allow calling a method with different number of parameters.
 
