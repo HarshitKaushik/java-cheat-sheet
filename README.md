@@ -7768,27 +7768,25 @@ lookForDifferentThingsUsingScanner("true false 12 3 abc true 154");
 Where are objects created? Where are strings created?
 
 ### TODO
-- replace ``` with ```java at start of code
 - //Getters and Setters are eliminated to keep the example short
 - Java SE vs ME vs EE 
-- Check for long lines which are cut off in pdf
 - Notes from Venkat's Talk
-  - Designed for a different world - PEnguins
+  - Designed for a different world - Penguins
   - OOPS - Terrible - 1970s
-  - FP - Lambda calculus-1929
+  - FP - Lambda calculus - 1929
   - Complexity from problems vs Complexity from solutions
-  - Structured Programming - One Start One Exit????
+  - Structured Programming - One Start One Exit?
   - Functional Programming
-    - Assignment LEss 
+    - Assignment Less 
     - Statements vs Expressions
     - Pure Function - No side effects and Zero dependencies that change
-    - Referential Transparency
+    - Referential transparency
     - Pure Functions
-      - idempotent
-      - referenctial transparency
-      - memorizable
-      - easier to testt
-      - may be lazily evaluated
+      - Idempotent
+      - Referenctial transparency
+      - Memorizable
+      - Easier to test
+      - May be lazily evaluated
     - Higher order function
       - take/create/return object vs take/create/return function
     - Java Future - imperative + oops -> functional + oops
@@ -7803,3 +7801,550 @@ Where are objects created? Where are strings created?
     - Error, Data and End channels
     - Error is a first class citizen
     - Handle errors down stream
+
+# Design patterns
+
+The **23 classic design patterns** in Java come from the **Gang of Four (GoF)** book: *"Design Patterns: Elements of Reusable Object-Oriented Software"* by **Gamma, Helm, Johnson, and Vlissides**. These patterns are divided into **three categories**:
+
+---
+
+### 🔧 **Creational Patterns (5)**
+
+These are concerned with the way of **creating objects**.
+
+1. **Singleton** – Ensures a class has only one instance.
+2. **Factory Method** – Creates objects without specifying the exact class.
+3. **Abstract Factory** – Creates families of related objects without specifying concrete classes.
+4. **Builder** – Constructs complex objects step-by-step.
+5. **Prototype** – Creates objects by copying an existing object (clone).
+
+---
+
+### 🧩 **Structural Patterns (7)**
+
+These focus on **class and object composition**—how to form large structures.
+
+6. **Adapter** – Converts one interface to another (a.k.a. Wrapper).
+7. **Bridge** – Separates an abstraction from its implementation.
+8. **Composite** – Treats individual objects and compositions uniformly.
+9. **Decorator** – Adds responsibilities to objects dynamically.
+10. **Facade** – Provides a simplified interface to a complex subsystem.
+11. **Flyweight** – Reduces memory usage by sharing common data.
+12. **Proxy** – Represents another object to control access.
+
+---
+
+### 🔄 **Behavioral Patterns (11)**
+
+These are concerned with **communication between objects**.
+
+13. **Chain of Responsibility** – Passes a request through a chain of handlers.
+14. **Command** – Encapsulates a request as an object.
+15. **Interpreter** – Implements a grammar to interpret sentences.
+16. **Iterator** – Provides a way to access elements sequentially.
+17. **Mediator** – Centralizes complex communications and control between objects.
+18. **Memento** – Captures and restores an object's internal state.
+19. **Observer** – One-to-many dependency between objects (event handling).
+20. **State** – Allows an object to change behavior when its state changes.
+21. **Strategy** – Enables selecting an algorithm at runtime.
+22. **Template Method** – Defines the skeleton of an algorithm, allowing steps to be redefined.
+23. **Visitor** – Adds new operations to existing object structures without modifying them.
+
+---
+
+## Builder pattern
+
+The **Builder Pattern** is a **creational design pattern** that lets you construct complex objects step by step. It separates the construction of an object from its representation so that the same construction process can create different representations.
+
+---
+
+### 🔧 **When to Use the Builder Pattern**
+
+* When an object has many optional parameters or configurations.
+* When you want to avoid **telescoping constructors** (constructors with many parameters).
+* When object creation is complex and involves multiple steps.
+
+---
+
+### 📦 **Structure of the Builder Pattern**
+
+1. **Product**: The complex object to be built.
+2. **Builder**: Specifies an abstract interface for creating parts of the Product.
+3. **ConcreteBuilder**: Implements the Builder interface and constructs the parts.
+4. **Director** (optional): Controls the construction process.
+5. **Client**: Uses the builder to create the product.
+
+---
+
+### ✅ **Example in Java**
+
+Let's say we're building a `Computer` object.
+
+```java
+// Product
+public class Computer {
+    private String CPU;
+    private String RAM;
+    private String storage;
+    private boolean hasGraphicsCard;
+
+    // Private constructor to enforce use of Builder
+    private Computer(Builder builder) {
+        this.CPU = builder.CPU;
+        this.RAM = builder.RAM;
+        this.storage = builder.storage;
+        this.hasGraphicsCard = builder.hasGraphicsCard;
+    }
+
+    public static class Builder {
+        private String CPU;
+        private String RAM;
+        private String storage;
+        private boolean hasGraphicsCard;
+
+        public Builder(String CPU, String RAM) { // Required parameters
+            this.CPU = CPU;
+            this.RAM = RAM;
+        }
+
+        public Builder storage(String storage) {
+            this.storage = storage;
+            return this;
+        }
+
+        public Builder hasGraphicsCard(boolean hasGraphicsCard) {
+            this.hasGraphicsCard = hasGraphicsCard;
+            return this;
+        }
+
+        public Computer build() {
+            return new Computer(this);
+        }
+    }
+
+    public String toString() {
+        return "Computer [CPU=" + CPU + ", RAM=" + RAM + ", storage=" + storage + ", hasGraphicsCard=" + hasGraphicsCard + "]";
+    }
+}
+```
+
+### 🧑‍💻 **Client Code**
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Computer myPC = new Computer.Builder("Intel i7", "16GB")
+                            .storage("512GB SSD")
+                            .hasGraphicsCard(true)
+                            .build();
+        System.out.println(myPC);
+    }
+}
+```
+
+---
+
+### 📝 **Advantages**
+
+* More readable and maintainable code.
+* Better control over object construction.
+* Immutable objects can be built safely.
+
+---
+
+## Singleton design pattern
+
+Correct — the **Singleton Pattern** is a **creational design pattern** that ensures a class has **only one instance** and provides a **global point of access** to it.
+
+---
+
+### ✅ **Key Features**
+
+* Ensures only one instance of a class.
+* Provides a static method to access the instance.
+* Useful when exactly one object is needed to coordinate actions across the system (e.g., configuration manager, logging, caching, thread pools).
+
+---
+
+### 🧱 **Basic Implementation in Java**
+
+```java
+public class Singleton {
+    // Step 1: Private static instance
+    private static Singleton instance;
+
+    // Step 2: Private constructor
+    private Singleton() {}
+
+    // Step 3: Public method to provide access
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton(); // Lazy initialization
+        }
+        return instance;
+    }
+}
+```
+
+---
+
+### 🔒 **Thread-Safe Singleton (Double-Checked Locking)**
+
+```java
+public class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+}
+```
+
+---
+
+### 📝 **Pros**
+
+* Controlled access to the sole instance.
+* Saves memory by avoiding multiple instantiations.
+
+### ⚠️ **Cons**
+
+* Difficult to unit test (due to global state).
+* Can introduce hidden dependencies.
+
+## Factory method design pattern
+
+Exactly — the **Factory Method Pattern** is a **creational design pattern** that provides an interface for creating objects but **lets subclasses decide** which class to instantiate. It **decouples object creation** from its usage.
+
+---
+
+### ✅ **Key Idea**
+
+Define an **interface or abstract class** for creating an object, but let subclasses **alter the type of objects that will be created.**
+
+---
+
+### 🧱 **Example in Java**
+
+#### 1. **Product Interface**
+
+```java
+public interface Shape {
+    void draw();
+}
+```
+
+#### 2. **Concrete Products**
+
+```java
+public class Circle implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+public class Square implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Square");
+    }
+}
+```
+
+#### 3. **Creator (Factory)**
+
+```java
+public abstract class ShapeFactory {
+    public abstract Shape createShape();
+}
+```
+
+#### 4. **Concrete Creators**
+
+```java
+public class CircleFactory extends ShapeFactory {
+    public Shape createShape() {
+        return new Circle();
+    }
+}
+
+public class SquareFactory extends ShapeFactory {
+    public Shape createShape() {
+        return new Square();
+    }
+}
+```
+
+#### 5. **Client Code**
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        ShapeFactory factory = new CircleFactory(); // Can switch to SquareFactory
+        Shape shape = factory.createShape();
+        shape.draw();  // Output: Drawing a Circle
+    }
+}
+```
+
+---
+
+### 📝 **Benefits**
+
+* Promotes **loose coupling**.
+* Makes code more **extensible** (easy to introduce new products).
+* Adheres to the **Open/Closed Principle**.
+
+---
+
+Yes — the **Factory Method Pattern** adheres to the **Open/Closed Principle**, which is one of the SOLID principles of object-oriented design.
+
+---
+
+### 🧩 **Open/Closed Principle (OCP)**
+
+> **“Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.”**
+> – Bertrand Meyer
+
+---
+
+### ✅ **How Factory Method Supports OCP**
+
+* You can **add new product types** (e.g., new shapes like `Triangle`, `Rectangle`) **without modifying** existing code.
+* Instead of changing the `ShapeFactory` or client code, you just create a **new subclass** (e.g., `TriangleFactory`) that overrides the factory method.
+
+#### Example:
+
+```java
+public class Triangle implements Shape {
+    public void draw() {
+        System.out.println("Drawing a Triangle");
+    }
+}
+
+public class TriangleFactory extends ShapeFactory {
+    public Shape createShape() {
+        return new Triangle();
+    }
+}
+```
+
+✔️ No need to modify `ShapeFactory` or any existing factories — just **extend**.
+
+---
+
+This makes your system **more maintainable, testable, and scalable**.
+
+## Abstract Factory Pattern
+
+The **Abstract Factory Pattern** is a **creational design pattern** that provides an interface for creating **families of related or dependent objects** **without specifying their concrete classes**.
+
+---
+
+### ✅ **Key Purpose**
+
+To ensure that products created together are **compatible** and to **encapsulate object creation** logic for multiple types of related objects.
+
+---
+
+### 🧠 **Real-World Analogy**
+
+Imagine a **furniture factory** that can create **Victorian** or **Modern** furniture. You don’t want to mix styles (like a Victorian chair with a Modern table), so the Abstract Factory ensures style consistency.
+
+---
+
+### 🧱 **Structure in Java**
+
+#### 1. **Abstract Product Interfaces**
+
+```java
+public interface Chair {
+    void sitOn();
+}
+
+public interface Table {
+    void dineOn();
+}
+```
+
+#### 2. **Concrete Products**
+
+```java
+public class VictorianChair implements Chair {
+    public void sitOn() {
+        System.out.println("Sitting on a Victorian Chair.");
+    }
+}
+
+public class ModernChair implements Chair {
+    public void sitOn() {
+        System.out.println("Sitting on a Modern Chair.");
+    }
+}
+
+public class VictorianTable implements Table {
+    public void dineOn() {
+        System.out.println("Dining on a Victorian Table.");
+    }
+}
+
+public class ModernTable implements Table {
+    public void dineOn() {
+        System.out.println("Dining on a Modern Table.");
+    }
+}
+```
+
+#### 3. **Abstract Factory**
+
+```java
+public interface FurnitureFactory {
+    Chair createChair();
+    Table createTable();
+}
+```
+
+#### 4. **Concrete Factories**
+
+```java
+public class VictorianFurnitureFactory implements FurnitureFactory {
+    public Chair createChair() {
+        return new VictorianChair();
+    }
+
+    public Table createTable() {
+        return new VictorianTable();
+    }
+}
+
+public class ModernFurnitureFactory implements FurnitureFactory {
+    public Chair createChair() {
+        return new ModernChair();
+    }
+
+    public Table createTable() {
+        return new ModernTable();
+    }
+}
+```
+
+#### 5. **Client Code**
+
+```java
+public class Client {
+    public static void main(String[] args) {
+        FurnitureFactory factory = new ModernFurnitureFactory();  // Can switch to Victorian
+
+        Chair chair = factory.createChair();
+        Table table = factory.createTable();
+
+        chair.sitOn();
+        table.dineOn();
+    }
+}
+```
+
+---
+
+### 📝 **Advantages**
+
+* Ensures products from the **same family are used together**.
+* Promotes **consistency and scalability**.
+* Supports the **Open/Closed Principle** (you can add new product families without changing existing code).
+
+---
+
+## Prototype Design Pattern
+
+The **Prototype Pattern** is a **creational design pattern** that creates new objects by **cloning** an existing object, known as the **prototype**.
+
+---
+
+### ✅ **Key Idea**
+
+Instead of creating a new object from scratch (via a constructor or factory), you **duplicate an existing object** using a **copy mechanism** (usually `.clone()`).
+
+---
+
+### 🧠 **When to Use**
+
+* When object creation is expensive (e.g., involves database calls or complex initialization).
+* When you need many similar objects.
+* When you want to avoid creating a new subclass just to vary an object’s configuration.
+
+---
+
+### 🧱 **Example in Java**
+
+#### 1. **Prototype Interface**
+
+```java
+public interface Prototype extends Cloneable {
+    Prototype clone();
+}
+```
+
+#### 2. **Concrete Prototype**
+
+```java
+public class Document implements Prototype {
+    private String content;
+
+    public Document(String content) {
+        this.content = content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void print() {
+        System.out.println("Document: " + content);
+    }
+
+    @Override
+    public Document clone() {
+        return new Document(this.content); // Shallow copy
+    }
+}
+```
+
+#### 3. **Client Code**
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Document original = new Document("Original Content");
+        Document copy = original.clone();
+
+        copy.setContent("Cloned Content");
+
+        original.print();  // Output: Original Content
+        copy.print();      // Output: Cloned Content
+    }
+}
+```
+
+---
+
+### 📝 **Benefits**
+
+* **Avoids repetitive instantiation**.
+* Useful for **copying complex objects** with many fields.
+* Enables **runtime object configuration**.
+
+### ⚠️ **Considerations**
+
+* Must implement a proper **clone()** method.
+* Handle **deep copies** if object contains references to other objects.
+
+---
+
