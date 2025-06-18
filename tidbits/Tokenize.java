@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Tokenize {
@@ -21,6 +24,31 @@ public class Tokenize {
     System.out.println(Arrays.toString(tokens));
   }
 
+  private static void tokenizeUsingScanner(String string, String regex) {
+    Scanner scanner = new Scanner(string);
+    scanner.useDelimiter(regex);
+    List<String> matches = new ArrayList<String>();
+    while(scanner.hasNext()){
+        matches.add(scanner.next());
+    }
+    System.out.println(matches);
+    scanner.close();
+  }
+
+  private static void lookForDifferentThingsUsingScanner(String string) {
+    Scanner scanner = new Scanner(string);
+    while(scanner.hasNext()) {
+      if(scanner.hasNextBoolean()){
+          System.out.println("Found Boolean:" + scanner.nextBoolean());
+      } else if(scanner.hasNextInt()){
+          System.out.println("Found Integer:" + scanner.nextInt());
+      } else {
+          System.out.println("Different thing:" + scanner.next());
+      }
+    }
+    scanner.close();
+  }
+
   public static void main(String[] args) {
     String x = "ab;cde;fg;h;ijk";
     Tokenize.tokenize(x, ";");
@@ -40,5 +68,9 @@ public class Tokenize {
     Tokenize.tokenizeWithLimitedSplits("one,two,three,four", ",", 2);
 
     Tokenize.tokenize("one?two!three", "[?!]+");
+    Tokenize.tokenizeUsingScanner("one?two!three", "[?!]+");
+
+    // pattern matching types of scans
+    Tokenize.lookForDifferentThingsUsingScanner("true 1234 false 567 ; //");
   }
 }

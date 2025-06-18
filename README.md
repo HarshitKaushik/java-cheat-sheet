@@ -1985,10 +1985,10 @@ public class Enum {
 }
 ```
 
-Enum Rules
+#### Enum Rules
 - Enums can be declared in a separate class(SeasonOutsideClass) or as member of a class(Season). Enums cannot be declared in a method.
 
-Conversion of Enum : Function valueOf(String)  is used to convert a string to enum.
+Conversion of Enum : Function `valueOf(String)`  is used to convert a string to enum.
 
 ```java
 //Converting String to Enum
@@ -2011,7 +2011,7 @@ System.out.println(Season.SUMMER.ordinal()); //2
 System.out.println(Season.FALL.ordinal()); //3
 ```
 
-Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the function values().
+Looping around an Enum - List of values allowed for an Enum can be obtained by invoking the function `values()`.
 ```java
 //Looping an enum => We use method values
 for (Season season1: Season.values()) {
@@ -2036,7 +2036,7 @@ package com.in28minutes.java.beginners.concept.examples.enums;
 
 public class EnumAdvanced {
 
-    // Enum with a variable,method and constructor
+    // Enum with a variable, method and constructor
     enum SeasonCustomized {
         WINTER(1), SPRING(2), SUMMER(3), FALL(4);
 
@@ -2203,6 +2203,7 @@ public class EnumAdvanced2 {
 
 }
 ```
+
 Enum Constant Class - In the example above, take a look at how the Winter Type is declared: It provides an overriding implementation for the getExpectedMaxTemperature method already declared in the Enum. This feature in an Enum is called a Constant Class.
 ```
 WINTER(1) {
@@ -7753,6 +7754,7 @@ regex("\\.\\.\\.", "...a....b...c"); //[0<...>, 4<...>, 9<...>]
 ```
 #### Regular Expression using Scanner class
 Below code shows how Scanner class can be used to execute regular expression.  findInLine method in Scanner returns the match , if a match is found. Otherwise, it returns null.
+
 ```java
 private static void regexUsingScanner(String regex,
 String string) {
@@ -7783,11 +7785,11 @@ private static void tokenize(String string, String regex) {
 ```
 #### Example:
 ```
-tokenize("ac;bd;def;e",";"); //[ac, bd, def, e]
+tokenize("ac;bd;def;e", ";"); //[ac, bd, def, e]
 ```
 #### Tokenizing using Scanner Class
 ```java
-private static void tokenizeUsingScanner(String string,String regex) {
+private static void tokenizeUsingScanner(String string, String regex) {
     Scanner scanner = new Scanner(string);
     scanner.useDelimiter(regex);
     List<String> matches = new ArrayList<String>();
@@ -7819,6 +7821,7 @@ String string) {
 ```
 
 Scanner has more useful functions other than just looking for a delimiter
+
 #### Example:
 ```
 lookForDifferentThingsUsingScanner("true false 12 3 abc true 154");
