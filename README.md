@@ -7773,9 +7773,10 @@ regexUsingScanner("a+?", "aaaaab"); //[a, a, a, a, a]
 ```
 ### Tokenizing
 - Tokenizing means splitting a string into several sub strings based on delimiters. For example, delimiter ; splits the string ac;bd;def;e into four sub strings ac, bd, def and e. Delimiter can in itself be any of the regular expression(s) we looked at earlier. String.split(regex) function takes regex as an argument.
+
 #### Example method for Tokenizing
 ```java
-private static void tokenize(String string,String regex) {
+private static void tokenize(String string, String regex) {
     String[] tokens = string.split(regex);
     System.out.println(Arrays.toString(tokens));
 }
