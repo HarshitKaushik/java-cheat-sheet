@@ -4405,7 +4405,7 @@ The volatile keyword is guaranteed to work on 32 bit and 64 variables.
 
 > Performance Considerations of volatile - Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU register. Accessing volatile variables also prevents instruction reordering which is a normal performance enhancement technique. Thus, you should only use volatile variables when you really need to enforce visibility of variables.
 
-#### native
+#### native keyword
 - Can be applied only to methods.
 - These methods are implemented in native languages (like C).
 
@@ -4491,9 +4491,8 @@ java -Djava.library.path=. NativeExample
 
 ---
 
-
 ### Static variables and methods
-- Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire class. Each instance of the class (object) will NOT have a unique copy of a static variable. Let's start with a real-world example of a class with static variable and methods.
+- Static variables and methods are class-level variables and methods. There is only one copy of the static variable for the entire class. Each instance of the class (object) will NOT have a unique copy of a static variable. Let's start with a real-world example of a class with static variable and methods.
 
 #### Static variables and method, example
 `count` variable in `Cricketer` class is static. The method to get the count value `getCount()` is also a static method. 
@@ -4522,7 +4521,7 @@ public class Cricketer {
 }
 ```
 
-4 instances of the Cricketer class are created. Variable count is incremented with every instance created in the constructor. 
+4 instances of the Cricketer class are created. Variable count is incremented with every instance created in the constructor because a constructor method is executed for each object creation. 
 
 #### Static variables and Methods Example 2
 Example class below explains all the rules associated with accessing static variables and static methods.
@@ -4549,7 +4548,7 @@ public class StaticModifierExamples {
     }
 
     public static void main(String[] args) {
-        //static int i =5; //COMPILER ERROR
+        //static int i = 5; //COMPILER ERROR
         StaticModifierExamples example = new StaticModifierExamples();
 
         //instance variables and methods are only accessible through object references
@@ -4558,7 +4557,7 @@ public class StaticModifierExamples {
         //StaticModifierExamples.instanceVariable = 10; //COMPILER ERROR
         //StaticModifierExamples.instanceMethod(); //COMPILER ERROR
 
-        //static variables and methods are accessible through object references and Class Name.
+        //static variables and methods are accessible through object references and class name.
         example.staticVariable = 10;
         example.staticMethod();
         StaticModifierExamples.staticVariable = 10;
@@ -4606,7 +4605,7 @@ StaticModifierExamples.staticVariable = 10;
 StaticModifierExamples.staticMethod();
 ```
 
-It is always recommended to use Class Name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
+It is always recommended to use class name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
 
 #### Static methods cannot be overridden
 Consider the example below:
