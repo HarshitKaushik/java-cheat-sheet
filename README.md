@@ -2957,7 +2957,7 @@ public class Test {
 
 
 ### Constructors
-- Constructor is invoked whenever we create an instance(object) of a class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
+- Constructor is invoked whenever we create an object of a class. We cannot create an object without a constructor. If we do not provide a constructor, compiler provides a default no-argument constructor.
 
 #### Constructor Example 1: Default Constructor
 In the example below, there are no constructors defined in the Animal class. Compiler provides us with a default constructor, which helps us create an instance of animal class.
@@ -2992,7 +2992,7 @@ class Animal {
         // provide a default constructor.
         // Animal animal = new Animal(); //COMPILER ERROR!
 
-        // The only way we can create Animal1 object is by using
+        // The only way we can create Animal object is by using
         Animal animal = new Animal("Tommy");
     }
 }
@@ -3017,10 +3017,10 @@ class Animal {
     public static void main(String[] args) {
         // Since we provided a constructor, compiler does not
         // provide a default constructor.
-        // Animal animal = new Animal(); //COMPILER ERROR!
+        Animal animal = new Animal();
 
-        // The only way we can create Animal object is by using
-        Animal animal = new Animal("Tommy");
+        // The way we can create Animal object is by using
+        Animal animal2 = new Animal("Tommy");
     }
 }
 ```
@@ -3080,7 +3080,7 @@ class Animal {
     }
 }
 ```
-#### Constructor Example 7: Super Class Constructor is invoked automatically
+#### Constructor Example 7: Super class Constructor is invoked automatically
 If a super class constructor is not explicitly called from a sub-class constructor, super class (no argument) constructor is automatically invoked (as first line) from a sub-class constructor.
 
 Consider the example below:
@@ -3119,22 +3119,22 @@ It is almost as if `super()` method is invoked as the first line of every constr
 ```java
 class Animal {
     public Animal() {
-super(); // IMPLICIT CALL
-System.out.println("Animal Constructor");
+        super(); // IMPLICIT CALL
+        System.out.println("Animal Constructor");
     }
 }
 
 class Dog extends Animal {
     public Dog() {
-super(); // IMPLICIT CALL
-System.out.println("Dog Constructor");
+        super(); // IMPLICIT CALL
+        System.out.println("Dog Constructor");
     }
 }
 
 class Labrador extends Dog {
     public Labrador() {
-super(); // IMPLICIT CALL
-System.out.println("Labrador Constructor");
+        super(); // IMPLICIT CALL
+        System.out.println("Labrador Constructor");
     }
 }
 ```
@@ -3235,7 +3235,7 @@ Solution is to create an explicit constructor in sub-class invoking the super cl
 ```java
 class Dog extends Animal {
     public Dog() {
-super("Default Dog Name");
+        super("Default Dog Name");
     }
 }
 ```
@@ -3282,7 +3282,7 @@ class Order {
 }
 ```
 
-Method ```orderTotalPrice``` in ```Order``` class is coupled heavily with ```ShoppingCartEntry``` and ```ShoppingCart``` classes.  It uses different properties (items, price and quantity) from these classes. If any of these properties change, ```orderTotalPrice``` will also change. This is not good for maintenance.
+Method ```orderTotalPrice``` in ```Order``` class is coupled heavily with ```ShoppingCartEntry``` and ```ShoppingCart``` classes.  It uses different properties (items, price and quantity) from these classes. If any of these properties change, ```orderTotalPrice``` will also change. This is **not good** for maintenance.
 
 #### Coupling Example Solution
 
@@ -3385,7 +3385,7 @@ class DownloadAndStore {
 ```
 
 ### Encapsulation
-- Encapsulation is hiding the implementation of a Class behind a well defined interface. Encapsulation helps us to change implementation of a class without breaking other code.
+- Encapsulation is hiding the implementation of a Class behind a well-defined interface. Encapsulation helps us to change implementation of a class without breaking other code.
 
 #### Encapsulation Approach 1
 In this approach we create a public variable score. The main method directly accesses the score variable, updates it.
@@ -3456,7 +3456,7 @@ public static void main(String[] args) {
 ```
 
 #### Encapsulation Example
-In terms of encapsulation Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
+In terms of encapsulation, Approach 3 > Approach 2 > Approach 1. In Approach 3, the user of scorer class does not even know that there is a variable called score. Implementation of Scorer can change without changing other classes using Scorer.
 
 ### Interface
 - An interface defines a contract for responsibilities/methods of a class. Let's look at a few examples of interfaces.
@@ -3473,13 +3473,94 @@ public abstract interface Flyable {
 #### An interface can contain abstract methods -- NOT TRUE ANY MORE
 In the above example, fly method is abstract since it is only declared (No definition is provided).
 
+Yes, **an interface in Java can contain non-abstract methods**, **starting from Java 8**. These methods must be either:
+
+---
+
+#### ✅ 1. **Default Methods**
+
+* Introduced in **Java 8**.
+* Use the `default` keyword.
+* Provide a concrete (non-abstract) implementation **inside the interface**.
+* Useful for adding new methods to interfaces without breaking existing implementations.
+
+**Example:**
+
+```java
+interface MyInterface {
+    default void show() {
+        System.out.println("Default implementation");
+    }
+}
+```
+
+---
+
+#### ✅ 2. **Static Methods**
+
+* Also allowed since **Java 8**.
+* Belong to the **interface itself**, not the implementing classes.
+* Can only be called using the interface name.
+
+**Example:**
+
+```java
+interface MyInterface {
+    static void utility() {
+        System.out.println("Static method in interface");
+    }
+}
+```
+
+---
+
+#### ✅ 3. **Private Methods** (Java 9+)
+
+* Allowed since **Java 9**.
+* Used to **share code between default or static methods** inside the interface.
+* Not accessible outside the interface.
+
+**Example:**
+
+```java
+interface MyInterface {
+    private void helper() {
+        System.out.println("Private helper");
+    }
+
+    default void useHelper() {
+        helper(); // Call to private method
+    }
+}
+```
+
+---
+
+#### ❌ Interfaces **cannot** have:
+
+* Instance fields (only `public static final` constants are allowed).
+* Traditional instance methods with implementation **without** `default`, `static`, or `private`.
+
+---
+
+#### ✅ Summary Table
+
+| Method Type | Allowed in Interface? | Since Java | Notes                                |
+| ----------- | --------------------- | ---------- | ------------------------------------ |
+| Abstract    | ✅ Yes                 | Always     | No body needed; implemented by class |
+| Default     | ✅ Yes                 | Java 8     | Instance method with default impl    |
+| Static      | ✅ Yes                 | Java 8     | Utility methods; called by interface |
+| Private     | ✅ Yes                 | Java 9     | Internal reuse only                  |
+
+---
+
 #### Implementing an Interface
 We can define a class implementing the interface by using the `implements` keyword. Let us look at a couple of examples:
 
 #### Example 1
 Class `Aeroplane` implements `Flyable` and implements the abstract method `fly`().
 ```java
-public class Aeroplane implements Flyable{
+public class Aeroplane implements Flyable {
     @Override
     public void fly() {
         System.out.println("Aeroplane is flying");
@@ -3489,7 +3570,7 @@ public class Aeroplane implements Flyable{
 
 #### Example 2
 ```java
-public class Bird implements Flyable{
+public class Bird implements Flyable {
 
     @Override
     public void fly() {
@@ -3519,7 +3600,7 @@ Flyable flyable2 = new Aeroplane();
 #### Variables in an interface
 Variables in an interface are always public, static, final. Variables in an interface cannot be declared private.
 
-```java
+```javaq
 interface ExampleInterface1 {
     //By default - public static final. No other modifier allowed
     //value1,value2,value3,value4 all are - public static final
@@ -3538,7 +3619,6 @@ interface ExampleInterface1 {
     //By default - public abstract. No other modifier allowed
     void method1(); //method1 is public and abstract
     //private void method6(); //COMPILER ERROR!
-    
 }
 ```
 
@@ -3546,7 +3626,7 @@ interface ExampleInterface1 {
 An interface can extend another interface. Consider the example below:
 
 ```java
-interface SubInterface1 extends ExampleInterface1{
+interface SubInterface1 extends ExampleInterface1 {
     void method3();
 }
 ```
@@ -3558,7 +3638,7 @@ An interface cannot extend a class.
 ```java
 /* //COMPILE ERROR IF UnCommented
    //Interface cannot extend a Class
-interface SubInterface2 extends Integer{
+interface SubInterface2 extends Integer {
     void method3();
 }
 */
@@ -3571,7 +3651,7 @@ interface ExampleInterface2 {
     void method2();
 }
 
-class SampleImpl implements ExampleInterface1,ExampleInterface2{
+class SampleImpl implements ExampleInterface1, ExampleInterface2 {
     /* A class should implement all the methods in an interface.
        If either of method1 or method2 is commented, it would 
        result in compilation error. 
@@ -3597,6 +3677,7 @@ class SampleImpl implements ExampleInterface1,ExampleInterface2{
 #### Method Overloading Example 1
 
 `doIt` method is overloaded in the below example:
+
 ```java
 class Foo{
     public void doIt(int number){
@@ -3622,7 +3703,7 @@ class Bar extends Foo{
 - A method cannot be overloaded just by only changing the return type.
 - Overloaded methods are always treated as if they are different methods altogether.
 - Overloading does not put any restrictions on access modifiers or exceptions thrown from the method.
-- Overloaded method invocation is based on the Type of the Reference variable. It is NOT based on the object it refers to.
+- Overloaded method invocation is based on the type of the reference variable. It is NOT based on the object it refers to.
 
 - Java Example
   - Constructors
@@ -3657,6 +3738,9 @@ class Cat extends Animal {
 ```
 
 `bark` method in `Cat` class is overriding the `bark` method in `Animal` class.
+
+
+
 
 - Java Example
   - HashMap public int size() overrides AbstractMap public int size()
