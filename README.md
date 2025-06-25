@@ -3716,7 +3716,7 @@ class Bar extends Foo{
 - [Rules](src/main/java/com/in28minutes/java/oops/inheritance/overloading/OverloadingRules.java)
 
 ### Method Overriding
-- Creating a Sub Class Method with same signature as that of a method in SuperClass is called Method Overriding.
+- Creating a SubClass Method with same signature as that of a method in SuperClass is called Method Overriding.
 
 #### Method Overriding Example 1:
 Let's define an Animal class with a method shout.
@@ -3739,16 +3739,13 @@ class Cat extends Animal {
 
 `bark` method in `Cat` class is overriding the `bark` method in `Animal` class.
 
-
-
-
 - Java Example
   - HashMap public int size() overrides AbstractMap public int size()
 - [Example](src/main/java/com/in28minutes/java/oops/inheritance/overriding/OverridingRules.java)
 
 
-#### Overriding Method Cannot have lesser visibility
-Overriding method cannot have lesser visibility than the Super Class method. Consider these two examples
+#### Overriding Method cannot have lesser visibility
+Overriding method cannot have lesser visibility than the SuperClass method. Consider these two examples.
 #### Example 1
 ```java
 class SuperClass{
@@ -3790,7 +3787,7 @@ class SubClass{
 
 > Overriding method cannot be private.
 
-#### Overriding method cannot throw new Checked Exceptions
+#### Overriding method cannot throw new checked exceptions
 Consider the example below:
 
 ```java
@@ -3871,8 +3868,65 @@ private class Error{ //COMPILER ERROR
     
 }
 ```
+
 #### Non-access modifiers 
 strictfp, final, abstract modifiers are valid on a class.
+
+Yes, you're absolutely right — **`strictfp`**, **`final`**, and **`abstract`** are **non-access modifiers** in Java and **can be applied to classes**. Here's a breakdown of each:
+
+---
+
+### 🔹 `final` (Non-Access Modifier)
+
+* **Usage:** Prevents a class from being extended (i.e., subclassed).
+* **Example:**
+
+  ```java
+  public final class Utility {
+      // No class can extend Utility
+  }
+  ```
+* **Common Use Case:** Security, utility/helper classes.
+
+---
+
+### 🔹 `abstract`
+
+* **Usage:** Declares a class that **cannot be instantiated directly**. It must be **subclassed**, and may contain **abstract methods** (methods without a body).
+* **Example:**
+
+  ```java
+  public abstract class Animal {
+      abstract void sound();
+  }
+  ```
+* **Common Use Case:** When you want to define a **base class** with partial implementation.
+
+---
+
+### 🔹 `strictfp`
+
+* **Usage:** Ensures **platform-independent floating-point calculations** by enforcing IEEE 754 precision.
+* **Example:**
+
+  ```java
+  public strictfp class Calculator {
+      // All FP calculations in this class follow strict IEEE 754
+  }
+  ```
+* **Common Use Case:** Rare; used when consistent floating-point behavior across platforms is needed (e.g., scientific or financial applications).
+
+---
+
+### ✅ Summary Table
+
+| Modifier   | Can Apply to Class? | Effect                                                  |
+| ---------- | ------------------- | ------------------------------------------------------- |
+| `final`    | ✅ Yes               | Class cannot be subclassed                              |
+| `abstract` | ✅ Yes               | Class cannot be instantiated; may have abstract methods |
+| `strictfp` | ✅ Yes               | Enforces platform-independent FP behavior               |
+
+---
 
 ### Class Access Modifiers
 - Let's learn about a few Java Class Access Modifiers.
@@ -3919,6 +3973,7 @@ public class ClassInDifferentPackage {
     //DefaultAccessClass defaultAccess; //COMPILE ERROR!!    
 }
 ```
+
 ### Method and Variable Access Modifiers
 - Method and variable access modifiers can be public, protected, private or (default)
 
