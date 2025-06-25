@@ -3991,7 +3991,7 @@ example.publicMethod();
 
 #### Is Accessible through Inheritance?
 
-Can we access the super class variables and methods from a Sub Class?
+Can we access the super class variables and methods from a sub class?
 ```java
 public class SubClass extends ExampleClass {    
     void subClassMethod(){
@@ -4004,7 +4004,7 @@ public class SubClass extends ExampleClass {
 #### Important Access Things to Remember
 A sub-class trying to access through reference/instance variables, will have the same access as a normal class (non sub-class).
 
-> Access modifiers cannot be applied to local variables
+> **Access modifiers cannot be applied to local variables**
 
 #### Access Modifiers Example
 Let's consider the following class with variables and methods declared with all 4 access modifiers:
@@ -4048,6 +4048,7 @@ b. Protected variables and methods from SuperClass are available to SubClass in 
 #### public
 a. Public variables and methods can be accessed from every other Java classes.
 b. Public variables and methods from SuperClass are all available directly in the SubClass.
+
 #### Access Modifier Example: Class in Same Package
 Look at the code below to understand what can be accessed and what cannot be.
 
@@ -4180,7 +4181,7 @@ class ExtendingFinalClass extends FinalClass{ //COMPILER ERROR
 */
 ```
 
-Example of Final class in Java is the String class.
+Example of final class in Java is the `String` class.
 
 Final is used very rarely as it prevents re-use of the class.
 
@@ -4227,17 +4228,269 @@ void testMethod(final int finalArgument){
 - A class cannot be both abstract and final
 
 #### strictfp
-- This modifier can be used on a class and a method. This (strictfp) cannot be used on a variable. 
-- IEEE standard for floating points would be followed in the method or class where strictfp modifier is specified.
+- This modifier can be used on a class and a method. This (`strictfp`) cannot be used on a variable. 
+- IEEE standard for floating points would be followed in the method or class where `strictfp` modifier is specified.
 
 #### volatile
 - Volatile can only be applied to instance variables.
 - A volatile variable is one whose value is always written to and read from "main memory". 
-- Each thread has its own cache in Java. The volatile variable will not be stored on a Thread cache.
+- Each thread has its own cache in Java. The `volatile` variable will not be stored on a Thread cache.
+- The Java volatile keyword is used to mark a Java variable as "being stored in main memory". More precisely that means, that every read of a volatile variable will be read from the computer's main memory, and not from the CPU registers, and that every write to a volatile variable will be written to main memory, and not just to the CPU registers.
+
+Each thread has its own **CPU registers** (or more precisely, its own **register context**) to support **concurrent execution** and **context switching** in a multitasking system. Here's a detailed explanation:
+
+---
+
+## ✅ Why Each Thread Needs Its Own CPU Registers
+
+#### 🔹 1. **Isolation of Execution State**
+
+* Registers (like the program counter, stack pointer, general-purpose registers) store a thread’s **current execution state**.
+* If threads shared registers, their execution would **overwrite each other’s state**, causing bugs and unpredictable behavior.
+* By giving each thread its own set of registers (conceptually), the CPU can resume execution of any thread exactly where it left off.
+
+---
+
+#### 🔹 2. **Context Switching**
+
+* The operating system (OS) supports running multiple threads by **switching** between them rapidly (context switching).
+* During a context switch:
+
+  1. The OS **saves** the current thread’s register values into its **thread control block (TCB)** or thread context.
+  2. It **loads** the next thread's previously saved registers into the actual CPU registers.
+* This illusion allows multiple threads to run "simultaneously" even on a single core.
+
+---
+
+#### 🔹 3. **Independent Control Flow**
+
+* Each thread has its own **program counter (PC)** — a special register that tracks the current instruction.
+* Threads execute **independently**, potentially running completely different code or different parts of the same code at the same time.
+
+---
+
+#### 🔁 Analogy
+
+Imagine threads are **players in a game**, and the CPU is a **single controller**. Each player has their own save file (register state). When a player's turn comes, the system loads their save file into the controller. When the turn ends, it saves their current state again. That way, everyone resumes exactly where they left off.
+
+---
+
+#### ✅ Summary
+
+| Reason                    | Explanation                                                              |
+| ------------------------- | ------------------------------------------------------------------------ |
+| **Thread Isolation**      | Prevents one thread from corrupting another’s execution state            |
+| **Context Switching**     | Enables saving/restoring execution state during thread switching         |
+| **Independent Execution** | Each thread tracks its own progress with its own program counter & stack |
+
+---
+(It's tricky!)
+
+# 🧠 Full `volatile` Visibility Guarantee in Java
+
+The visibility guarantee of Java’s `volatile` keyword goes beyond just the `volatile` variable itself. Here's how it works:
+
+---
+
+## 🔹 Volatile Visibility Rules
+
+* **Write Rule:**
+
+  > If **Thread A** writes to a `volatile` variable and **Thread B** subsequently reads the same `volatile` variable, then **all variables visible to Thread A before the write** will also be visible to Thread B **after the read**.
+
+* **Read Rule:**
+
+  > If **Thread A** reads a `volatile` variable, then all variables visible to Thread A when reading the volatile variable will also be **re-read from main memory** (not cached).
+
+---
+
+## 📌 Code Illustration
+
+```java
+public class MyClass {
+    private int years;
+    private int months;
+    private volatile int days;
+
+    public void update(int years, int months, int days) {
+        this.years  = years;
+        this.months = months;
+        this.days   = days;  // volatile write
+    }
+}
+```
+
+* The `update()` method writes to three fields: `years`, `months`, and `days`.
+* Only `days` is declared `volatile`.
+
+### ✅ What This Means:
+
+When a thread writes to the `volatile` variable `days`, **all previous writes (years, months)** will be **flushed to main memory** as well. This ensures that **another thread reading `days` will also see the latest `years` and `months` values**.
+
+---
+
+## 🔍 Reading Values Safely
+
+```java
+public class MyClass {
+    private int years;
+    private int months;
+    private volatile int days;
+
+    public int totalDays() {
+        int total = this.days;           // volatile read
+        total += months * 30;            // reads refreshed from memory
+        total += years * 365;            // reads refreshed from memory
+        return total;
+    }
+
+    public void update(int years, int months, int days) {
+        this.years  = years;
+        this.months = months;
+        this.days   = days;              // volatile write
+    }
+}
+```
+
+* By **starting the read with the `volatile` variable (`days`)**, you ensure that:
+
+  * The **latest values** of `years` and `months` are **also visible** to the thread.
+
+---
+
+## ✅ Summary
+
+| Operation               | Effect                                                                    |
+| ----------------------- | ------------------------------------------------------------------------- |
+| Writing to `volatile`   | Flushes all earlier writes to main memory, including non-volatile fields  |
+| Reading from `volatile` | Forces reloading all values visible to the thread from main memory        |
+| Pattern Benefit         | Ensures consistent state across multiple fields with one `volatile` guard |
+
+---
+
+#### The volatile Happens-Before Guarantee
+
+To address the **instruction reordering challenge**, the Java volatile keyword gives a "happens-before" guarantee, in addition to the visibility guarantee. The happens-before guarantee guarantees that:
+- Reads from and writes to other variables cannot be reordered to occur after a write to a volatile variable, if the reads / writes originally occurred before the write to the volatile variable.
+> The reads / writes before a write to a volatile variable are guaranteed to "happen before" the write to the volatile variable. Notice that it is still possible for e.g. reads / writes of other variables located after a write to a volatile to be reordered to occur before that write to the volatile. Just not the other way around. From after to before is allowed, but from before to after is not allowed.
+- Reads from and writes to other variables cannot be reordered to occur before a read of a volatile variable, if the reads / writes originally occurred after the read of the volatile variable.
+> Notice that it is possible for reads of other variables that occur before the read of a volatile variable can be reordered to occur after the read of the volatile. Just not the other way around. From before to after is allowed, but from after to before is not allowed.
+
+The above happens-before guarantee assures that the visibility guarantee of the volatile keyword are being enforced.
+
+#### volatile is Not Always Enough
+Even if the volatile keyword guarantees that all reads of a volatile variable are read directly from main memory, and all writes to a volatile variable are written directly to main memory, there are still situations where it is not enough to declare a variable volatile.
+
+In the situation explained earlier where only Thread 1 writes to the shared counter variable, declaring the counter variable volatile is enough to make sure that Thread 2 always sees the latest written value.
+
+In fact, multiple threads could even be writing to a shared volatile variable, and still have the correct value stored in main memory, if the new value written to the variable does not depend on its previous value. In other words, if a thread writing a value to the shared volatile variable does not first need to read its value to figure out its next value.
+
+As soon as a thread needs to first read the value of a volatile variable, and based on that value generate a new value for the shared volatile variable, a volatile variable is no longer enough to guarantee correct visibility. The short time gap in between the reading of the volatile variable and the writing of its new value, creates an race condition where multiple threads might read the same value of the volatile variable, generate a new value for the variable, and when writing the value back to main memory - overwrite each other's values.
+
+The situation where multiple threads are incrementing the same counter is exactly such a situation where a volatile variable is not enough. The following sections explain this case in more detail.
+
+Imagine if Thread 1 reads a shared counter variable with the value 0 into its CPU register, increment it to 1 and not write the changed value back into main memory. Thread 2 could then read the same counter variable from main memory where the value of the variable is still 0, into its own CPU register. Thread 2 could then also increment the counter to 1, and also not write it back to main memory.
+
+Thread 1 and Thread 2 are now practically out of sync. The real value of the shared counter variable should have been 2, but each of the threads has the value 1 for the variable in their CPU registers, and in main memory the value is still 0. It is a mess! Even if the threads eventually write their value for the shared counter variable back to main memory, the value will be wrong.
+
+#### When is the volatile keyword enough?
+
+As I have mentioned earlier, if two threads are both reading and writing to a shared variable, then using the `volatile` keyword for that is not enough. You need to use a `synchronized` in that case to guarantee that the reading and writing of the variable is atomic. Reading or writing a `volatile` variable does not block threads reading or writing. For this to happen you must use the `synchronized` keyword around critical sections.
+
+As an alternative to a synchronized block you could also use one of the many atomic data types found in the `java.util.concurrent` package. For instance, the `AtomicLong` or `AtomicReference` or one of the others.
+
+In case only one thread reads and writes the value of a `volatile` variable and other threads only read the variable, then the reading threads are guaranteed to see the latest value written to the `volatile` variable. Without making the variable `volatile`, this would not be guaranteed.
+
+The volatile keyword is guaranteed to work on 32 bit and 64 variables.
+
+> Performance Considerations of volatile - Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU register. Accessing volatile variables also prevents instruction reordering which is a normal performance enhancement technique. Thus, you should only use volatile variables when you really need to enforce visibility of variables.
 
 #### native
-Can be applied only to methods.
-These methods are implemented in native languages (like C)
+- Can be applied only to methods.
+- These methods are implemented in native languages (like C).
+
+Certainly! Here's a simple and clear example of using the `native` keyword in Java, along with an explanation of how it works:
+
+---
+
+#### 🛠️ `native` Keyword in Java
+
+The `native` modifier indicates that a method is **implemented in another language**, such as **C or C++**, using **JNI** (Java Native Interface).
+
+---
+
+#### 📌 Example
+
+#### 🔹 Java Code (`NativeExample.java`)
+
+```java
+public class NativeExample {
+
+    // Declare a native method
+    public native void sayHello();
+
+    // Load the native library
+    static {
+        System.loadLibrary("nativeLib"); // Loads nativeLib.dll or libnativeLib.so
+    }
+
+    public static void main(String[] args) {
+        NativeExample example = new NativeExample();
+        example.sayHello(); // This will call C/C++ code
+    }
+}
+```
+
+* `sayHello()` is **declared**, but **not implemented in Java**.
+* `System.loadLibrary("nativeLib")` tells the JVM to load the shared native library containing the C implementation.
+
+---
+
+#### 🔹 Corresponding C Code (`nativeLib.c`)
+
+```c
+#include <jni.h>
+#include <stdio.h>
+#include "NativeExample.h"
+
+JNIEXPORT void JNICALL Java_NativeExample_sayHello(JNIEnv *env, jobject obj) {
+    printf("Hello from native C code!\n");
+}
+```
+
+* `Java_NativeExample_sayHello` must follow the JNI naming convention.
+* Header file (`NativeExample.h`) is generated using `javac` and `javah` (or `javac -h` in modern versions).
+
+---
+
+#### 🛠️ Compilation & Setup (Linux/Mac example)
+
+```bash
+javac NativeExample.java
+javac -h . NativeExample.java           # Generates NativeExample.h
+gcc -shared -fpic -o libnativeLib.so nativeLib.c -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux
+```
+
+Then run with:
+
+```bash
+java -Djava.library.path=. NativeExample
+```
+
+---
+
+#### 🧠 Key Notes
+
+| Aspect          | Details                                         |
+| --------------- | ----------------------------------------------- |
+| Can apply to    | ✅ Methods only                                  |
+| Cannot apply to | ❌ Classes or fields                             |
+| Purpose         | Bridge between Java and native code (e.g., C)   |
+| Tooling         | Uses **JNI** (Java Native Interface)            |
+| Use Cases       | Performance, hardware access, legacy code reuse |
+
+---
+
 
 ### Static variables and methods
 - Static variables and methods are class level variables and methods.  There is only one copy of the static variable for the entire class. Each instance of the class (object) will NOT have a unique copy of a static variable. Let's start with a real-world example of a class with static variable and methods.
