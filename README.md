@@ -5003,7 +5003,7 @@ This demonstrates how **shadowing works** and how to **explicitly refer** to out
     }
 ```
 #### Variable Arguments Syntax
-Data Type followed ... (three dot's) is syntax of a variable argument. 
+Data Type followed ... (three dots) is syntax of a variable argument. 
 ```java
 public int sum(int... numbers) {
 ```
@@ -5127,7 +5127,7 @@ Let's add a try catch block in method2
             str.toString();
             System.out.println("Line after Exception - Method 2");
         } catch (Exception e) {
-            // NOT PRINTING EXCEPTION TRACE- BAD PRACTICE
+            // NOT PRINTING EXCEPTION TRACE - BAD PRACTICE
             System.out.println("Exception Handled - Method 2");
         }
     }
@@ -5237,7 +5237,7 @@ Line after Exception - Main
 Connection is closed even when exception is thrown. This is because `connection.close()` is called in the finally block.
 Finally block is always executed (even when an exception is thrown). So, if we want some code to be always executed we can move it to finally block.
 
-Code in finally is NOT executed only in two situations.
+**Code in finally is NOT executed only in two situations.**
 If exception is thrown in finally.
 If JVM crashes in between (for example, System.exit()).
 
@@ -5325,13 +5325,13 @@ Error is used in situations when there is nothing a programmer can do about an e
 #### Exception
 Exception is used when a programmer can handle the exception.
 #### Un-checked exception
-RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For Example: RuntimeException, UnCheckedException, UnCheckedException2 are unchecked or RunTime Exceptions. These are subclasses of RuntimeException (which means they are subclasses of Exception also.)
+RuntimeException and classes that extend RuntimeException are called unchecked exceptions. For example, RuntimeException, UnCheckedException, UnCheckedException2 are unchecked or RunTime Exceptions. These are subclasses of RuntimeException (which means they are subclasses of Exception also.)
 #### checked exception
 Other Exception Classes (which don't fit the earlier definition). These are also called Checked Exceptions. Exception, CheckedException1,CheckedException2 are checked exceptions. They are subclasses of Exception which are not subclasses of RuntimeException.
 
 #### Throwing RuntimeException in method
 
-Method addAmounts in Class AmountAdder adds amounts. If amounts are of different currencies it throws an exception.
+Method `addAmounts` in Class `AmountAdder` adds amounts. If amounts are of different currencies it throws an exception.
 
 ```java
 class Amount {
@@ -5371,7 +5371,7 @@ at com.in28minutes.exceptionhandling.ExceptionHandlingExample2.main(ExceptionHan
 
 Exception message shows the type of exception(java.lang.RuntimeException) and the string message passed to the RuntimeException constructor("Currencies don't match");
 #### Throwing Exception (checked exception) in method
-Let us now try to change the method addAmounts to throw an Exception instead of RuntimeException. It gives us a compilation error.
+Let us now try to change the method `addAmounts` to throw an `Exception` instead of `RuntimeException`. It gives us a compilation error.
 
 ```java
 class AmountAdder {
@@ -5439,7 +5439,7 @@ class CurrenciesDoNotMatchException extends Exception{
 }
 ```
 
-No we can change the method addAmounts to throw CurrenciesDoNotMatchException - even the declaration of the method changed.
+Now we can change the method `addAmounts` to throw `CurrenciesDoNotMatchException` - even the declaration of the method changed.
 
 ```java
 class AmountAdder {
@@ -5583,7 +5583,7 @@ A catch block of type ExceptionType can only catch types ExceptionType and sub c
 Since NullPointerException is not a sub-class of CurrenciesDoNotMatchException it wouldn't be handled by the catch block. Instead a NullPointerException would be thrown out by the main method.
 
 #### Exception Handling Best Practices
-In all above examples we have not followed an Exception Handling good practice(s). Never Completely Hide Exceptions. At the least log them. printStactTrace method prints the entire stack trace when an exception occurs. If you handle an exception, it is always a good practice to log the trace.
+In all above examples, we have not followed Exception Handling good practice(s). Never completely hide exceptions. At the least log them. `printStackTrace` method prints the entire stack trace when an exception occurs. If you handle an exception, it is always a good practice to log the trace.
 ```java
     public static void main(String[] args) {
         try {
@@ -5606,6 +5606,7 @@ In all above examples we have not followed an Exception Handling good practice(s
 //Console console = new Console(); //COMPILER ERROR
 Console console = System.console();
 ```
+
 #### Console utility methods 
 ```java
 console.printf("Enter a Line of Text");
@@ -5735,7 +5736,7 @@ date.setTime(date.getTime() - 6 * 60 * 60 * 1000);
 System.out.println(date);
 ```
 #### Formatting Dates
-Formatting Dates is done by using DateFormat class. Let's look at a few examples.
+Formatting Dates is done by using `DateFormat` class. Let's look at a few examples.
 ```java
 //Formatting Dates
 System.out.println(DateFormat.getInstance().format(
@@ -5895,6 +5896,7 @@ Parsing only number value using number format
 numberFormat.setParseIntegerOnly(true);
 System.out.println(numberFormat.parse("9876.56")); //9876
 ```
+
 ### Collection Interfaces
 - Arrays are not dynamic. Once an array of a particular size is declared, the size cannot be modified. To add a new element to the array, a new array has to be created with bigger size and all the elements from the old array copied to new array. Collections are used in situations where data is dynamic. Collections allow adding an element, deleting an element and host of other operations. There are a number of Collections in Java allowing to choose the right Collection for the right context. Before looking into Collection classes, let's take a quick look at all the important collection interfaces and the operations they allow. 
 
