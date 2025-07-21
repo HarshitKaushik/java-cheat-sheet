@@ -4605,7 +4605,7 @@ StaticModifierExamples.staticVariable = 10;
 StaticModifierExamples.staticMethod();
 ```
 
-It is always recommended to use class name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
+**Please note**, It is always recommended to use class name to access a static variable or method. This is because static methods are class-level methods. It is not appropriate to use instance references to call static methods (even though it compiles and works).
 
 #### Static methods cannot be overridden
 Consider the example below:
@@ -4624,7 +4624,7 @@ class Dog extends Animal{
 }
 ```
 
-When code below is run, static method in Animal is executed. Static method invocation is based on the type of reference variable. It does not depend on the type of object referred to.
+**Please note**, When code below is run, static method in Animal is executed. Static method invocation is based on the type of reference variable. It does not depend on the type of object referred to.
 
 ```java
 Animal animal = new Dog();
@@ -4809,6 +4809,7 @@ class OuterClass {
 
         public void privateVariablesOfOuterClassAreNOTAvailable() {
             // outerClassInstanceVariable = 5; //COMPILE ERROR
+            // Cannot make a static reference to the non-static field
         }
     }
 
@@ -4983,7 +4984,7 @@ This demonstrates how **shadowing works** and how to **explicitly refer** to out
     //int(type) followed ... (three dot's) is syntax of a variable argument. 
     public int sum(int... numbers) {
         //inside the method a variable argument is similar to an array.
-        //number can be treated as if it is declared as int[] numbers;
+        //numbers can be treated as if it is declared as int[] numbers;
         int sum = 0;
         for (int number: numbers) {
             sum += number;
@@ -5007,7 +5008,7 @@ Data Type followed ... (three dot's) is syntax of a variable argument.
 public int sum(int... numbers) {
 ```
 
-Inside the method a variable argument is similar to an array. For Example: number can be treated in below method as if it is declared as int[] numbers;
+Inside the method a variable argument is similar to an array. For example, numbers can be treated in below method as if it is declared as int[] numbers;
 ```java
     public int sum(int... numbers) {
         int sum = 0;

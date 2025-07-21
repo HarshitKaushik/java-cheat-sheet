@@ -1,4 +1,4 @@
-class ConstructorFirst {
+public class ConstructorFirst {
   int code;
 
   public ConstructorFirst() {
